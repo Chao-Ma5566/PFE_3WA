@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
+import {BASE_URL} from "../tools/constante.js"
 
 const Register = (props) => {
     const initialValue = { nom: "", prenom: "", email: "", password: "", birthday: "2018-07-22" }
@@ -8,7 +9,7 @@ const Register = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        axios.post('http://jianchaoma.ide.3wa.io:3001/addUser', {
+        axios.post(`${BASE_URL}/addUser`, {
             last_name: userInfo.nom,
             first_name: userInfo.prenom,
             email: userInfo.email,

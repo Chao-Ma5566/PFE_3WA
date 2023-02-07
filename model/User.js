@@ -17,7 +17,7 @@ class User {
             const passwordIsValide = await bcrypt.compare(password,dataBDD[0].password)
             
             if(passwordIsValide){
-                return{response:passwordIsValide}
+                return{response: passwordIsValide, data:dataBDD}
             }
             
             return{response: "email ou mot de passe invalide"}
@@ -29,9 +29,9 @@ class User {
     
     async _emailExist(email){
         try {
-            const sql = "SELECT * FROM users WHERE email = ?"
+            const sql = "SELECT first_name, last_name, id, email, password, role_id FROM users WHERE email = ?"
             const response  = await this.asyncQuery(sql,[email])
-            if(response.length > 0) return true
+            if(response.length > 0) return response
             return false
         } catch(err){
             return

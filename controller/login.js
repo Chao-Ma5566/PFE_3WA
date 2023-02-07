@@ -1,5 +1,5 @@
-import {asyncQuery} from "../config/database.js"
-import bcrypt from "bcrypt"
+import BDD from "../model/BDD.js"
+import User from "../model/User.js"
 import {generateToken} from "../config/token.js"
 
 
@@ -11,8 +11,8 @@ const generateResponse = async (userDataSQL) => {
     
     const userData = { 
         id:userDataSQL.id,
-        nom:userDataSQL.nom,
-        prenom:userDataSQL.prenom,
+        nom:userDataSQL.last_name,
+        prenom:userDataSQL.first_name,
         email:userDataSQL.email,
         
         user:true,
@@ -28,40 +28,18 @@ const generateResponse = async (userDataSQL) => {
 }
 
 export default async (req, res) => {
-    const {password, email} = req.body
-    const sql = "SELECT * FROM users WHERE email = ?"
-    const paramsSql = [email]
 
     try {
-        const result = await asyncQuery(sql, paramsSql)
-        const response = await generateResponse(result[0])
-        const resultCompare = await bcrypt.compare(password, result[0].password)
-        res.json(resultCompare ? {response} : {response:null})
+        const myBDD = new BDD()
+        const user = new User(myBDD)
+        const {email, password} = req.body
+        const result = await user.login({email: email, password: password})
+        console.log(result)
+        const response = await generateResponse(result.data[0])
+        res.json(result.response ? {response} : {response:null})
     } catch(err){
         console.log(err)
         res.sendStatus(500)
     }
 }
 
-
-// import {asyncQuery} from "../config/database.js"
-// import bcrypt from "bcrypt"
-
-// export default async (req, res)=>{
-//     let sql = "SELECT * FROM users WHERE email = ?"
-//     const {email, password} = req.body
-//     const paramsSql = [email]
-    
-//     if(password.length > 8 && email.trim() !== ""){
-        
-//         try {
-//             const userInfo = await asyncQuery(sql,[paramsSql])
-//             const resultCompare = await bcrypt.compare(password, userInfo[0].password)
-//               res.json({result:resultCompare})
-//         }catch(err){
-//             console.log(err)
-//         }
-//     } else {
-//         res.json({response : " merci d'entrer les infos corr"})
-//     }
-// }
