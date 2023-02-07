@@ -4,8 +4,6 @@ import { StoreContext } from "../tools/context.js"
 const Home = (props) => {
     
    // const  [state, dispatch] = React.useContext(StoreContext);
-    
-   
     return (
         <div>
             hello
