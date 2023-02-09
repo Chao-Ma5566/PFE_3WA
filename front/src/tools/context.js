@@ -3,9 +3,8 @@ import React from "react"
 const StoreContext = React.createContext([])
 
 const initialState = {
-    dragons: [],
-    inputValue: ''
-    
+    user: {},
+    isLogged: false
 }
 
 export {StoreContext, initialState}

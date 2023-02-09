@@ -1,4 +1,6 @@
 import bcrypt from "bcrypt"
+import {lengthLimit, checkVide} from "../config/inputCheck.js"
+
 class User {
     constructor(bdd){
         this.pool = bdd.pool
@@ -7,6 +9,13 @@ class User {
     }   
     
     async login({email, password}){
+        
+        if(!checkVide([email, password])){
+            return {response:'Aucun champ doit être vide'}
+        }else if(!lengthLimit(250, [email, password])){
+            return {response:"tous les infos sont limit à 250 caractaires"}
+        }
+            
         try{
             const dataBDD = await this._emailExist(email) 
             
@@ -17,6 +26,7 @@ class User {
             const passwordIsValide = await bcrypt.compare(password,dataBDD[0].password)
             
             if(passwordIsValide){
+                await this._updateLogintimeById(dataBDD[0].id)
                 return{response: passwordIsValide, data:dataBDD}
             }
             
@@ -34,16 +44,22 @@ class User {
             if(response.length > 0) return response
             return false
         } catch(err){
-            return
+            return err
         }
     }
     
     async register(data){
         const {first_name, last_name, email, password, birthday} = data
-        const sql = "INSERT INTO users (last_name, first_name, birthday, email, password, last_connection, registration_date, role_id) VALUES (?,?,?,?,?,NOW(),NOW(),?)"
+        const sql = `INSERT INTO users 
+        (last_name, first_name, birthday, email, password, last_connection, registration_date, role_id)
+        VALUES (?,?,?,?,?,NOW(),NOW(),?)`
         
         if(password.length <= 8){
             return {response:'mdp trop court'}
+        }else if(!checkVide([first_name, last_name, email, password, birthday])){
+            return {response:'Aucun champ doit être vide'}
+        }else if(!lengthLimit(250, [first_name, last_name, email, password, birthday])){
+            return {response:"tous les infos sont limit à 250 caractaires"}
         }
         
         try {
@@ -56,7 +72,7 @@ class User {
             }
             
             // Email deja present en BDD 
-            if(emailPresent === true) {
+            if(emailPresent.length > 0) {
                 return {response:'email deja present'}
             }
             
@@ -107,6 +123,18 @@ class User {
     
     async getByID({id}){
         const sql = "SELECT * FROM users WHERE id = ?"
+        
+        try {
+            const result = await this.asyncQuery(sql, [id])
+            return result
+        } catch(err){
+            console.log(err)
+            if(err) throw err
+            
+        }
+    }
+    async _updateLogintimeById({id}){
+        const sql = "UPDATE users SET last_connection = NOW() WHERE id=?"
         
         try {
             const result = await this.asyncQuery(sql, [id])
