@@ -12,16 +12,17 @@ const Login = () => {
     const [info, setInfo] = useState(initialState)
     
     const handleChange = (e) => {
-        if(!lengthLimit(250, [e.target.value])){
+        if(!lengthLimit(e.target.value)){
             alert("tous les infos sont limit à 250 caractaires") 
             return
         }
         const {name,value} = e.target
         setInfo({...info, [name]:value})
     }
+    
     const submit = (e) => {
         e.preventDefault()
-        if(!checkVide(Object.values(info))){
+        if(!checkVide(info)){
             alert("Champ obligatoire vide") 
             return
         }

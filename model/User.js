@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt"
-import {lengthLimit, checkVide} from "../config/inputCheck.js"
+import inputCheck from "../config/inputCheck.js"
 
 class User {
     constructor(bdd){
@@ -10,10 +10,8 @@ class User {
     
     async login({email, password}){
         
-        if(!checkVide([email, password])){
-            return {response:'Aucun champ doit être vide'}
-        }else if(!lengthLimit(250, [email, password])){
-            return {response:"tous les infos sont limit à 250 caractaires"}
+        if(!inputCheck([email, password])){
+            return {response:'Aucun champ doit être vide ou dépasser 255 '}
         }
             
         try{
@@ -56,10 +54,8 @@ class User {
         
         if(password.length <= 8){
             return {response:'mdp trop court'}
-        }else if(!checkVide([first_name, last_name, email, password, birthday])){
-            return {response:'Aucun champ doit être vide'}
-        }else if(!lengthLimit(250, [first_name, last_name, email, password, birthday])){
-            return {response:"tous les infos sont limit à 250 caractaires"}
+        }else if(!inputCheck(data)){
+            return {response:'Aucun champ doit être vide ou dépasser 255.'}
         }
         
         try {

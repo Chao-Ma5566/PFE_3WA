@@ -9,7 +9,7 @@ const Register = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(!checkVide(Object.values(userInfo))){
+        if(!checkVide(userInfo)){
             alert("Champ obligatoire vide") 
             return
         }
@@ -23,7 +23,7 @@ const Register = (props) => {
         setUserInfo(initialValue)
     }
     const handleChange = (e) => {
-        if(!lengthLimit(250, [e.target.value])){
+        if(!lengthLimit(e.target.value)){
             alert("tous les infos sont limit à 250 caractaires") 
             return
         }
@@ -36,7 +36,7 @@ const Register = (props) => {
             <input type="text" name="prenom" value={userInfo.prenom} placeholder="prenom" onChange={(e)=>handleChange(e)} />
             <input type="email" name="email" value={userInfo.email} placeholder="email" onChange={(e)=>handleChange(e)} />
             <input type="password" name="password" value={userInfo.password} placeholder="password" onChange={(e)=>handleChange(e)} />
-            <label for="start">Votre date de naissance:</label>
+            <label>Votre date de naissance:</label>
             <input type="date" name="birthday" value={userInfo.birthday} onChange={(e)=>handleChange(e)}/>
             <button type="submit">Valider</button>
         </form>
