@@ -28,7 +28,7 @@ class User {
                 return{response: passwordIsValide, data:dataBDD}
             }
             
-            return{response: "email ou mot de passe invalide"}
+            return {response: "email ou mot de passe invalide"}
         } catch (err){
             return {error: err}
         }

@@ -14,9 +14,9 @@ const Register = (props) => {
             return
         }
         axios.post(`${BASE_URL}/addUser`, {
-            last_name: userInfo.nom,
-            first_name: userInfo.prenom,
-            email: userInfo.email,
+            last_name: userInfo.nom.trim(),
+            first_name: userInfo.prenom.trim(),
+            email: userInfo.email.toLowerCase(),
             password: userInfo.password,
             birthday: userInfo.birthday
         })
