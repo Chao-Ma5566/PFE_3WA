@@ -13,7 +13,6 @@ export default async (req, res) => {
             email: email, 
             password: password
         })
-        
         res.json({data})
     }catch(err) {
         console.log(err);

@@ -3,6 +3,7 @@ import axios from "axios"
 import {BASE_URL} from "../tools/constante.js"
 import { StoreContext } from "../tools/context.js"
 import {lengthLimit, checkVide} from "../tools/inputCheck.js"
+import { NavLink, Navigate } from "react-router-dom"
     
    
 
@@ -44,15 +45,29 @@ const Login = () => {
                 setMessageErr(err.response.data.response.response)
             })
     }
+    console.log(state)
     
     return(
-        <form onSubmit={submit}>
-            <input type='text' name='email' value={info.email} onChange={handleChange} placeholder='email' />
-            <input type='password' name='password' value={info.password} onChange={handleChange} placeholder='password' />
-            <input type="submit" />
-            {messageErr.length > 0 && <p>{messageErr}</p>}
+        <div>
+        {state.isLogged && (
+          <Navigate to="/" replace={true} />
+        )}
+            <h5>Déjà client?</h5>
+            <form onSubmit={submit}>
+                <input type='text' name='email' value={info.email} onChange={handleChange} placeholder='email' />
+                <input type='password' name='password' value={info.password} onChange={handleChange} placeholder='password' />
+                <button type="submit">Me Connecter</button>
+                {messageErr.length > 0 && <p>{messageErr}</p>}
             
-        </form>
+            </form>
+            <div>
+                <h5>Nouveau client?</h5>
+                <p>Créez un compte pour suivre et gérer vos commandes, retrouver toutes vos informations personnelles et vos articles favoris.</p>
+                <NavLink to="/register">
+                     S'enregistrer
+                </NavLink>
+            </div>    
+        </div>
     )
 }
 

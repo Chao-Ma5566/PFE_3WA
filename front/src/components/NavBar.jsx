@@ -1,13 +1,17 @@
 import { NavLink } from "react-router-dom"
-import {useEffect} from 'react'
+import {useEffect,useContext} from 'react'
 import axios from 'axios'
+import { StoreContext } from "../tools/context.js"
+import Logged from "./Logged.jsx"
 
 const NavBar = (props) => {
+    const [state, dispatch] = useContext(StoreContext);
+    
      useEffect(() => {
-    if(!axios.defaults.headers.common['Authorization']){
-      const token = localStorage.getItem("jwtToken")
-      if(token){
-        axios.defaults.headers.common['Authorization'] = 'Bearer '+token
+        if(!axios.defaults.headers.common['Authorization']){
+            const token = localStorage.getItem("jwtToken")
+        if(token){
+         axios.defaults.headers.common['Authorization'] = 'Bearer '+token
       }
     }
   },[])
@@ -17,34 +21,19 @@ const NavBar = (props) => {
             <ul>
                 <li>
                     <NavLink to="/">
-                        Acceuil
+                        Accueil
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink to="/test">
-                        User List
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/ajoute">
-                        Créer Article
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/newUser">
-                        Créer user
-                    </NavLink>
-                </li>
-                <li>
+            {state.isLogged ?   
+                <Logged />
+             : 
+                (<li>
                     <NavLink to="/login">
                         Login
                     </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/upload">
-                        upload
-                    </NavLink>
-                </li>
+                    
+                </li>)
+            }    
             </ul>
         </nav>
         )
