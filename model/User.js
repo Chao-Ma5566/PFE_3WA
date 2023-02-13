@@ -105,7 +105,7 @@ class User {
     }
     
     async getAllUser(){
-        const sql = "SELECT * FROM users"
+        const sql = "SELECT id, first_name, last_name FROM users"
         
         try {
             const result = await this.asyncQuery(sql)

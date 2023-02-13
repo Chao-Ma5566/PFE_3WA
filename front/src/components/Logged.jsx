@@ -12,6 +12,7 @@ const Logged = () => {
     
     const handleLogout = () =>{
         localStorage.removeItem('jwtToken')
+        // delete axios.defaults.headers.common['Authorization']
         dispatch({ type: "LOGOUT" })
     }
     return(

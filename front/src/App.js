@@ -6,16 +6,20 @@ import Register from "./components/Register.jsx"
 import NavBar from "./components/NavBar.jsx"
 import Logged from "./components/Logged.jsx"
 import AdminHome from "./components/AdminHome.jsx"
+import UserList from "./components/AdminPage/UserList.jsx"
+import Profil from "./components/Profil.jsx"
 
 function App() {
   return (
     <BrowserRouter>
-      <NavBar />    
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/admin" element={<AdminHome />}></Route>
+        <Route path="/admin/users" element={<UserList />}></Route>
+        <Route path="/profil/:id" element={<Profil />}></Route>
       </Routes>
     </BrowserRouter>
   );

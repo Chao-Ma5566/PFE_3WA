@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +13,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.admin{
+  display:flex;
+}
+.admin .admin_sidebar{
+  width:30%;
+  height: 100%;
+  margin: 0 16px;
+  background-color: #bbbbbb;
 }
