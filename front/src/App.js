@@ -5,6 +5,7 @@ import Login from "./components/Login.jsx"
 import Register from "./components/Register.jsx"
 import NavBar from "./components/NavBar.jsx"
 import Logged from "./components/Logged.jsx"
+import AdminHome from "./components/AdminHome.jsx"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/admin" element={<AdminHome />}></Route>
       </Routes>
     </BrowserRouter>
   );

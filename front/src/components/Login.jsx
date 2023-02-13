@@ -45,7 +45,6 @@ const Login = () => {
                 setMessageErr(err.response.data.response.response)
             })
     }
-    console.log(state)
     
     return(
         <div>

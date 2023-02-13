@@ -2,7 +2,8 @@ import express from "express"
 import homeGetController from "../controller/homeGet.js"
 import middleware from "../controller/middleware.js"
 import addUserPostController from "../controller/addUser.js"
-import loginrPostController from "../controller/login.js"
+import loginPostController from "../controller/login.js"
+import addCollectionPostController from "../controller/addCollection.js"
 
 const router = express.Router()
 
@@ -13,7 +14,8 @@ const routesGET = [
 ]
 const routesPOST = [
     {route:"/addUser", controller: addUserPostController},
-    {route:"/login", controller: loginrPostController},
+    {route:"/login", controller: loginPostController},
+    {route:"/addCollection", controller: addCollectionPostController},
 ]
 
 routesGET.map((item) =>{

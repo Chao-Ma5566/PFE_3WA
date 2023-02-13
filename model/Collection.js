@@ -1,13 +1,20 @@
-//	id	name	description prix stock
-class Products {
+import inputCheck from "../config/inputCheck.js"
+//	id	name	description 
+class Collection {
     constructor(bdd){
         this.pool = bdd.pool
         this.asyncQuery = bdd.asyncQuery 
     }
     
-    async create({name, description, price, collection_id, stock, material}){
-        const sql = "INSERT INTO products (name, description, price,collection_id, stock, material) VALUES (?,?,?,?,?,?)"
-        const paramsSql = [name, description, price,collection_id,stock,material ]
+    async create({name, description}){
+        const sql = "INSERT INTO collection (title, description) VALUES (?,?)"
+        const paramsSql = [name, description]
+        
+        if(!inputCheck(name)){
+            return {response:'Champ name ne doit être vide ou dépasser 255 '}
+        }else if(!inputCheck(description,510)){
+            return {response:'Champ description doit pas être vide ou dépasser 510 '}
+        }
         
         try{
             const result = await this.asyncQuery(sql,paramsSql)
@@ -18,11 +25,14 @@ class Products {
         }
     }
     
-    async getById({id}){
-        const sql = "SELECT * FROM products WHERE id = ?"
+    async getByName({name}){
+        const sql = "SELECT * FROM collection WHERE name = ?"
         
+        if(!inputCheck(name)){
+            return {response:'Champ name ne doit être vide ou dépasser 255 '}
+        }   
         try{
-            const result = await this.asyncQuery(sql,[id])
+            const result = await this.asyncQuery(sql,[name])
             return {result}
         } catch(err){
             console.log(err)
@@ -32,7 +42,7 @@ class Products {
     
     
     async getAll(){
-        const sql = "SELECT * FROM products"
+        const sql = "SELECT * FROM collection"
         
         try{
             const result = await this.asyncQuery(sql)
@@ -43,9 +53,9 @@ class Products {
         }
     }
     
-    async update({name, description, prix, stock, id}){
-        const sql = "UPDATE products SET name = ?, description = ?, prix = ?, stock = ? WHERE id = ?"
-        const paramsSql = [name, description, prix, stock, id]
+    async update({name, description}){
+        const sql = "UPDATE collection SET name = ?, description = ? WHERE id = ?"
+        const paramsSql = [name, description]
         
         try{
             const result = await this.asyncQuery(sql,paramsSql)
@@ -69,7 +79,7 @@ class Products {
     }
     
     async deleted({id}){
-        const sql = "DELETE products WHERE id = ?"
+        const sql = "DELETE collection WHERE id = ?"
         
         try{
             const result = await this.asyncQuery(sql,[id])
@@ -81,4 +91,4 @@ class Products {
     }
 }
 
-export default Products
+export default Collection
