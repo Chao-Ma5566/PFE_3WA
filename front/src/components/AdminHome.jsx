@@ -14,7 +14,7 @@ const AdminHome = () => {
     
     return(
         <div className="admin">
-            <AdminSidebar />
+            Page Admin
         </div>
     )
 }

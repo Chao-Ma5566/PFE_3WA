@@ -6,6 +6,7 @@ import loginPostController from "../controller/login.js"
 import addCollectionPostController from "../controller/addCollection.js"
 import allUserPostController from "../controller/allUser.js"
 import deleteUserPostController from "../controller/deleteUser.js"
+import getUserByIdPostController from "../controller/getUserById.js"
 
 const router = express.Router()
 
@@ -20,6 +21,7 @@ const routesPOST = [
     {route:"/login", controller: loginPostController},
     {route:"/addCollection", controller: addCollectionPostController},
     {route:"/admin/deleteUser", controller: deleteUserPostController},
+    {route:"/getUserById", controller: getUserByIdPostController},
 ]
 
 routesGET.map((item) =>{

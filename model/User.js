@@ -80,7 +80,7 @@ class User {
             
             // on fait la requete
             const createUser = await this.asyncQuery(sql,paramsSql)
-            
+            console.log(createUser)
             // on retourn la reponse
             return {response:createUser}
         }catch(err){
@@ -118,10 +118,12 @@ class User {
     }
     
     async getByID({id}){
-        const sql = "SELECT * FROM users WHERE id = ?"
-        
+        const sql = `SELECT 
+            id, first_name, last_name, email, registration_date, last_connection, role_id, birthday 
+            FROM users WHERE id = ?`
+        const paramsSql = [id]
         try {
-            const result = await this.asyncQuery(sql, [id])
+            const result = await this.asyncQuery(sql, paramsSql)
             return result
         } catch(err){
             console.log(err)

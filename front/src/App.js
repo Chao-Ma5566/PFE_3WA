@@ -19,7 +19,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/admin" element={<AdminHome />}></Route>
         <Route path="/admin/users" element={<UserList />}></Route>
-        <Route path="/profil/:id" element={<Profil />}></Route>
+        <Route path="/profil/:userId" element={<Profil />}></Route>
       </Routes>
     </BrowserRouter>
   );
