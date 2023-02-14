@@ -12,15 +12,17 @@ const Logged = () => {
     
     const handleLogout = () =>{
         localStorage.removeItem('jwtToken')
-        // delete axios.defaults.headers.common['Authorization']
+        delete axios.defaults.headers.common['Authorization']
         dispatch({ type: "LOGOUT" })
     }
     return(
         <div>
-            {state.user.role_id===1 && <NavLink to="/Admin">
-                        AdminLogo
-                    </NavLink>}
+            {state.user.role_id===1 && 
+                <NavLink to="/Admin">
+                    AdminLogo
+                </NavLink>}
             <p>Welcome back {state.user.nom}</p>
+            <NavLink to={`/profil/${state.user.id}`}>Profil Logo</NavLink>
             <button onClick={handleLogout}>Déconnexion</button>
         </div>  
     )

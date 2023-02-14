@@ -6,7 +6,7 @@ import { StoreContext } from "../../tools/context.js"
 const AdminSidebar = (props) => {
     const [state, dispatch] = useContext(StoreContext);
     
-    const routeList = ["Users","Collection","Produits","Commandes","Promos","Articles"]
+    const routeList = ["Users","Collection","Produits","Commandes","Promos","Articles","Roles"]
     
     return (
         <nav className="admin_sidebar">

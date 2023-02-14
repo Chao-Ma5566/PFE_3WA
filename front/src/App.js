@@ -8,6 +8,8 @@ import Logged from "./components/Logged.jsx"
 import AdminHome from "./components/AdminHome.jsx"
 import UserList from "./components/AdminPage/UserList.jsx"
 import Profil from "./components/Profil.jsx"
+import UpdateProfil from "./components/UpdateProfil.jsx"
+import UpdateRole from "./components/AdminPage/UpdateRole.jsx"
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="/admin" element={<AdminHome />}></Route>
         <Route path="/admin/users" element={<UserList />}></Route>
         <Route path="/profil/:userId" element={<Profil />}></Route>
+        <Route path="/updateProfil/:userId" element={<UpdateProfil />}></Route>
+        <Route path="/admin/roles" element={<UpdateRole />}></Route>
       </Routes>
     </BrowserRouter>
   );

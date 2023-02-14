@@ -7,6 +7,8 @@ import addCollectionPostController from "../controller/addCollection.js"
 import allUserPostController from "../controller/allUser.js"
 import deleteUserPostController from "../controller/deleteUser.js"
 import getUserByIdPostController from "../controller/getUserById.js"
+import updateProfilPostController from "../controller/updateProfil.js"
+import updateRolePostController from "../controller/updateRole.js"
 
 const router = express.Router()
 
@@ -22,6 +24,8 @@ const routesPOST = [
     {route:"/addCollection", controller: addCollectionPostController},
     {route:"/admin/deleteUser", controller: deleteUserPostController},
     {route:"/getUserById", controller: getUserByIdPostController},
+    {route:"/updateProfil", controller: updateProfilPostController},
+    {route:"/admin/updateRole", controller: updateRolePostController},
 ]
 
 routesGET.map((item) =>{

@@ -52,8 +52,10 @@ class User {
         (last_name, first_name, birthday, email, password, last_connection, registration_date, role_id)
         VALUES (?,?,?,?,?,NOW(),NOW(),?)`
         
-        if(password.length <= 8){
-            return {response:'mdp trop court'}
+        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@#$%^&+=!]).{8,}$/;
+        if (!passwordRegex.test(password)) {
+            return { response: `Le mot de passe doit comporter au moins 8 caractères, 
+            dont au moins une lettre majuscule, une lettre minuscule, un caractères special et un chiffre.` };
         }else if(!inputCheck(data)){
             return {response:'Aucun champ doit être vide ou dépasser 255.'}
         }
@@ -90,6 +92,31 @@ class User {
         
     }
     
+    async updateProfil(data){
+        const {first_name, last_name, birthday, id} = data
+        const sql = `UPDATE users SET last_name = ?, first_name = ?, birthday = ? WHERE id = ?`
+        
+        if(!inputCheck(data)){
+            return {response:'Aucun champ doit être vide ou dépasser 255.'}
+        }
+        
+        try {
+            
+            // on creer la liste des params pour add user
+            const paramsSql = [last_name, first_name,birthday, id]
+            
+            // on fait la requete
+            const updateUser = await this.asyncQuery(sql,paramsSql)
+            console.log(updateUser)
+            // on retourn la reponse
+            return {response:updateUser}
+        }catch(err){
+            console.log(err)
+            return
+        }
+        
+    }
+    
     async deleteAccount({id}){
         const sql = "DELETE FROM users WHERE id = ?"
         const paramsSql = [id]
@@ -105,7 +132,7 @@ class User {
     }
     
     async getAllUser(){
-        const sql = "SELECT id, first_name, last_name FROM users"
+        const sql = "SELECT id, first_name, last_name, email, role_id FROM users"
         
         try {
             const result = await this.asyncQuery(sql)
@@ -136,6 +163,19 @@ class User {
         
         try {
             const result = await this.asyncQuery(sql, [id])
+            return result
+        } catch(err){
+            console.log(err)
+            if(err) throw err
+            
+        }
+    }
+    
+    async updateRoleById(data){
+        const sql = "UPDATE users SET role_id = ? WHERE id=?"
+        const {id, role_id} = data
+        try {
+            const result = await this.asyncQuery(sql, [role_id, id])
             return result
         } catch(err){
             console.log(err)
