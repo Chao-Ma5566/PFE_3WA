@@ -4,11 +4,15 @@ import middleware from "../controller/middleware.js"
 import addUserPostController from "../controller/addUser.js"
 import loginPostController from "../controller/login.js"
 import addCollectionPostController from "../controller/addCollection.js"
-import allUserPostController from "../controller/allUser.js"
+import allUserGetController from "../controller/allUser.js"
 import deleteUserPostController from "../controller/deleteUser.js"
 import getUserByIdPostController from "../controller/getUserById.js"
 import updateProfilPostController from "../controller/updateProfil.js"
 import updateRolePostController from "../controller/updateRole.js"
+import updatePasswordPostController from "../controller/updatePasswordById.js"
+import addArticlePostController from "../controller/addArticle.js"
+import allArticleGetController from "../controller/allArticle.js"
+import deleteArticleByIdPostController from "../controller/deleteArticle.js"
 
 const router = express.Router()
 
@@ -16,7 +20,8 @@ router.get("/", homeGetController)
 
 const routesGET = [
     {route:"/", controller: homeGetController},
-    {route:"/admin/users", controller: allUserPostController}
+    {route:"/admin/users", controller: allUserGetController},
+    {route:"/admin/articles", controller: allArticleGetController}
 ]
 const routesPOST = [
     {route:"/addUser", controller: addUserPostController},
@@ -26,6 +31,9 @@ const routesPOST = [
     {route:"/getUserById", controller: getUserByIdPostController},
     {route:"/updateProfil", controller: updateProfilPostController},
     {route:"/admin/updateRole", controller: updateRolePostController},
+    {route:"/updatePassword", controller: updatePasswordPostController},
+    {route:"/admin/addArticle", controller: addArticlePostController},
+    {route:"/admin/deleteArticle", controller: deleteArticleByIdPostController},
 ]
 
 routesGET.map((item) =>{

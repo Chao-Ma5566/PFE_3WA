@@ -48,9 +48,11 @@ const Login = () => {
     
     return(
         <div>
-        {state.isLogged && (
-          <Navigate to="/" replace={true} />
-        )}
+        {state.isLogged ? 
+            (state.user.role_id === 1 ? 
+               <Navigate to="/admin" replace={true} /> 
+             : <Navigate to="/" replace={true} />)
+        : null}
             <h5>Déjà client?</h5>
             <form onSubmit={submit}>
                 <input type='text' name='email' value={info.email} onChange={handleChange} placeholder='email' />

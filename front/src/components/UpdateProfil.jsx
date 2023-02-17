@@ -45,7 +45,9 @@ const UpdateProfil = (props) => {
             birthday: userInfo.birthday,
             id: userId
         }).then(res=>{
-            setMessageErr(res.data.data.response)
+            if(res.statusText === "OK"){
+                setMessageErr("L'informations sont bien enregistrer")
+            }
         }).catch(err=>{
             console.log(err)
             return
@@ -64,10 +66,10 @@ const UpdateProfil = (props) => {
     if(isLoading){
         return <div>Loading....</div>
     }
-    console.log(userInfo)
+    
     return (
         <div>
-            <h5>Modifier Info</h5>
+            <h2>Modifier Info</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="nom">Nom: </label>
                 <input type="text" name="last_name" value={userInfo.last_name} placeholder="nom" onChange={(e)=>handleChange(e)} />

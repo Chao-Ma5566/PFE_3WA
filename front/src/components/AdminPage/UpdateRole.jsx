@@ -1,12 +1,10 @@
-import {useEffect,useContext,useState} from 'react'
+import {useEffect,useState} from 'react'
 import axios from 'axios'
-import { StoreContext } from "../../tools/context.js"
 import {BASE_URL} from "../../tools/constante.js"
 
 
 const UpdateRole = (props) => {
     const [userList, setUserList] = useState([])
-    // const  [state, dispatch] = React.useContext(StoreContext);
     useEffect(() => {
         axios.get(`${BASE_URL}/admin/users`)
             .then(function(response) {
@@ -18,18 +16,13 @@ const UpdateRole = (props) => {
             });
     }, [])
     
-    const handleUpdate = (id)=>{
-        userList(userList.filter(user => user.id !== id ))
-        axios.post(`${BASE_URL}/admin/updateRole`,{id})
-        
-    }
-    
-    const reformeRole = (roleId) =>{
-        if(roleId===1){
-            return "Admin"
-        }else if(roleId===2){
-            return "User"
-        }
+    const handleUpdate = (e, id)=>{
+        e.preventDefault()
+        const updatedInfo = userList.filter(user => user.id === id )
+        axios.post(`${BASE_URL}/admin/updateRole`,{
+            id: updatedInfo[0].id, 
+            role_id: updatedInfo[0].role_id
+        })
     }
     
     const handleChange = (id, index)=>{
@@ -44,7 +37,7 @@ const UpdateRole = (props) => {
         <ul>
             {userList.map((user, i) => {
                 return (
-                    <form key={i} onSubmit={() => handleUpdate(user.id) }>
+                    <form key={i} onSubmit={(e) => handleUpdate(e, user.id) }>
                         <p>Nom:{user.last_name}</p>
                         <p>Prénom:{user.first_name}</p>
                         <p>Email:{user.email}</p>

@@ -6,6 +6,7 @@ class User {
         this.pool = bdd.pool
         this.asyncQuery = bdd.asyncQuery 
         this.saltRounds = 10
+        this.passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@#$%^&+=!]).{8,}$/;
     }   
     
     async login({email, password}){
@@ -25,6 +26,7 @@ class User {
             
             if(passwordIsValide){
                 await this._updateLogintimeById(dataBDD[0].id)
+                console.log(dataBDD[0].id)
                 return{response: passwordIsValide, data:dataBDD}
             }
             
@@ -52,8 +54,8 @@ class User {
         (last_name, first_name, birthday, email, password, last_connection, registration_date, role_id)
         VALUES (?,?,?,?,?,NOW(),NOW(),?)`
         
-        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@#$%^&+=!]).{8,}$/;
-        if (!passwordRegex.test(password)) {
+        
+        if (!this.passwordRegex.test(password)) {
             return { response: `Le mot de passe doit comporter au moins 8 caractères, 
             dont au moins une lettre majuscule, une lettre minuscule, un caractères special et un chiffre.` };
         }else if(!inputCheck(data)){
@@ -146,7 +148,7 @@ class User {
     
     async getByID({id}){
         const sql = `SELECT 
-            id, first_name, last_name, email, registration_date, last_connection, role_id, birthday 
+            id, first_name, last_name, email, registration_date, last_connection, role_id, birthday, password 
             FROM users WHERE id = ?`
         const paramsSql = [id]
         try {
@@ -158,7 +160,7 @@ class User {
             
         }
     }
-    async _updateLogintimeById({id}){
+    async _updateLogintimeById(id){
         const sql = "UPDATE users SET last_connection = NOW() WHERE id=?"
         
         try {
@@ -177,6 +179,44 @@ class User {
         try {
             const result = await this.asyncQuery(sql, [role_id, id])
             return result
+        } catch(err){
+            console.log(err)
+            if(err) throw err
+            
+        }
+    }
+    
+    async updatePassewordById(data){
+        
+        const {oldPassword,newPassword, id} = data
+        
+        if (!this.passwordRegex.test(newPassword)) {
+            return { response: `Le mot de passe doit comporter au moins 8 caractères, 
+            dont au moins une lettre majuscule, une lettre minuscule, un caractères special et un chiffre.` };
+        }else if(!inputCheck([oldPassword,newPassword])){
+            return {response:'Aucun champ doit être vide ou dépasser 255.'}
+        }
+        const sql = "UPDATE users SET password = ? WHERE id=?"
+        
+        try {
+            const dataBDD = await this.getByID({id})
+            console.log(dataBDD)
+            const passwordIsValide = await bcrypt.compare(oldPassword,dataBDD[0].password)
+            
+            
+            if(passwordIsValide){
+                console.log(dataBDD[0].id)
+                const mpdHash = await bcrypt.hash(newPassword,this.saltRounds)
+            
+            // on creer la liste des params pour add user
+                const paramsSql = [mpdHash,id]
+                
+                // on fait la requete
+                const result = await this.asyncQuery(sql,paramsSql)
+                // on retourn la reponse
+                return {response:"Modification de mots de passe validé"}
+            }
+            return {response:"L'ancien mots de passe invalide"}
         } catch(err){
             console.log(err)
             if(err) throw err

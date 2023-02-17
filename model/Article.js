@@ -4,9 +4,9 @@ class Article {
         this.asyncQuery = bdd.asyncQuery 
     }
     
-    async create({title, contente, user_id}){
-        const sql = "INSERT INTO articles (title, contente, user_id) VALUES (?,?,?)"
-        const paramsSql = [title, contente, user_id]
+    async create({title, content, content2}){
+        const sql = "INSERT INTO articles (title, content, content2) VALUES (?,?,?)"
+        const paramsSql = [title, content, content2]
         
         try{
             const result = await this.asyncQuery(sql,paramsSql)
@@ -22,18 +22,6 @@ class Article {
         
         try{
             const result = await this.asyncQuery(sql,[id])
-            return {result}
-        } catch(err){
-            console.log(err)
-            return err
-        }
-    }
-    
-    async getByAuthor({user_id}){
-        const sql = "SELECT * FROM articles WHERE user_id = ?"
-        
-        try{
-            const result = await this.asyncQuery(sql,[user_id])
             return {result}
         } catch(err){
             console.log(err)
@@ -66,7 +54,7 @@ class Article {
     }
     
     async deleted({id}){
-        const sql = "DELETE articles WHERE id = ?"
+        const sql = "DELETE FROM articles WHERE id = ?"
         
         try{
             const result = await this.asyncQuery(sql,[id])

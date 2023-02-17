@@ -2,12 +2,21 @@ import axios from "axios"
 import { useState } from "react"
 import {BASE_URL} from "../tools/constante.js"
 import {lengthLimit, checkVide} from "../tools/inputCheck.js"
-import { NavLink } from "react-router-dom"
+import { NavLink, Navigate } from "react-router-dom"
 
 const Register = (props) => {
-    const initialValue = { nom: "", prenom: "", email: "", password: "", birthday: "2018-07-22" }
+    const initialValue = { nom: "", prenom: "", email: "", password: "", birthday: "2010-06-22" }
     const [userInfo, setUserInfo] = useState(initialValue)
     const [messageErr, setMessageErr] = useState("")
+    const [isChangePage, setIsChangePage] = useState(false)
+    // const [isShowPassWord, setIsShowPassWord] = useState(false)
+    
+    const lower = new RegExp('(?=.*[a-z])')
+    const upper = new RegExp('(?=.*[A-Z])')
+    const number = new RegExp('(?=.*[0-9])')
+    const special = new RegExp('(?=.*[@#$%^&+=!])')
+    const length = new RegExp('(?=.{8,})')
+    
     let nowDate = new Date().toISOString().split('T')[0]
 
     const handleSubmit = (e) => {
@@ -27,6 +36,9 @@ const Register = (props) => {
             password: userInfo.password,
             birthday: userInfo.birthday
         }).then(res=>{
+            if(res.data.data.response.affectedRows > 0){
+                    setIsChangePage(true)
+                }
             setMessageErr(res.data.data.response)
         }).catch(err=>{
             console.log(err)
@@ -46,6 +58,7 @@ const Register = (props) => {
 
     return (
         <div>
+            {isChangePage && <Navigate to="/login" replace={true} />}
             <h5>Inscription</h5>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="nom">Nom: </label>
@@ -61,10 +74,30 @@ const Register = (props) => {
                 <button type="submit">Valider</button>
                 {messageErr.length > 0 && <p>{messageErr}</p>}
             </form>
+            <div>
+                <h5>Le mot de passe doit comporter :</h5>
+                <ul>
+                    <li className={length.test(userInfo.password) ? "valided" : "" }>
+                        au moins 8 caractères
+                    </li>
+                    <li className={upper.test(userInfo.password) ? "valided" : "" }>
+                        au moins une lettre majuscule
+                    </li>
+                    <li className={lower.test(userInfo.password) ? "valided" : "" }>
+                        au moins une lettre minuscule
+                    </li>
+                    <li className={special.test(userInfo.password) ? "valided" : "" }>
+                        au moins un caractères special
+                    </li>
+                    <li className={number.test(userInfo.password) ? "valided" : "" }>
+                        au moinsun chiffre
+                    </li>
+                </ul>
+            </div>
             <h5>Déjà Client?</h5>
-                <NavLink to="/login">
-                     Me Connecter
-                </NavLink>
+            <NavLink to="/login">
+                Me Connecter
+            </NavLink>
         </div>
     );
 }
