@@ -5,8 +5,8 @@ class Article {
     }
     
     async create({title, content, content2}){
-        const sql = "INSERT INTO articles (title, content, content2) VALUES (?,?,?)"
-        const paramsSql = [title, content, content2]
+        const sql = "INSERT INTO articles (title, content) VALUES (?,?)"
+        const paramsSql = [title, content]
         
         try{
             const result = await this.asyncQuery(sql,paramsSql)
@@ -30,10 +30,13 @@ class Article {
     }
     
     async getAll(){
-        const sql = "SELECT * FROM articles"
+        const sql = `SELECT
+        title, article_id, url, caption 
+        FROM articles JOIN article_photos photo ON articles.id = photo.article_id`
         
         try{
             const result = await this.asyncQuery(sql)
+            console.log(result)
             return {result}
         } catch(err){
             console.log(err)

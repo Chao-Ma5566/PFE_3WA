@@ -21,12 +21,7 @@ const generateResponse = async (userDataSQL) => {
     }
     try {
         const token = await generateToken(userData)
-        return {response:true, admin, token, data:{
-            nom: userDataSQL.last_name,
-            prenom: userDataSQL.first_name,
-            id: userDataSQL.id,
-            role_id: userDataSQL.role_id,
-        }}
+        return {response:userData, token}
     } catch(err){
         console.log(err)
         return

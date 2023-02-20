@@ -1,6 +1,7 @@
 import express from "express"
 import homeGetController from "../controller/homeGet.js"
 import middleware from "../controller/middleware.js"
+import middlewareUpload from "../controller/middlewareUpload.js"
 import addUserPostController from "../controller/addUser.js"
 import loginPostController from "../controller/login.js"
 import addCollectionPostController from "../controller/addCollection.js"
@@ -13,6 +14,7 @@ import updatePasswordPostController from "../controller/updatePasswordById.js"
 import addArticlePostController from "../controller/addArticle.js"
 import allArticleGetController from "../controller/allArticle.js"
 import deleteArticleByIdPostController from "../controller/deleteArticle.js"
+import checkToken from "../controller/checkToken.js"
 
 const router = express.Router()
 
@@ -21,6 +23,7 @@ router.get("/", homeGetController)
 const routesGET = [
     {route:"/", controller: homeGetController},
     {route:"/admin/users", controller: allUserGetController},
+    {route:"/relogged", controller: checkToken},
     {route:"/admin/articles", controller: allArticleGetController}
 ]
 const routesPOST = [
@@ -32,8 +35,10 @@ const routesPOST = [
     {route:"/updateProfil", controller: updateProfilPostController},
     {route:"/admin/updateRole", controller: updateRolePostController},
     {route:"/updatePassword", controller: updatePasswordPostController},
-    {route:"/admin/addArticle", controller: addArticlePostController},
     {route:"/admin/deleteArticle", controller: deleteArticleByIdPostController},
+]
+const routesUpload = [
+    {route:"/admin/addArticle", controller: addArticlePostController},
 ]
 
 routesGET.map((item) =>{
@@ -44,5 +49,8 @@ routesPOST.map((item) =>{
         router.post(item.route, middleware, item.controller);
 })
 
+routesUpload.map((item) =>{
+        router.post(item.route, middleware, middlewareUpload, item.controller);
+})
 
 export default router

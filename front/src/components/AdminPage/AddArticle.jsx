@@ -6,7 +6,7 @@ import { NavLink, Navigate } from "react-router-dom"
 
 const AddArticle = (props) => {
     
-    const initialValue = { title: "", content: "", content2: ""}
+    const initialValue = { title: "", content: ""}
     const [articleInfo, setArticleInfo] = useState(initialValue)
     const [messageErr, setMessageErr] = useState("")
     const [isChangePage, setIsChangePage] = useState(false)
@@ -14,20 +14,28 @@ const AddArticle = (props) => {
     console.log(articleInfo)
     const handleSubmit = (e) => {
         e.preventDefault()
+        
+        const dataFile = new FormData();
+        const files = {...e.target.img.files};
+        console.log(files)
+
         if(!checkVide(articleInfo)){
             setMessageErr("Champ obligatoire vide") 
             return
         }
         
-        axios.post(`${BASE_URL}/admin/addArticle`, {
-            title: articleInfo.title.trim(),
-            content: articleInfo.content,
-            content2: articleInfo.content2,
-        }).then(res=>{
+        dataFile.append('files', files[0], files[0].name)
+        dataFile.append('title', articleInfo.title)
+        dataFile.append('content', articleInfo.content)
+        
+        axios.post(`${BASE_URL}/admin/addArticle`, dataFile)
+        .then(res=>{
             if(res.data.data.result.affectedRows > 0){
                 setIsChangePage(true)
                 return
             }
+            if(res.data && res.data.data && res.data.data.response) alert(res.data.data.response)
+            if(res.data.msg) alert(res.data.msg)
             setMessageErr(res.data.data.response)
         }).catch(err=>{
             console.log(err)
@@ -35,10 +43,14 @@ const AddArticle = (props) => {
         })
         setArticleInfo(initialValue)
     }
+    
     const handleChange = (e) => {
         setMessageErr("")
         if(!lengthLimit(articleInfo.title, 100)){
             setMessageErr("Title est limité à 100 caractaires") 
+            return
+        }else if(!lengthLimit(articleInfo.content, 5000)){
+            setMessageErr("Chaque content est limité à 5000 caractaires") 
             return
         }
         let newInfo = { ...articleInfo, [e.target.name]: e.target.value }
@@ -49,30 +61,33 @@ const AddArticle = (props) => {
         <div>
             {isChangePage && <Navigate to="/admin/articles" replace={true} />}
             <h5>Inscription</h5>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <label htmlFor="title">Title: </label>
-                <input type="text" name="title" value={articleInfo.title} placeholder="title" onChange={(e)=>handleChange(e)} />
+                <input 
+                    type="text" 
+                    name="title" 
+                    value={articleInfo.title} 
+                    placeholder="title" 
+                    onChange={(e)=>handleChange(e)} 
+                />
                 <label htmlFor="content">Content: </label>
                 <textarea 
-                name="content" 
-                value={articleInfo.content} 
-                placeholder="content" 
-                onChange={(e)=>handleChange(e)} 
-                rows="15" cols="33"
+                    name="content" 
+                    value={articleInfo.content} 
+                    placeholder="content" 
+                    onChange={(e)=>handleChange(e)} 
+                    rows="15" cols="33"
                 />
-                <label htmlFor="content2">Deuxième Content: </label>
-                <textarea
-                name="content2" 
-                value={articleInfo.content2} 
-                placeholder="content2" 
-                onChange={(e)=>handleChange(e)} 
-                rows="15" cols="33"
-                />
+                <label htmlFor="img">Cover image: </label>
+                <div className="form-item">
+                    <input type='file' name='img'/>
+                </div>
                 <button type="submit">Valider</button>
-                {messageErr.length > 0 && <p>{messageErr}</p>}
+                {/*messageErr.length > 0 && <p>{messageErr}</p>*/}
             </form>
         </div>
     );
 }
 
 export default AddArticle
+

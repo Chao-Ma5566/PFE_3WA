@@ -66,10 +66,10 @@ const UpdatePassword = (props) => {
                         au moins une lettre minuscule
                     </li>
                     <li className={special.test(userInfo.newPassword) ? "valided" : "" }>
-                        au moins un caractères special
+                        au moins un caractère special
                     </li>
                     <li className={number.test(userInfo.newPassword) ? "valided" : "" }>
-                        au moinsun chiffre
+                        au moins un chiffre
                     </li>
                 </ul>
             </div>

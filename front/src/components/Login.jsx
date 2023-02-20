@@ -31,8 +31,9 @@ const Login = () => {
         }
         axios.post(`${BASE_URL}/login`,{password:info.password, email:info.email})
             .then(res => {
+                console.log(res.data.response.response)
                 if(res.data.response.response) {
-                    dispatch({ type: "LOGIN", payload: res.data.response.data})
+                    dispatch({ type: "LOGIN", payload: res.data.response.response})
                     localStorage.setItem('jwtToken', res.data.response.token)
                     axios.defaults.headers.common['Authorization'] = 'Bearer '+res.data.response.token
                     setInfo(initialState)
@@ -43,13 +44,14 @@ const Login = () => {
                     console.clear()
                 }
                 setMessageErr(err.response.data.response.response)
+                console.log(err)
             })
     }
-    
+    console.log(state)
     return(
         <div>
         {state.isLogged ? 
-            (state.user.role_id === 1 ? 
+            (state.user.admin ? 
                <Navigate to="/admin" replace={true} /> 
              : <Navigate to="/" replace={true} />)
         : null}

@@ -1,7 +1,7 @@
 import { useEffect,useContext,useState, Fragment } from 'react'
 import axios from 'axios'
 import { StoreContext } from "../../tools/context.js"
-import {BASE_URL} from "../../tools/constante.js"
+import {BASE_URL, BASE_IMG} from "../../tools/constante.js"
 import { NavLink } from "react-router-dom"
 
 
@@ -21,7 +21,7 @@ const AdminArticles = (props) => {
             .then(res => setIsLoading(false))
     }, [])
     
-    const deletedUser = (id)=>{
+    const deletedArticle = (id)=>{
         axios.post(`${BASE_URL}/admin/deleteArticle`,{id})
          setArticleList(articleList.filter(article => article.id !== id ))
     }
@@ -39,10 +39,11 @@ const AdminArticles = (props) => {
             {articleList.map((article, i) => {
                 return (
                     <li key={i}>
+                    <img src={`${BASE_IMG}/${article.url}`} alt={article.caption} />
                         <NavLink to={`/profil/${article.id}`}>
                             Title: {article.title} 
                         </NavLink>
-                        <button onClick={() => deletedUser(article.id)}>X</button>
+                        <button onClick={() => deletedArticle(article.id)}>X</button>
                     </li>
                 )
             })}

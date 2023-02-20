@@ -21,10 +21,9 @@ const Profil = (props) => {
     
     const reformeDate = (data) =>{
         const date = new Date(data);
-        const formattedDate = date.toLocaleDateString("fr-CA", { year: 'numeric', month: '2-digit', day: '2-digit' });
+        const formattedDate = date.toLocaleDateString("fr-CA");
         return formattedDate
     }
-    
     const handleDelete = () =>{
         axios.post(`${BASE_URL}/admin/deleteUser`,{id:userId})
         .then(res=>{

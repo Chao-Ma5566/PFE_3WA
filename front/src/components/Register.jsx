@@ -87,10 +87,10 @@ const Register = (props) => {
                         au moins une lettre minuscule
                     </li>
                     <li className={special.test(userInfo.password) ? "valided" : "" }>
-                        au moins un caractères special
+                        au moins un caractère special
                     </li>
                     <li className={number.test(userInfo.password) ? "valided" : "" }>
-                        au moinsun chiffre
+                        au moins un chiffre
                     </li>
                 </ul>
             </div>

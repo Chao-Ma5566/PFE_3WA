@@ -33,6 +33,9 @@ const UserList = (props) => {
                             Nom: {user.last_name} Prénom: {user.first_name}
                         </NavLink>
                         <button onClick={() => deletedUser(user.id)}>X</button>
+                        <NavLink to={`/updateProfil/${user.id}`}>
+                            <button>Modifier</button>
+                        </NavLink>
                     </li>
                 )
             })}
