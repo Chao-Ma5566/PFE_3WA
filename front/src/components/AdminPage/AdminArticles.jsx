@@ -22,7 +22,10 @@ const AdminArticles = (props) => {
     }, [])
     
     const deletedArticle = (id)=>{
+        console.log(id)
         axios.post(`${BASE_URL}/admin/deleteArticle`,{id})
+        .then(res=>console.log(res))
+        .catch(err=>console.log(err))
          setArticleList(articleList.filter(article => article.id !== id ))
     }
     if(isLoading){
@@ -44,6 +47,9 @@ const AdminArticles = (props) => {
                             Title: {article.title} 
                         </NavLink>
                         <button onClick={() => deletedArticle(article.id)}>X</button>
+                        <NavLink to={`/updateArticle/${article.id}`}>
+                            <button>Modifier</button>
+                        </NavLink>
                     </li>
                 )
             })}

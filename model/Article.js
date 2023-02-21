@@ -31,12 +31,11 @@ class Article {
     
     async getAll(){
         const sql = `SELECT
-        title, article_id, url, caption 
+        title, article_id, url, caption, articles.id As id
         FROM articles JOIN article_photos photo ON articles.id = photo.article_id`
         
         try{
             const result = await this.asyncQuery(sql)
-            console.log(result)
             return {result}
         } catch(err){
             console.log(err)
