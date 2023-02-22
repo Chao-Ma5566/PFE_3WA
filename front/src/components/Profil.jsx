@@ -1,11 +1,14 @@
 import axios from "axios"
-import {useState, useEffect} from "react"
+import {useState, useEffect, useContext} from "react"
 import { useParams } from "react-router-dom";
 import {BASE_URL} from "../tools/constante.js"
 import { NavLink, Navigate } from "react-router-dom"
+import ConfirmationWindow from "./ConfirmationWindow.jsx"
+import {StoreContext} from "../tools/context.js"
 
 const Profil = (props) => {
     const { userId } = useParams();
+    const [state, dispatch] = useContext(StoreContext);
     const [userInfo, setUserInfo] = useState(null)
     const [isSure, setIsSure] = useState(false)
     const [isDelete, setIsDelete] = useState(false)
@@ -43,7 +46,9 @@ const Profil = (props) => {
     
     return (
         <div>
-            {isDelete && <Navigate to="/logout" replace={true} />}
+            {isDelete && 
+                    <Navigate to={state.user.admin ? "/admin/users" : "/logout"} replace={true} /> 
+            }
             <h2>User Information</h2>
             <NavLink to={`/updateProfil/${userId}`}>
                 <p>Modifier Info</p>
@@ -60,14 +65,7 @@ const Profil = (props) => {
             <p>Dernière connexion: {reformeDate(userInfo.last_connection)}</p>
             <button onClick={handleCheck}>Supprimer le compte</button>
             {isSure && 
-                (<div className="modal">
-                    <div>
-                        <button className="close" onClick={handleCheck}>X</button>
-                        <h5>Vous être sûr que vous voulez supprimer votre compte?</h5>
-                        <button onClick={handleDelete}>Oui</button>
-                        <button onClick={handleCheck}>Non</button>
-                    </div>
-                </div>)
+                <ConfirmationWindow isOpen={handleCheck} deleteFunction={handleDelete} name="ce compte?" />
             }    
         </div>  
         )

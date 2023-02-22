@@ -28,6 +28,7 @@ const AdminArticles = (props) => {
         .catch(err=>console.log(err))
          setArticleList(articleList.filter(article => article.id !== id ))
     }
+    
     if(isLoading){
         return <div>Loading....</div>
     }
@@ -48,7 +49,7 @@ const AdminArticles = (props) => {
                         </NavLink>
                         <button onClick={() => deletedArticle(article.id)}>X</button>
                         <NavLink to={`/updateArticle/${article.id}`}>
-                            <button>Modifier</button>
+                            <button>Modifier article</button>
                         </NavLink>
                         <NavLink to={`/updateArticlePhoto/${article.id}`}>
                             <button>Modifier Photo</button>
