@@ -4,7 +4,7 @@ class Article {
         this.asyncQuery = bdd.asyncQuery 
     }
     
-    async create({title, content, content2}){
+    async create({title, content}){
         const sql = "INSERT INTO articles (title, content) VALUES (?,?)"
         const paramsSql = [title, content]
         
@@ -18,7 +18,10 @@ class Article {
     }
     
     async getById({id}){
-        const sql = "SELECT * FROM articles WHERE id = ?"
+        const sql = `SELECT articles.id AS id, title, content, url, caption, article_photos.id as pid
+        FROM articles 
+        JOIN article_photos ON articles.id = article_photos.article_id 
+        WHERE articles.id = ?`
         
         try{
             const result = await this.asyncQuery(sql,[id])

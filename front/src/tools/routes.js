@@ -11,6 +11,7 @@ import UpdatePassword from "../components/UpdatePassword.jsx"
 import Logout from "../components/Logout.jsx"
 import AdminArticles from "../components/AdminPage/AdminArticles.jsx"
 import AddArticle from "../components/AdminPage/AddArticle.jsx"
+import Article from "../components/Article.jsx"
 
 const routes = [
     {path:"/admin", component:<AdminHome />, auth:"admin"},
@@ -25,6 +26,7 @@ const routes = [
     {path:"/updateProfil/:userId", component:<UpdateProfil />, auth:"user"},
     {path:"/updatePassword/:userId", component:<UpdatePassword />, auth:"user"},
     {path:"/logout", component:<Logout />, auth:"user"},
+    {path:"/article/:articleId", component:<Article />},
     {path:"*", component:<Error404 />}
 ]
 

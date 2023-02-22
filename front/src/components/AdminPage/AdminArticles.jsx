@@ -43,12 +43,15 @@ const AdminArticles = (props) => {
                 return (
                     <li key={i}>
                     <img src={`${BASE_IMG}/${article.url}`} alt={article.caption} />
-                        <NavLink to={`/profil/${article.id}`}>
+                        <NavLink to={`/article/${article.id}`}>
                             Title: {article.title} 
                         </NavLink>
                         <button onClick={() => deletedArticle(article.id)}>X</button>
                         <NavLink to={`/updateArticle/${article.id}`}>
                             <button>Modifier</button>
+                        </NavLink>
+                        <NavLink to={`/updateArticlePhoto/${article.id}`}>
+                            <button>Modifier Photo</button>
                         </NavLink>
                     </li>
                 )

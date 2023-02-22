@@ -14,6 +14,7 @@ import updatePasswordPostController from "../controller/updatePasswordById.js"
 import addArticlePostController from "../controller/addArticle.js"
 import allArticleGetController from "../controller/allArticle.js"
 import deleteArticleByIdPostController from "../controller/deleteArticle.js"
+import getArticleByIdPostController from "../controller/getArticleById.js"
 import checkToken from "../controller/checkToken.js"
 
 const router = express.Router()
@@ -35,6 +36,7 @@ const routesPOST = [
     {route:"/updateProfil", controller: updateProfilPostController},
     {route:"/admin/updateRole", controller: updateRolePostController},
     {route:"/updatePassword", controller: updatePasswordPostController},
+    {route:"/getArticleById", controller: getArticleByIdPostController},
     {route:"/admin/deleteArticle", controller: deleteArticleByIdPostController},
 ]
 const routesUpload = [
