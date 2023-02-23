@@ -11,5 +11,4 @@ const deleteFile = async (fileName) => {
         throw e;
     }
 };
-
 export default deleteFile

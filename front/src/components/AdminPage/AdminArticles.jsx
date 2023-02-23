@@ -9,8 +9,6 @@ import ConfirmationWindow from "../ConfirmationWindow.jsx"
 const AdminArticles = (props) => {
     const [articleList, setArticleList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const [isSure, setIsSure] = useState(false)
-    const [deleteId, setDeleteId] = useState(0)
     // const  [state, dispatch] = React.useContext(StoreContext);
     useEffect(() => {
         setIsLoading(true)
@@ -24,17 +22,6 @@ const AdminArticles = (props) => {
             .then(res => setIsLoading(false))
     }, [])
     
-    const deletedArticle = (id)=>{
-        axios.post(`${BASE_URL}/admin/deleteArticle`,{id})
-        .then(res=>console.log(res))
-        .catch(err=>console.log(err))
-         setArticleList(articleList.filter(article => article.id !== id ))
-    }
-    
-    const handleCheck = (id) =>{
-        setDeleteId(id)
-        setIsSure(!isSure)
-    }
     
     if(isLoading){
         return <div>Loading....</div>
@@ -64,9 +51,7 @@ const AdminArticles = (props) => {
                 )
             })}
         </ul>
-        {isSure && 
-                <ConfirmationWindow isOpen={handleCheck} deleteFunction={deletedArticle(deleteId)} name="cet article?" />
-            }   
+        
         </Fragment >
     );
     

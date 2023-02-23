@@ -41,6 +41,7 @@ const routesPOST = [
 ]
 const routesUpload = [
     {route:"/admin/addArticle", controller: addArticlePostController},
+    {route:"/admin/Article", controller: addArticlePostController},
 ]
 
 routesGET.map((item) =>{
