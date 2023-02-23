@@ -46,11 +46,11 @@ class Article {
         }
     }
     
-    async update({title, contente, id}){
-        const sql = "UPDATE articles SET title = ?, contente = ? WHERE id = ?"
+    async update({title, content, id}){
+        const sql = "UPDATE articles SET title = ?, content = ? WHERE id = ?"
         
         try{
-            const result = await this.asyncQuery(sql,[title, contente, id])
+            const result = await this.asyncQuery(sql,[title, content, id])
             return {result}
         } catch(err){
             console.log(err)

@@ -28,7 +28,7 @@ const UpdateProfil = (props) => {
     
     const reformeDate = (data) =>{
         const date = new Date(data);
-        const formattedDate = date.toLocaleDateString("fr-CA", { year: 'numeric', month: '2-digit', day: '2-digit' });
+        const formattedDate = date.toLocaleDateString("fr-CA");
         return formattedDate
     }
     
@@ -56,6 +56,7 @@ const UpdateProfil = (props) => {
             return
         })
     }
+    
     const handleChange = (e) => {
         setMessageErr("")
         if(!lengthLimit(e.target.value)){

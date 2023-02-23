@@ -43,9 +43,9 @@ class PictureArticles {
         }
     }
     
-    async update({url,caption,article_id,id}){
-        const sql = "UPDATE  article_photos SET url=?,caption=?,article_id=? WHERE id = ?"
-        const paramsSql = [url,caption,article_id,id]
+    async update({url,caption,id}){
+        const sql = "UPDATE article_photos SET url=?,caption=? WHERE article_id = ?"
+        const paramsSql = [url,caption,id]
         
         try{
             const result = await this.asyncQuery(sql,paramsSql)

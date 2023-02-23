@@ -1,9 +1,8 @@
 import axios from "axios"
 import {useContext, useEffect, useState, Fragment} from "react"
 import {StoreContext} from "../tools/context.js"
-import { useParams } from "react-router-dom";
 import {BASE_URL, BASE_IMG} from "../tools/constante.js"
-import { NavLink, Navigate } from "react-router-dom"
+import { NavLink, Navigate,useParams } from "react-router-dom"
 import ConfirmationWindow from "./ConfirmationWindow.jsx"
 
 const Article = (props) => {
@@ -51,10 +50,10 @@ const Article = (props) => {
             
             {state.user.admin &&
             <Fragment>
-                <NavLink to={`/updateArticle/${articleId}`}>
+                <NavLink to={`/admin/updateArticle/${articleId}`}>
                     <p>Modifier article</p>
                 </NavLink>
-                <NavLink to={`/updateArticlePhoto/${articleId}`}>
+                <NavLink to={`/admin/updateArticlePhoto/${articleId}`}>
                     <p>Modifier Photo</p>
                 </NavLink>
                 <button onClick={handleCheck}>Supprimer l'article</button>

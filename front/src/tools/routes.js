@@ -11,15 +11,20 @@ import UpdatePassword from "../components/UpdatePassword.jsx"
 import Logout from "../components/Logout.jsx"
 import AdminArticles from "../components/AdminPage/AdminArticles.jsx"
 import AddArticle from "../components/AdminPage/AddArticle.jsx"
+import UpdateArticle from "../components/AdminPage/UpdateArticle.jsx"
+import UpdateArticlePhoto from "../components/AdminPage/UpdateArticlePhoto.jsx"
 import Article from "../components/Article.jsx"
 
+
 const routes = [
+    {path:"/", component:<Home />},
     {path:"/admin", component:<AdminHome />, auth:"admin"},
     {path:"/admin/users", component:<UserList />, auth:"admin"},
     {path:"/admin/roles", component:<UpdateRole />, auth:"admin"},
     {path:"/admin/articles", component:<AdminArticles />, auth:"admin"},
     {path:"/admin/addArticle", component:<AddArticle />, auth:"admin"},
-    {path:"/", component:<Home />},
+    {path:"/admin/updateArticle/:articleId", component:<UpdateArticle />, auth:"admin"},
+    {path:"/admin/updateArticlePhoto/:articleId", component:<UpdateArticlePhoto />, auth:"admin"},
     {path:"/login", component:<Login />},
     {path:"/register", component:<Register />},
     {path:"/profil/:userId", component:<Profil />, auth:"user"},

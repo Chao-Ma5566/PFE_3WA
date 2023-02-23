@@ -13,6 +13,8 @@ import updateRolePostController from "../controller/updateRole.js"
 import updatePasswordPostController from "../controller/updatePasswordById.js"
 import addArticlePostController from "../controller/addArticle.js"
 import allArticleGetController from "../controller/allArticle.js"
+import updateArticlePostController from "../controller/updateArticle.js"
+import updateArticlePhotoPostController from "../controller/updateArticlePhoto.js"
 import deleteArticleByIdPostController from "../controller/deleteArticle.js"
 import getArticleByIdPostController from "../controller/getArticleById.js"
 import checkToken from "../controller/checkToken.js"
@@ -38,10 +40,12 @@ const routesPOST = [
     {route:"/updatePassword", controller: updatePasswordPostController},
     {route:"/getArticleById", controller: getArticleByIdPostController},
     {route:"/admin/deleteArticle", controller: deleteArticleByIdPostController},
+    {route:"/admin/updateArticle", controller: updateArticlePostController},
 ]
 const routesUpload = [
     {route:"/admin/addArticle", controller: addArticlePostController},
-    {route:"/admin/Article", controller: addArticlePostController},
+    {route:"/admin/updateArticlePhoto", controller: updateArticlePhotoPostController},
+    
 ]
 
 routesGET.map((item) =>{

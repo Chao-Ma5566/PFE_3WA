@@ -41,10 +41,10 @@ const AdminArticles = (props) => {
                         <NavLink to={`/article/${article.id}`}>
                             Title: {article.title} 
                         </NavLink>
-                        <NavLink to={`/updateArticle/${article.id}`}>
+                        <NavLink to={`/admin/updateArticle/${article.id}`}>
                             <button>Modifier article</button>
                         </NavLink>
-                        <NavLink to={`/updateArticlePhoto/${article.id}`}>
+                        <NavLink to={`/admin/updateArticlePhoto/${article.id}`}>
                             <button>Modifier Photo</button>
                         </NavLink>
                     </li>
