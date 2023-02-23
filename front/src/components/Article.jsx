@@ -4,6 +4,7 @@ import {StoreContext} from "../tools/context.js"
 import { useParams } from "react-router-dom";
 import {BASE_URL, BASE_IMG} from "../tools/constante.js"
 import { NavLink, Navigate } from "react-router-dom"
+import ConfirmationWindow from "./ConfirmationWindow.jsx"
 
 const Article = (props) => {
     const { articleId } = useParams();
@@ -27,7 +28,7 @@ const Article = (props) => {
     const handleDelete = () =>{
         axios.post(`${BASE_URL}/admin/deleteArticle`,{id:articleId})
         .then(res=>{
-                if(res.data.data.affectedRows > 0){
+                if(res.data.data.result.affectedRows > 0){
                     setIsDelete(true)
                 }
             })
@@ -44,6 +45,7 @@ const Article = (props) => {
     return (
         <div>
             {isDelete && <Navigate to="/admin/articles" replace={true} />}
+            
             <img src={`${BASE_IMG}/${articleInfo.url}`} alt={articleInfo.caption} />
             <h2>{articleInfo.title}</h2>
             
@@ -55,19 +57,16 @@ const Article = (props) => {
                 <NavLink to={`/updateArticlePhoto/${articleId}`}>
                     <p>Modifier Photo</p>
                 </NavLink>
+                <button onClick={handleCheck}>Supprimer l'article</button>
             </Fragment>
             }
+            
             <p>{articleInfo.content}</p>
+            
             {isSure && 
-                (<div className="modal">
-                    <div>
-                        <button className="close" onClick={handleCheck}>X</button>
-                        <h5>Vous être sûr que vous voulez supprimer cet article?</h5>
-                        <button onClick={handleDelete}>Oui</button>
-                        <button onClick={handleCheck}>Non</button>
-                    </div>
-                </div>)
-            }    
+                <ConfirmationWindow isOpen={handleCheck} deleteFunction={handleDelete} name="cet article?" />
+            }
+            
         </div>  
         )
 }

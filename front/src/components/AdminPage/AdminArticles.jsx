@@ -54,7 +54,6 @@ const AdminArticles = (props) => {
                         <NavLink to={`/article/${article.id}`}>
                             Title: {article.title} 
                         </NavLink>
-                        <button onClick={() => handleCheck(article.id)}>X</button>
                         <NavLink to={`/updateArticle/${article.id}`}>
                             <button>Modifier article</button>
                         </NavLink>
