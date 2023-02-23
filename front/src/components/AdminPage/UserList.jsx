@@ -19,11 +19,6 @@ const UserList = (props) => {
             });
     }, [])
     
-    const deletedUser = (id)=>{
-        axios.post(`${BASE_URL}/admin/deleteUser`,{id})
-         setUserList(userList.filter(user => user.id !== id ))
-    }
-    
     return (
         <ul>
             {userList.map((user, i) => {
@@ -32,7 +27,6 @@ const UserList = (props) => {
                         <NavLink to={`/profil/${user.id}`}>
                             Nom: {user.last_name} Prénom: {user.first_name}
                         </NavLink>
-                        <button onClick={() => deletedUser(user.id)}>X</button>
                         <NavLink to={`/updateProfil/${user.id}`}>
                             <button>Modifier</button>
                         </NavLink>

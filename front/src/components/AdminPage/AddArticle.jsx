@@ -23,7 +23,11 @@ const AddArticle = (props) => {
             setMessageErr("Champ obligatoire vide") 
             return
         }
-        
+        else if(files[0]===undefined){
+            setMessageErr("Une photo obligatoire")
+            return
+        }
+        console.log(files[0])
         dataFile.append('files', files[0], files[0].name)
         dataFile.append('title', articleInfo.title)
         dataFile.append('content', articleInfo.content)
@@ -83,7 +87,7 @@ const AddArticle = (props) => {
                     <input type='file' name='img'/>
                 </div>
                 <button type="submit">Valider</button>
-                {/*messageErr.length > 0 && <p>{messageErr}</p>*/}
+                {messageErr.length > 0 && <p>{messageErr}</p>}
             </form>
         </div>
     );
