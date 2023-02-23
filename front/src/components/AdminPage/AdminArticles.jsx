@@ -39,7 +39,7 @@ const AdminArticles = (props) => {
                     <li key={i}>
                     <img src={`${BASE_IMG}/${article.url}`} alt={article.caption} />
                         <NavLink to={`/article/${article.id}`}>
-                            Title: {article.title} 
+                            <h2 className="text-3xl font-bold underline">Title: {article.title}</h2> 
                         </NavLink>
                         <NavLink to={`/admin/updateArticle/${article.id}`}>
                             <button>Modifier article</button>

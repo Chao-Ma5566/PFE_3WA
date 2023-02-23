@@ -44,7 +44,7 @@ const UpdatePassword = (props) => {
     console.log(userInfo)
     return (
         <div>
-            <h2>Modifier Info</h2>
+            <h2>Modifier Mots de Passe</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="oldPassword">Votre mots de passe actuel: </label>
                 <input type="password" name="oldPassword" value={userInfo.oldPassword} onChange={(e)=>handleChange(e)} />

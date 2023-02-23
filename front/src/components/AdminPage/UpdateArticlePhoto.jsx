@@ -97,11 +97,7 @@ const handleSubmit = (e) => {
                 <button type="submit">Valider</button>
                 {messageErr.length > 0 && <p>{messageErr}</p>}
             </form>
-            
             <p>{articleInfo.content}</p>
-            
-            
-            
         </div>  
         )
 }
