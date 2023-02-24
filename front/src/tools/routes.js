@@ -18,6 +18,12 @@ import Article from "../components/Article.jsx"
 
 const routes = [
     {path:"/", component:<Home />},
+    {path:"/login", component:<Login />},
+    {path:"/register", component:<Register />},
+    {path:"/profil/:userId", component:<Profil />, auth:"user"},
+    {path:"/updateProfil/:userId", component:<UpdateProfil />, auth:"user"},
+    {path:"/updatePassword/:userId", component:<UpdatePassword />, auth:"user"},
+    {path:"/logout", component:<Logout />, auth:"user"},
     {path:"/admin", component:<AdminHome />, auth:"admin"},
     {path:"/admin/users", component:<UserList />, auth:"admin"},
     {path:"/admin/roles", component:<UpdateRole />, auth:"admin"},
@@ -25,14 +31,10 @@ const routes = [
     {path:"/admin/addArticle", component:<AddArticle />, auth:"admin"},
     {path:"/admin/updateArticle/:articleId", component:<UpdateArticle />, auth:"admin"},
     {path:"/admin/updateArticlePhoto/:articleId", component:<UpdateArticlePhoto />, auth:"admin"},
-    {path:"/login", component:<Login />},
-    {path:"/register", component:<Register />},
-    {path:"/profil/:userId", component:<Profil />, auth:"user"},
-    {path:"/updateProfil/:userId", component:<UpdateProfil />, auth:"user"},
-    {path:"/updatePassword/:userId", component:<UpdatePassword />, auth:"user"},
-    {path:"/logout", component:<Logout />, auth:"user"},
     {path:"/article/:articleId", component:<Article />},
     {path:"*", component:<Error404 />}
 ]
+
+
 
 export default routes

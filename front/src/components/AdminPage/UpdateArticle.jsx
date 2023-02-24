@@ -24,6 +24,9 @@ const UpdateArticle = (props) => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
+        if(messageErr.length > 0){
+            return
+        }
         if(!checkVide([articleInfo.title, articleInfo.content])){
             setMessageErr("Champ obligatoire vide") 
             return
@@ -47,10 +50,8 @@ const UpdateArticle = (props) => {
         setMessageErr("")
         if(!lengthLimit(articleInfo.title, 100)){
             setMessageErr("Title est limité à 100 caractaires") 
-            return
         }else if(!lengthLimit(articleInfo.content, 5000)){
             setMessageErr("Chaque content est limité à 5000 caractaires") 
-            return
         }
         let newInfo = { ...articleInfo, [e.target.name]: e.target.value }
         setArticleInfo(newInfo)

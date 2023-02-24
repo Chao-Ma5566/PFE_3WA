@@ -18,7 +18,9 @@ const UpdatePassword = (props) => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(!checkVide([userInfo.newPassword, userInfo.oldPassword])){
+        if(messageErr.length > 0){
+            return
+        }else if(!checkVide([userInfo.newPassword, userInfo.oldPassword])){
             setMessageErr("Champ obligatoire vide") 
             return
         }
@@ -35,7 +37,6 @@ const UpdatePassword = (props) => {
         setMessageErr("")
         if(!lengthLimit(e.target.value)){
             setMessageErr("tous les infos sont limit à 250 caractaires") 
-            return
         }
         let newInfo = { ...userInfo, [e.target.name]: e.target.value }
         setUserInfo(newInfo)

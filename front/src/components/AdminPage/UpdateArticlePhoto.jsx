@@ -23,17 +23,15 @@ const UpdateArticlePhoto = (props) => {
     
 const handleSubmit = (e) => {
         e.preventDefault()
-        
+        if(messageErr.length > 0){
+            return
+        }
         const dataFile = new FormData();
         const files = {...e.target.img.files};
         console.log(files)
 
         if(!checkVide(articleInfo.caption)){
             setMessageErr("Champ obligatoire vide") 
-            return
-        }
-        else if(files[0]===undefined){
-            setMessageErr("Une photo obligatoire")
             return
         }
         
@@ -60,12 +58,8 @@ const handleSubmit = (e) => {
     
     const handleChange = (e) => {
         setMessageErr("")
-        if(!lengthLimit(articleInfo.title, 100)){
+        if(!lengthLimit(articleInfo.caption, 100)){
             setMessageErr("Title est limité à 100 caractaires") 
-            return
-        }else if(!lengthLimit(articleInfo.content, 5000)){
-            setMessageErr("Chaque content est limité à 5000 caractaires") 
-            return
         }
         let newInfo = { ...articleInfo, [e.target.name]: e.target.value }
         setArticleInfo(newInfo)
@@ -80,7 +74,8 @@ const handleSubmit = (e) => {
             {isChangePage && <Navigate to={`/article/${articleId}`} replace={true} />}
             <h2>{articleInfo.title}</h2>
             
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <form onSubmit={handleSubmit} encType="multipart/form-data"
+            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <img src={`${BASE_IMG}/${articleInfo.url}`} alt={articleInfo.caption} />
                 <label htmlFor="img">Cover image: </label>
                 <div className="form-item">
@@ -94,7 +89,11 @@ const handleSubmit = (e) => {
                     placeholder="caption" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <button type="submit">Valider</button>
+                <button type="submit" 
+                className="bg-gray-500 hover:bg-gray-700 font-satoshi py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                Valider
+                </button>
                 {messageErr.length > 0 && <p>{messageErr}</p>}
             </form>
             <p>{articleInfo.content}</p>
