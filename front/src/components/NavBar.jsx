@@ -5,7 +5,6 @@ import {useContext} from 'react'
 
 const NavBar = (props) => {
     const [state, dispatch] = useContext(StoreContext);
-
     
     return (
         <div>

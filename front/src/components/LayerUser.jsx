@@ -6,7 +6,6 @@ const LayerUser = () => {
         <div className="flex w-full min-h-screen font-satoshi">
             <NavBar />
             <Outlet />
-            
         </div>
     )
 }

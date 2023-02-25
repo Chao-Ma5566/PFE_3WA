@@ -1,9 +1,7 @@
 import AddArticle from "../components/AdminPage/AddArticle.jsx"
 import AdminArticles from "../components/AdminPage/AdminArticles.jsx"
-import AdminHome from "../components/AdminHome.jsx"
 import Article from "../components/Article.jsx"
 import Error404 from "../components/Error404.jsx"
-import Home from "../components/Home.jsx"
 import Login from "../components/Login.jsx"
 import Logout from "../components/Logout.jsx"
 import Profil from "../components/Profil.jsx"
@@ -16,7 +14,6 @@ import UpdateRole from "../components/AdminPage/UpdateRole.jsx"
 import UserList from "../components/AdminPage/UserList.jsx"
 
 const routesUser = [
-    {path:"/", component:<Home />},
     {path:"login", component:<Login />},
     {path:"register", component:<Register />},
     {path:"profil/:userId", component:<Profil />, auth:"user"},
@@ -28,7 +25,6 @@ const routesUser = [
 ]
 
 const routesAdmin = [
-    {path:"/admin", component:<AdminHome />, auth:"admin"},
     {path:"/admin/users", component:<UserList />, auth:"admin"},
     {path:"/admin/roles", component:<UpdateRole />, auth:"admin"},
     {path:"/admin/articles", component:<AdminArticles />, auth:"admin"},
