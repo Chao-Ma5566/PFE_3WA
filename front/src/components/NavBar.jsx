@@ -1,9 +1,7 @@
-import { NavLink } from "react-router-dom"
-import {useContext} from 'react'
-import { StoreContext } from "../tools/context.js"
-import {BASE_URL} from "../tools/constante.js"
 import Logged from "./Logged.jsx"
-import AdminSidebar from "./AdminPage/AdminSidebar.jsx"
+import { NavLink } from "react-router-dom"
+import { StoreContext } from "../tools/context.js"
+import {useContext} from 'react'
 
 const NavBar = (props) => {
     const [state, dispatch] = useContext(StoreContext);
@@ -30,9 +28,6 @@ const NavBar = (props) => {
                 }    
                 </ul>
             </nav>
-            {state.user.admin &&
-                <AdminSidebar />
-            }
         </div>
         )
 }

@@ -1,12 +1,24 @@
 import {Route, Routes} from "react-router-dom";
-import routes from '../tools/routes.js'
+import {routesAdmin, routesUser} from '../tools/routes.js'
+
+import AdminHome from "../components/AdminHome.jsx"
+import Home from "../components/Home.jsx"
+import LayerAdmin from "./AdminPage/LayerAdmin"
+import LayerUser from "./LayerUser"
 import PrivateRoute from "./PrivateRoute"
 
 const Router = () => {
     return (
         <Routes>
+            <Route path="/admin" element={<LayerAdmin />}>
+                <Route index element={
+                            <PrivateRoute auth="admin"> 
+                                <AdminHome />
+                            </PrivateRoute>
+                        } />
+                
             {/* on recupere la liste des routes et on la map */} 
-            {routes.map(({ path, auth, component },i) => {
+            {routesAdmin.map(({ path, auth, component },i) => {
                 return(
                     <Route 
                         key={i} 
@@ -16,10 +28,28 @@ const Router = () => {
                                 {component}
                             </PrivateRoute>
                         } 
-                    />
+                        />
                 )
             })}
-            
+            </Route>
+
+            <Route path="/" element={<LayerUser />}>
+                <Route index element={<Home />}/>
+            {/* on recupere la liste des routes et on la map */} 
+            {routesUser.map(({ path, auth, component },i) => {
+                return(
+                    <Route 
+                        key={i} 
+                        path={path} 
+                        element={
+                            <PrivateRoute auth={auth}> 
+                                {component}
+                            </PrivateRoute>
+                        } 
+                        />
+                )
+            })}
+            </Route>
             
         </Routes>
     )

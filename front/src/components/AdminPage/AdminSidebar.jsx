@@ -1,7 +1,8 @@
+import {useContext, useEffect} from 'react'
+
 import { NavLink } from "react-router-dom"
-import {useEffect,useContext} from 'react'
-import axios from 'axios'
 import { StoreContext } from "../../tools/context.js"
+import axios from 'axios'
 
 const AdminSidebar = (props) => {
     const [state, dispatch] = useContext(StoreContext);
@@ -20,6 +21,9 @@ const AdminSidebar = (props) => {
                     </li>
             )})}    
             </ul>
+            <NavLink to={`/`}>
+                Retour au boutique
+            </NavLink>
         </nav>
         )
 }
