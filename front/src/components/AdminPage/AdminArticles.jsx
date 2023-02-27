@@ -32,26 +32,26 @@ const AdminArticles = (props) => {
         <div>
             <NavLink to={`/admin/addArticle`}><button>Créer un nouvel article</button></NavLink>
         </div>
-        
-        <ul>
-            {articleList.map((article, i) => {
-                return (
-                    <li key={i}>
-                    <img src={`${BASE_IMG}/${article.url}`} alt={article.caption} />
-                        <NavLink to={`/article/${article.id}`}>
-                            <h2 className="font-satoshi text-3xl text-primary">Title: {article.title}</h2> 
-                        </NavLink>
-                        <NavLink to={`/admin/updateArticle/${article.id}`}>
-                            <button className="font-satoshi">Modifier article</button>
-                        </NavLink>
-                        <NavLink to={`/admin/updateArticlePhoto/${article.id}`}>
-                            <button>Modifier Photo</button>
-                        </NavLink>
-                    </li>
-                )
-            })}
-        </ul>
-        
+        <div className="max-h-screen overscroll-contain">
+            <ul>
+                {articleList.map((article, i) => {
+                    return (
+                        <li key={i}>
+                        <img src={`${BASE_IMG}/${article.url}`} alt={article.caption} />
+                            <NavLink to={`/article/${article.id}`}>
+                                <h2 className="font-satoshi text-3xl text-primary">Title: {article.title}</h2> 
+                            </NavLink>
+                            <NavLink to={`/admin/updateArticle/${article.id}`}>
+                                <button className="font-satoshi">Modifier article</button>
+                            </NavLink>
+                            <NavLink to={`/admin/updateArticlePhoto/${article.id}`}>
+                                <button>Modifier Photo</button>
+                            </NavLink>
+                        </li>
+                    )
+                })}
+            </ul>
+        </div>
         </Fragment >
     );
     

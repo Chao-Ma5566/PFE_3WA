@@ -34,7 +34,10 @@ const Router = () => {
             </Route>
 
             <Route path="/" element={<LayerUser />}>
-                <Route index element={<Home />}/>
+                <Route index element={
+                            <PrivateRoute> 
+                                <Home />
+                            </PrivateRoute>}/>
             {/* on recupere la liste des routes et on la map */} 
             {routesUser.map(({ path, auth, component },i) => {
                 return(

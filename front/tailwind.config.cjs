@@ -5,10 +5,10 @@ module.exports = {
   './src/**/*.{html,jsx, js}'
   ],
   theme: {
-    fontFamily: {
+    fontFamily : {
       satoshi: "'Satoshi', sans",
     },
-    colors: {
+    colors : {
        gray: {
         100: "#E6E6E6",
         500: "#ABBBC2",
