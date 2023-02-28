@@ -12,10 +12,7 @@
     @apply text-4xl my-2
   }
   button {
-    @apply text-gray-100 bg-gray-800 rounded px-1.5 py-0.5 space-y-3 hover:bg-gray-700 m-2;
-  }
-  submit {
-     @apply text-gray-100 bg-gray-800 rounded px-1.5 py-0.5 space-y-3 hover:bg-gray-700 m-2;
+    @apply text-gray-100 bg-gray-800 rounded px-1.5 py-0.5 space-y-3 hover:bg-gray-700;
   }
   input {
     @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700;

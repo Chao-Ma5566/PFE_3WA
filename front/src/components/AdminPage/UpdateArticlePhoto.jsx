@@ -70,16 +70,24 @@ const handleSubmit = (e) => {
     }
     
     return (
-        <div>
+        <div className="container-admin">
             {isChangePage && <Navigate to={`/article/${articleId}`} replace={true} />}
-            <h2>{articleInfo.title}</h2>
+            <div className="admin-header">
+                <div>
+                    <h2>Modifier Cover d'article</h2>
+                    <p>meilleur proportion de photo est 3:4</p>
+                    {messageErr.length > 0 && <p  className="rounded py-2 px-4 bg-primary">{messageErr}</p>}
+                </div>   
+            </div>
             
             <form onSubmit={handleSubmit} encType="multipart/form-data"
             className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <p className="text-xl">Title: {articleInfo.title}</p>
                 <img src={`${BASE_IMG}/${articleInfo.url}`} alt={articleInfo.caption} />
                 <label htmlFor="img">Cover image: </label>
                 <div className="form-item">
-                    <input type='file' name='img'/>
+                    <input type='file' name='img' 
+                    className="file:bg-gray-500 hover:file:bg-gray-700 py-2 px-4 file:rounded focus:outline-none focus:shadow-outline text-gray-100"/>
                 </div>
                 <label htmlFor="caption">Caption: </label>
                 <input 
@@ -90,13 +98,12 @@ const handleSubmit = (e) => {
                     onChange={(e)=>handleChange(e)} 
                 />
                 <button type="submit" 
-                className="bg-gray-500 hover:bg-gray-700 font-satoshi py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="py-2 px-4 rounded bg-gray-900 hover:bg-primary my-2"
                 >
                 Valider
                 </button>
-                {messageErr.length > 0 && <p>{messageErr}</p>}
+                
             </form>
-            <p>{articleInfo.content}</p>
         </div>  
         )
 }

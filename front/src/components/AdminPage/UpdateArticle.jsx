@@ -64,27 +64,35 @@ const UpdateArticle = (props) => {
     }
     
     return (
-        <div>
+        <div className="container-admin">
+            <div className="admin-header">
+                <div>
+                    <h2>Modifier l'article</h2>
+                    <p>Utiliser Ctrl+F pour chercher title d'utilisateur, meilleur proportion de photo est 3:4</p>
+                    {messageErr.length > 0 && <p className="rounded py-2 px-4 bg-primary">{messageErr}</p>}
+                </div>   
+            </div>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <label htmlFor="title">Title: </label>
+                <label htmlFor="title" className="text-lg">Title: </label>
                 <input 
                     type="text" 
+                    className="my-2"
                     name="title" 
                     value={articleInfo.title} 
                     placeholder="title" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="content">Content: </label>
+                <label htmlFor="content" className="text-lg">Content: </label>
                 <textarea 
                     name="content" 
+                    className="my-2"
                     value={articleInfo.content} 
                     placeholder="content" 
                     onChange={(e)=>handleChange(e)} 
                     rows="15" cols="33"
                 />
-                <button type="submit">Valider</button>
+                <button type="submit" className="py-2 px-4 rounded bg-gray-900 hover:bg-primary">Valider</button>
             </form>
-            {messageErr.length > 0 && <p>{messageErr}</p>}
         </div>
     )
 }

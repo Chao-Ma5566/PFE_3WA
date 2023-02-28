@@ -5,6 +5,8 @@ import {BASE_URL} from "../../tools/constante.js"
 
 const UpdateRole = (props) => {
     const [userList, setUserList] = useState([])
+    const [messageErr, setMessageErr] = useState("")
+    
     useEffect(() => {
         axios.get(`${BASE_URL}/admin/users`)
             .then(function(response) {
@@ -22,9 +24,15 @@ const UpdateRole = (props) => {
             id: updatedInfo[0].id, 
             role_id: updatedInfo[0].role_id
         })
+        .then(res=>{
+            if(res.statusText === "OK"){
+                setMessageErr("L'informations sont bien enregistrer")
+            }
+        })
     }
     
     const handleChange = (id, index)=>{
+        setMessageErr("")
         const newUserList = [...userList]
         newUserList[index].role_id = id
         setUserList(newUserList)
@@ -36,6 +44,7 @@ const UpdateRole = (props) => {
                 <h2>User Rôle</h2>
                 <p>Utiliser Ctrl+F pour chercher nom/ prénom/ email d'utilisateur</p>
                 <p>Cliquez selection pour changer le rôle</p>
+                {messageErr.length > 0 && <p className="rounded py-2 px-4 bg-primary">{messageErr}</p>}
             </div>
             <table className="table-fixed w-full max-h-96">
               <thead className="border-b-2 sticky top-0 bg-gray-800 ">
