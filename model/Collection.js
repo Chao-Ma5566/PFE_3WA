@@ -1,4 +1,5 @@
 import inputCheck from "../config/inputCheck.js"
+
 //	id	name	description 
 class Collection {
     constructor(bdd){
@@ -25,14 +26,11 @@ class Collection {
         }
     }
     
-    async getByName({name}){
-        const sql = "SELECT * FROM collection WHERE name = ?"
+    async getById({id}){
+        const sql = "SELECT id, title, description FROM collection WHERE id = ?"
         
-        if(!inputCheck(name)){
-            return {response:'Champ name ne doit être vide ou dépasser 255 '}
-        }   
         try{
-            const result = await this.asyncQuery(sql,[name])
+            const result = await this.asyncQuery(sql,[id])
             return {result}
         } catch(err){
             console.log(err)
@@ -53,24 +51,18 @@ class Collection {
         }
     }
     
-    async update({name, description}){
-        const sql = "UPDATE collection SET name = ?, description = ? WHERE id = ?"
-        const paramsSql = [name, description]
+    async update({id, title, description}){
+        const sql = "UPDATE collection SET title = ?, description = ? WHERE id = ?"
+        const paramsSql = [title, description, id]
+        
+        if(!inputCheck(title)){
+            return {response:'Champ title ne doit être vide ou dépasser 250 '}
+        }else if(!inputCheck(description,510)){
+            return {response:'Champ description doit pas être vide ou dépasser 510 '}
+        }
         
         try{
             const result = await this.asyncQuery(sql,paramsSql)
-            return {result}
-        } catch(err){
-            console.log(err)
-            return err
-        }
-    }
-    
-    async rupture({id}){
-        const sql = "UPDATE products SET stock = 0 WHERE id = ?"
-        
-        try{
-            const result = await this.asyncQuery(sql,[id])
             return {result}
         } catch(err){
             console.log(err)

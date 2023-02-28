@@ -25,8 +25,8 @@ const CollectionList = (props) => {
             <div className="admin-header flex justify-between">
                 <div>
                     <h2>Collection Liste</h2>
-                    <p>Utiliser Ctrl+F pour chercher title de collection</p>
-                    <p>Cliquez title pour voir l'info complèt</p>
+                    <p>Utiliser Ctrl+F pour chercher title/id/description de collection</p>
+                    <p>Cliquez title pour voir la liste complète de produits dans la collection</p>
                 </div>
                 <div className="flex items-center">
                     <NavLink to={`/admin/addCollection`}>
@@ -42,25 +42,27 @@ const CollectionList = (props) => {
                 <tr className="bg-gray-700">
                   <th className="py-4 text-lg">ID</th>
                   <th className="py-4 text-lg">Title</th>
+                  <th className="py-4 text-lg">Description</th>
                   <th className="py-4 text-lg">Modifier ou Supprimer</th>
                 </tr>
               </thead>
               <tbody className="overscroll-auto overflow-y-scroll">
               {collectionList.map((collection, i) => {
                     return (
-                        <tr key={i}>
-                            <td>
-                                <NavLink  className="text-center" to={`/collection/${collection.id}`}>
-                                    <p>{collection.id}</p>
-                                </NavLink>
+                        <tr key={i} className="my-2 hover:bg-gray-700">
+                            <td className="text-center">
+                                <p>{collection.id}</p>
                             </td>
                             <td>
                                 <NavLink className="text-center" to={`/collection/${collection.id}`}>
                                     <p>{collection.title}</p>
                                 </NavLink>
                             </td>
+                            <td className="text-center">
+                                <p>{collection.description}</p>
+                            </td>
                             <td className="flex justify-center">
-                                <NavLink to={`/updateProfil/${collection.id}`}>
+                                <NavLink to={`/admin/updateCollection/${collection.id}`}>
                                     <button className="p-2 rounded bg-gray-900 hover:bg-primary">Modifier</button>
                                 </NavLink>
                             </td>

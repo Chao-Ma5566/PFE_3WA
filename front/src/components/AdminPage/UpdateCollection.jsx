@@ -2,42 +2,43 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from "../../tools/constante.js"
 import { lengthLimit, checkVide } from "../../tools/inputCheck.js"
-
 import { useParams } from "react-router-dom"
 
 
-const UpdateArticle = (props) => {
-    const { articleId } = useParams();
-    const [articleInfo, setArticleInfo] = useState([])
+const UpdateCollection = (props) => {
+    const { collectionId } = useParams();
+    const [collectionInfo, setCollectionInfo] = useState([])
     const [messageErr, setMessageErr] = useState("")
     const [isLoading, setIsLoading] = useState(true)
     
     useEffect(() => {
         setIsLoading(true)
-        axios.post(`${BASE_URL}/getArticleById`, { id: articleId })
+        axios.post(`${BASE_URL}/admin/getCollectionById`, { id: collectionId })
             .catch(err => console.log(err))
             .then(res => {
-                setArticleInfo(res.data.data.result[0])
+                console.log(res)
+                setCollectionInfo(res.data.data.result[0])
                 })
             .then(res => setIsLoading(false))
-    }, [articleId])
+    }, [collectionId])
     
     const handleSubmit = (e) => {
         e.preventDefault()
         if(messageErr.length > 0){
             return
         }
-        if(!checkVide([articleInfo.title, articleInfo.content])){
+        if(!checkVide([collectionInfo.title, collectionInfo.description])){
             setMessageErr("Champ obligatoire vide") 
             return
         }
         
-        axios.post(`${BASE_URL}/admin/updateArticle`, {
-            title: articleInfo.title,
-            content: articleInfo.content,
-            id: articleId
+        axios.post(`${BASE_URL}/admin/updateCollection`, {
+            title: collectionInfo.title,
+            description: collectionInfo.description,
+            id: collectionId
         }).then(res=>{
-            if(res.statusText === "OK"){
+            console.log(res)
+            if(res.data.data.result.affectedRows > 0){
                 setMessageErr("L'informations sont bien enregistrer")
             }
         }).catch(err=>{
@@ -48,16 +49,16 @@ const UpdateArticle = (props) => {
     
     const handleChange = (e) => {
         setMessageErr("")
-        if(!lengthLimit(articleInfo.title, 100)){
+        if(!lengthLimit(collectionInfo.title, 100)){
             setMessageErr("Title est limité à 100 caractères") 
-        }else if(!lengthLimit(articleInfo.content, 5000)){
-            setMessageErr("Chaque content est limité à 5000 caractères") 
+        }else if(!lengthLimit(collectionInfo.description, 5000)){
+            setMessageErr("Chaque description est limité à 5000 caractères") 
         }
-        let newInfo = { ...articleInfo, [e.target.name]: e.target.value }
-        setArticleInfo(newInfo)
+        let newInfo = { ...collectionInfo, [e.target.name]: e.target.value }
+        setCollectionInfo(newInfo)
     }
     
-    console.log(articleInfo)
+    console.log(collectionInfo)
     
     if(isLoading){
         return <div>Loading....</div>
@@ -78,16 +79,16 @@ const UpdateArticle = (props) => {
                     type="text" 
                     className="my-2"
                     name="title" 
-                    value={articleInfo.title} 
+                    value={collectionInfo.title} 
                     placeholder="title" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="content" className="text-lg">Content: </label>
+                <label htmlFor="description" className="text-lg">Description: </label>
                 <textarea 
-                    name="content" 
+                    name="description" 
                     className="my-2"
-                    value={articleInfo.content} 
-                    placeholder="content" 
+                    value={collectionInfo.description} 
+                    placeholder="description" 
                     onChange={(e)=>handleChange(e)} 
                     rows="15" cols="33"
                 />
@@ -97,4 +98,4 @@ const UpdateArticle = (props) => {
     )
 }
 
-export default UpdateArticle
+export default UpdateCollection

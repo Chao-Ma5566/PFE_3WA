@@ -2,14 +2,13 @@ import axios from "axios"
 import { useState } from "react"
 import {BASE_URL} from "../../tools/constante.js"
 import {lengthLimit, checkVide} from "../../tools/inputCheck.js"
-import { NavLink, Navigate } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 
 const AddCollection = (props) => {
     const initialValue = { title:"", description:"" }
     const [collectionInfo, setCollectionInfo] = useState(initialValue)
     const [messageErr, setMessageErr] = useState("")
     const [isChangePage, setIsChangePage] = useState(false)
-    // const [isShowPassWord, setIsShowPassWord] = useState(false)
     
     const handleSubmit = (e) => {
         e.preventDefault()

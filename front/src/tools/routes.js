@@ -15,6 +15,8 @@ import UserList from "../components/AdminPage/UserList.jsx"
 import AddProduct from "../components/AdminPage/AddProduct.jsx"
 import AddCollection from "../components/AdminPage/AddCollection.jsx"
 import CollectionList from "../components/AdminPage/CollectionList.jsx"
+import UpdateCollection from "../components/AdminPage/UpdateCollection.jsx"
+
 
 
 const routesUser = [
@@ -38,6 +40,7 @@ const routesAdmin = [
     {path:"/admin/addProduct", component:<AddProduct />, auth:"admin"},
     {path:"/admin/updateArticle/:articleId", component:<UpdateArticle />, auth:"admin"},
     {path:"/admin/updateArticlePhoto/:articleId", component:<UpdateArticlePhoto />, auth:"admin"},
+    {path:"/admin/updateCollection/:collectionId", component:<UpdateCollection />, auth:"admin"},
 ]
 
 

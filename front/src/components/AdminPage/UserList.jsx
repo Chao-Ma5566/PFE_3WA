@@ -38,7 +38,7 @@ const UserList = (props) => {
               <tbody className="overscroll-auto overflow-y-scroll">
               {userList.map((user, i) => {
                     return (
-                        <tr key={i}>
+                        <tr key={i} className="my-2 hover:bg-gray-700">
                             <td>
                                 <NavLink  className="text-center" to={`/profil/${user.id}`}>
                                     <p>{user.last_name}</p>

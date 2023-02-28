@@ -56,7 +56,7 @@ const AdminArticles = (props) => {
               <tbody className="overscroll-auto overflow-y-scroll">
               {articleList.map((article, i) => {
                     return (
-                        <tr key={i}>
+                        <tr key={i} className="my-2 hover:bg-gray-700">
                             <td>
                                 <div className="w-full h-24 overflow-hidden flex justify-center">
                                     <img className="object-contain w-full h-full" 

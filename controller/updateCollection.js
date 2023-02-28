@@ -5,8 +5,9 @@ export default async (req, res) => {
     try {
         const myBDD = new BDD()
         const collection = new Collection(myBDD)
-        const {title, description} = req.body
-        const data = await collection.create({
+        const {title, description, id} = req.body
+        const data = await collection.update({
+            id: id,
             title: title,
             description: description,
         })
