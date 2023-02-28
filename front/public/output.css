@@ -427,6 +427,8 @@ video {
 }
 
 h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   font-size: 2.25rem;
   line-height: 2.5rem;
 }
@@ -520,11 +522,18 @@ textarea {
 }
 
 .admin-header {
+  position: relative;
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  border-bottom-width: 2px;
+  padding-top: 2.5rem;
+  padding-bottom: 1.25rem;
 }
 
 .container-admin {
+  width: 100%;
+  overflow: auto;
+  --tw-border-opacity: 1;
+  border-color: rgb(171 187 194 / var(--tw-border-opacity));
   padding-left: 1rem;
   padding-right: 1rem;
   --tw-text-opacity: 1;
@@ -679,8 +688,21 @@ textarea {
   --tw-backdrop-sepia:  ;
 }
 
-.m-auto {
-  margin: auto;
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+.right-0 {
+  right: 0px;
+}
+
+.top-0 {
+  top: 0px;
+}
+
+.right-10 {
+  right: 2.5rem;
 }
 
 .mx-3 {
@@ -697,12 +719,32 @@ textarea {
   margin-bottom: 1rem;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
 
 .table {
   display: table;
+}
+
+.h-24 {
+  height: 6rem;
+}
+
+.h-48 {
+  height: 12rem;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.max-h-96 {
+  max-height: 24rem;
 }
 
 .max-h-screen {
@@ -725,6 +767,14 @@ textarea {
   width: 100%;
 }
 
+.w-48 {
+  width: 12rem;
+}
+
+.w-80 {
+  width: 20rem;
+}
+
 .table-fixed {
   table-layout: fixed;
 }
@@ -737,8 +787,24 @@ textarea {
   align-items: center;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
 .gap-y-1 {
   row-gap: 0.25rem;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
 }
 
 .overscroll-auto {
@@ -757,9 +823,18 @@ textarea {
   border-radius: 0.75rem;
 }
 
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
 .bg-gray-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(171 187 194 / var(--tw-bg-opacity));
+}
+
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(57 60 73 / var(--tw-bg-opacity));
 }
 
 .bg-gray-800 {
@@ -779,6 +854,10 @@ textarea {
 
 .fill-gray-500 {
   fill: #ABBBC2;
+}
+
+.object-contain {
+  object-fit: contain;
 }
 
 .p-2 {
@@ -813,6 +892,10 @@ textarea {
   padding-top: 1.5rem;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .font-satoshi {
   font-family: 'Satoshi', sans;
 }
@@ -820,6 +903,11 @@ textarea {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .text-gray-700 {
@@ -884,6 +972,16 @@ img{
 .hover\:bg-gray-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(57 60 73 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-900:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 29 43 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-primary:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 94 100 / var(--tw-bg-opacity));
 }
 
 .focus\:outline-none:focus {

@@ -23,36 +23,38 @@ const UserList = (props) => {
         <div className="container-admin">
             <div className="admin-header">
                 <h2>User Liste</h2>
+                <p>Utiliser Ctrl+F pour chercher nom/ prénom/ email d'utilisateur</p>
+                <p>Cliquez nom/ prénom pour voir l'info complèt</p>
             </div>
-            <table className="table-fixed m-auto">
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Prénom</th>
-                  <th>Email</th>
-                  <th>Modifier ou Supprimer</th>
+            <table className="table-fixed w-full max-h-96">
+              <thead className="border-b-2 sticky top-0 bg-gray-800 ">
+                <tr className="bg-gray-700">
+                  <th className="py-4 text-lg">Nom</th>
+                  <th className="py-4 text-lg">Prénom</th>
+                  <th className="py-4 text-lg">Email</th>
+                  <th className="py-4 text-lg">Modifier ou Supprimer</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="overscroll-auto overflow-y-scroll">
               {userList.map((user, i) => {
                     return (
-                        <tr>
+                        <tr key={i}>
                             <td>
-                                <NavLink to={`/profil/${user.id}`}>
-                                    {user.last_name}
+                                <NavLink  className="text-center" to={`/profil/${user.id}`}>
+                                    <p>{user.last_name}</p>
                                 </NavLink>
                             </td>
                             <td>
-                                <NavLink to={`/profil/${user.id}`}>
-                                    {user.first_name}
+                                <NavLink className="text-center" to={`/profil/${user.id}`}>
+                                    <p>{user.first_name}</p>
                                 </NavLink>
                             </td>
-                            <td>
-                                {user.email}
+                            <td  className="text-center">
+                                <p>{user.email}</p>
                             </td>
-                            <td>
+                            <td className="flex justify-center">
                                 <NavLink to={`/updateProfil/${user.id}`}>
-                                    <button className="p-2 rounded bg-primary">Modifier</button>
+                                    <button className="p-2 rounded bg-gray-900 hover:bg-primary">Modifier</button>
                                 </NavLink>
                             </td>
                         </tr>

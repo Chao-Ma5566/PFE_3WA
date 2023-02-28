@@ -61,7 +61,6 @@ const UpdateProfil = (props) => {
         setMessageErr("")
         if(!lengthLimit(e.target.value)){
             setMessageErr("tous les infos sont limit à 250 caractaires") 
-            return
         }
         let newInfo = { ...userInfo, [e.target.name]: e.target.value }
         setUserInfo(newInfo)

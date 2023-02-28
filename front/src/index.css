@@ -9,7 +9,7 @@
     src: url("/fonts/Satoshi-Regular.woff2") format("woff2"), url("/fonts/Sans-Regular.woff") format("woff");
   }
   h2{
-    @apply text-4xl
+    @apply text-4xl my-2
   }
   button {
     @apply text-gray-100 bg-gray-800 rounded px-1.5 py-0.5 space-y-3 hover:bg-gray-700 m-2;
@@ -24,10 +24,10 @@
     @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700;
   }
   .admin-header {
-    @apply my-4;
+    @apply mt-4 pt-10 pb-5 border-b-2 relative;
   }
   .container-admin {
-    @apply px-4 md:px-16 text-gray-100;
+    @apply px-4 md:px-16 text-gray-100 w-full border-gray-500 overflow-auto;
   }
 }
 

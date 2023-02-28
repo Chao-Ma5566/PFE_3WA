@@ -28,31 +28,62 @@ const AdminArticles = (props) => {
     }
     
     return (
-        <Fragment >
-        <div>
-            <NavLink to={`/admin/addArticle`}><button>Créer un nouvel article</button></NavLink>
-        </div>
-        <div className="max-h-screen overscroll-contain">
-            <ul>
-                {articleList.map((article, i) => {
+        <div className="container-admin">
+            <div className="admin-header flex justify-between">
+                <div>
+                    <h2>Liste d'Articles</h2>
+                    <p>Utiliser Ctrl+F pour chercher title d'utilisateur, meilleur proportion de photo est 3:4</p>
+                    <p>Cliquez nom/ prénom pour voir l'info complèt</p>
+                </div>
+                <div className="flex items-center">
+                    <NavLink to={`/admin/addArticle`} className="right-0">
+                        <button 
+                            className="rounded bg-primary hover:bg-gray-900 p-2">
+                                Créer un nouvel article
+                        </button>
+                    </NavLink>
+                </div>    
+            </div>
+            <table className="table-fixed w-full max-h-96">
+              <thead className="border-b-2 sticky top-0 bg-gray-800 ">
+                <tr className="bg-gray-700">
+                  <th className="py-4 text-lg">Cover</th>
+                  <th className="py-4 text-lg">Title</th>
+                  <th className="py-4 text-lg">Modifier Article</th>
+                  <th className="py-4 text-lg">Modifier Cover</th>
+                </tr>
+              </thead>
+              <tbody className="overscroll-auto overflow-y-scroll">
+              {articleList.map((article, i) => {
                     return (
-                        <li key={i}>
-                        <img src={`${BASE_IMG}/${article.url}`} alt={article.caption} />
-                            <NavLink to={`/article/${article.id}`}>
-                                <h2 className="font-satoshi text-3xl text-primary">Title: {article.title}</h2> 
-                            </NavLink>
-                            <NavLink to={`/admin/updateArticle/${article.id}`}>
-                                <button className="font-satoshi">Modifier article</button>
-                            </NavLink>
-                            <NavLink to={`/admin/updateArticlePhoto/${article.id}`}>
-                                <button>Modifier Photo</button>
-                            </NavLink>
-                        </li>
+                        <tr key={i}>
+                            <td>
+                                <div className="w-full h-24 overflow-hidden flex justify-center">
+                                    <img className="object-contain w-full h-full" 
+                                        src={`${BASE_IMG}/${article.url}`} alt={article.caption} />
+                                </div>
+                            </td>
+                            <td>
+                                <NavLink className="text-center" to={`/article/${article.id}`}>
+                                    <p>{article.title}</p> 
+                                </NavLink>
+                            </td>
+                            <td>
+                                <NavLink  className="flex justify-center" to={`/admin/updateArticle/${article.id}`}>
+                                    <button className="p-2 rounded bg-gray-900 hover:bg-primary">Modifier</button>
+                                </NavLink>
+                            </td>
+                            <td >
+                                <NavLink className="flex justify-center" to={`/admin/updateArticlePhoto/${article.id}`}>
+                                    <button className="p-2 rounded bg-gray-900 hover:bg-primary">Modifier Photo</button>
+                                </NavLink>
+                            </td>
+                        </tr>
                     )
                 })}
-            </ul>
+              </tbody>
+            </table>
         </div>
-        </Fragment >
     );
     
 }
