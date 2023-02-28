@@ -16,8 +16,7 @@ const UpdateRole = (props) => {
             });
     }, [])
     
-    const handleUpdate = (e, id)=>{
-        e.preventDefault()
+    const handleUpdate = (id)=>{
         const updatedInfo = userList.filter(user => user.id === id )
         axios.post(`${BASE_URL}/admin/updateRole`,{
             id: updatedInfo[0].id, 
@@ -31,25 +30,60 @@ const UpdateRole = (props) => {
         setUserList(newUserList)
     }
     
-    
-    console.log(userList)
     return (
-        <ul>
-            {userList.map((user, i) => {
-                return (
-                    <form key={i} onSubmit={(e) => handleUpdate(e, user.id) }>
-                        <p>Nom:{user.last_name}</p>
-                        <p>Prénom:{user.first_name}</p>
-                        <p>Email:{user.email}</p>
-                        <select name="role_id" onChange={(e)=> handleChange(e.target.value, i)} value={user.role_id}>
-                            <option value="1" >Admin</option>
-                            <option value="2">User</option>
-                        </select>
-                        <button type="submit">Valider</button>
-                    </form>
-                )
-            })}
-        </ul>
+        <div className="container-admin">
+            <div className="admin-header">
+                <h2>User Rôle</h2>
+                <p>Utiliser Ctrl+F pour chercher nom/ prénom/ email d'utilisateur</p>
+                <p>Cliquez selection pour changer le rôle</p>
+            </div>
+            <table className="table-fixed w-full max-h-96">
+              <thead className="border-b-2 sticky top-0 bg-gray-800 ">
+                <tr className="bg-gray-700">
+                  <th className="py-4 text-lg">Nom</th>
+                  <th className="py-4 text-lg">Prénom</th>
+                  <th className="py-4 text-lg">Email</th>
+                  <th className="py-4 text-lg">Rôle</th>
+                  <th className="py-4 text-lg">Modifier</th>
+                </tr>
+              </thead>
+              <tbody className="overscroll-auto overflow-y-scroll">
+              {userList.map((user, i) => {
+                    return (
+                        <tr key={i}>
+                            <td  className="text-center">
+                                <p>{user.last_name}</p>
+                            </td>
+                            <td  className="text-center">
+                                <p>{user.first_name}</p>
+                            </td>
+                            <td  className="text-center">
+                                <p>{user.email}</p>
+                            </td>
+                            <td  className="text-center">
+                                <select name="role_id" 
+                                    onChange={(e)=> handleChange(e.target.value, i)} 
+                                    value={user.role_id}
+                                    className="text-gray-700"
+                                >
+                                    <option value="1" >Admin</option>
+                                    <option value="2">User</option>
+                                </select>
+                            </td>
+                            <td className="flex justify-center">
+                                <button 
+                                    onClick={() => handleUpdate(user.id)}
+                                    className="p-2 rounded bg-gray-900 hover:bg-primary"
+                                >
+                                    Valider
+                                </button>   
+                            </td>
+                        </tr>
+                    )
+                })}
+              </tbody>
+            </table>
+        </div>
     );
 }
 
