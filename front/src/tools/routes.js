@@ -12,6 +12,10 @@ import UpdatePassword from "../components/UpdatePassword.jsx"
 import UpdateProfil from "../components/UpdateProfil.jsx"
 import UpdateRole from "../components/AdminPage/UpdateRole.jsx"
 import UserList from "../components/AdminPage/UserList.jsx"
+import AddProduct from "../components/AdminPage/AddProduct.jsx"
+import AddCollection from "../components/AdminPage/AddCollection.jsx"
+import CollectionList from "../components/AdminPage/CollectionList.jsx"
+
 
 const routesUser = [
     {path:"login", component:<Login />},
@@ -28,7 +32,10 @@ const routesAdmin = [
     {path:"/admin/users", component:<UserList />, auth:"admin"},
     {path:"/admin/roles", component:<UpdateRole />, auth:"admin"},
     {path:"/admin/articles", component:<AdminArticles />, auth:"admin"},
+    {path:"/admin/collection", component:<CollectionList />, auth:"admin"},
     {path:"/admin/addArticle", component:<AddArticle />, auth:"admin"},
+    {path:"/admin/addCollection", component:<AddCollection />, auth:"admin"},
+    {path:"/admin/addProduct", component:<AddProduct />, auth:"admin"},
     {path:"/admin/updateArticle/:articleId", component:<UpdateArticle />, auth:"admin"},
     {path:"/admin/updateArticlePhoto/:articleId", component:<UpdateArticlePhoto />, auth:"admin"},
 ]

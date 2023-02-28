@@ -6,12 +6,12 @@ class Collection {
         this.asyncQuery = bdd.asyncQuery 
     }
     
-    async create({name, description}){
+    async create({title, description}){
         const sql = "INSERT INTO collection (title, description) VALUES (?,?)"
-        const paramsSql = [name, description]
+        const paramsSql = [title, description]
         
-        if(!inputCheck(name)){
-            return {response:'Champ name ne doit être vide ou dépasser 255 '}
+        if(!inputCheck(title)){
+            return {response:'Champ title ne doit être vide ou dépasser 250 '}
         }else if(!inputCheck(description,510)){
             return {response:'Champ description doit pas être vide ou dépasser 510 '}
         }

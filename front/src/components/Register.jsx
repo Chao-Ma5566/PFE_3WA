@@ -27,6 +27,8 @@ const Register = (props) => {
         }else if(nowDate < userInfo.birthday){
             setMessageErr("Date dépassé le limite") 
             return
+        }else if(messageErr.length > 0){
+            return
         }
         
         axios.post(`${BASE_URL}/addUser`, {
@@ -50,7 +52,6 @@ const Register = (props) => {
         setMessageErr("")
         if(!lengthLimit(e.target.value)){
             setMessageErr("tous les infos sont limit à 250 caractaires") 
-            return
         }
         let newInfo = { ...userInfo, [e.target.name]: e.target.value }
         setUserInfo(newInfo)

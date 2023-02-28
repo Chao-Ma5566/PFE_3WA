@@ -36,7 +36,7 @@ const AdminArticles = (props) => {
                     <p>Cliquez nom/ prénom pour voir l'info complèt</p>
                 </div>
                 <div className="flex items-center">
-                    <NavLink to={`/admin/addArticle`} className="right-0">
+                    <NavLink to={`/admin/addArticle`}>
                         <button 
                             className="rounded bg-primary hover:bg-gray-900 p-2">
                                 Créer un nouvel article

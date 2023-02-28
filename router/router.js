@@ -17,6 +17,8 @@ import updateArticlePostController from "../controller/updateArticle.js"
 import updateArticlePhotoPostController from "../controller/updateArticlePhoto.js"
 import deleteArticleByIdPostController from "../controller/deleteArticle.js"
 import getArticleByIdPostController from "../controller/getArticleById.js"
+import addProductPostController from "../controller/addProduct.js"
+import allCollectionGetController from "../controller/allCollection.js"
 import checkToken from "../controller/checkToken.js"
 
 const router = express.Router()
@@ -27,12 +29,13 @@ const routesGET = [
     {route:"/", controller: homeGetController},
     {route:"/admin/users", controller: allUserGetController},
     {route:"/relogged", controller: checkToken},
-    {route:"/admin/articles", controller: allArticleGetController}
+    {route:"/admin/articles", controller: allArticleGetController},
+    {route:"/admin/collection", controller: allCollectionGetController}
 ]
 const routesPOST = [
     {route:"/addUser", controller: addUserPostController},
     {route:"/login", controller: loginPostController},
-    {route:"/addCollection", controller: addCollectionPostController},
+    {route:"/admin/addCollection", controller: addCollectionPostController},
     {route:"/admin/deleteUser", controller: deleteUserPostController},
     {route:"/getUserById", controller: getUserByIdPostController},
     {route:"/updateProfil", controller: updateProfilPostController},
@@ -45,6 +48,7 @@ const routesPOST = [
 const routesUpload = [
     {route:"/admin/addArticle", controller: addArticlePostController},
     {route:"/admin/updateArticlePhoto", controller: updateArticlePhotoPostController},
+    {route:"/admin/addProduct", controller: addProductPostController},
     
 ]
 

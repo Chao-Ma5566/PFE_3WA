@@ -5,12 +5,7 @@ export default async (req, res) => {
     try {
         const myBDD = new BDD()
         const collection = new Collection(myBDD)
-        console.log(req.body)
-        const {title, description} = req.body
-        const data = await collection.create({
-            title: title,
-            description: description,
-        })
+        const data = await collection.getAll()
         res.json({data})
     }catch(err) {
         console.log(err);

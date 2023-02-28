@@ -5,9 +5,9 @@ class PictureProducts {
         this.asyncQuery = bdd.asyncQuery 
     }
     
-    async create({url,captions,products_id}){
-        const sql = "INSERT INTO pictures_products (url,captions,products_id) VALUES (?,?,?)"
-        const paramsSql = [url,captions,products_id]
+    async create({url,captions,product_id}){
+        const sql = "INSERT INTO pictures (url,captions,product_id) VALUES (?,?,?)"
+        const paramsSql = [url,captions,product_id]
         
         try{
             const result = await this.asyncQuery(sql,paramsSql)
@@ -19,7 +19,7 @@ class PictureProducts {
     }
     
     async getById({id}){
-        const sql = "SELECT * FROM pictures_products WHERE id = ?"
+        const sql = "SELECT * FROM pictures WHERE id = ?"
         
         try{
             const result = await this.asyncQuery(sql,[id])
