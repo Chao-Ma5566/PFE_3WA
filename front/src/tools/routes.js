@@ -16,6 +16,7 @@ import AddProduct from "../components/AdminPage/AddProduct.jsx"
 import AddCollection from "../components/AdminPage/AddCollection.jsx"
 import CollectionList from "../components/AdminPage/CollectionList.jsx"
 import UpdateCollection from "../components/AdminPage/UpdateCollection.jsx"
+import ProductsList from "../components/AdminPage/ProductsList.jsx"
 
 
 
@@ -35,6 +36,7 @@ const routesAdmin = [
     {path:"/admin/roles", component:<UpdateRole />, auth:"admin"},
     {path:"/admin/articles", component:<AdminArticles />, auth:"admin"},
     {path:"/admin/collection", component:<CollectionList />, auth:"admin"},
+    {path:"/admin/produits", component:<ProductsList />, auth:"admin"},
     {path:"/admin/addArticle", component:<AddArticle />, auth:"admin"},
     {path:"/admin/addCollection", component:<AddCollection />, auth:"admin"},
     {path:"/admin/addProduct", component:<AddProduct />, auth:"admin"},

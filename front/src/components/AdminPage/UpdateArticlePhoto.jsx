@@ -87,7 +87,8 @@ const handleSubmit = (e) => {
                 <label htmlFor="img">Cover image: </label>
                 <div className="form-item">
                     <input type='file' name='img' 
-                    className="file:bg-gray-500 hover:file:bg-gray-700 py-2 px-4 file:rounded focus:outline-none focus:shadow-outline text-gray-100"/>
+                    className="file:bg-gray-500 hover:file:bg-gray-700 py-2 px-4 file:rounded focus:outline-none focus:shadow-outline text-gray-100"
+                    />
                 </div>
                 <label htmlFor="caption">Caption: </label>
                 <input 
@@ -98,7 +99,7 @@ const handleSubmit = (e) => {
                     onChange={(e)=>handleChange(e)} 
                 />
                 <button type="submit" 
-                className="py-2 px-4 rounded bg-gray-900 hover:bg-primary my-2"
+                    className="py-2 px-4 rounded bg-gray-900 hover:bg-primary my-2"
                 >
                 Valider
                 </button>

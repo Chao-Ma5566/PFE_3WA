@@ -62,10 +62,17 @@ const AddArticle = (props) => {
     }
 
     return (
-        <div>
+        <div className="container-admin">
             {isChangePage && <Navigate to="/admin/articles" replace={true} />}
-            <h5>Inscription</h5>
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
+            <div className="admin-header">
+                <div>
+                    <h2>Créer une nouvelle article</h2>
+                    <p>meilleur proportion de photo est 3:4</p>
+                    {messageErr.length > 0 && <p  className="rounded py-2 px-4 bg-primary">{messageErr}</p>}
+                </div>   
+            </div>
+            <form onSubmit={handleSubmit} encType="multipart/form-data"
+                className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <label htmlFor="title">Title: </label>
                 <input 
                     type="text" 
@@ -84,9 +91,15 @@ const AddArticle = (props) => {
                 />
                 <label htmlFor="img">Cover image: </label>
                 <div className="form-item">
-                    <input type='file' name='img'/>
+                    <input type='file' name='img'
+                        className="file:bg-gray-500 hover:file:bg-gray-700 py-2 px-4 file:rounded focus:outline-none focus:shadow-outline text-gray-100"
+                    />
                 </div>
-                <button type="submit">Valider</button>
+                <button type="submit"
+                    className="py-2 px-4 rounded bg-gray-900 hover:bg-primary my-2"
+                >
+                    Valider
+                </button>
                 {messageErr.length > 0 && <p>{messageErr}</p>}
             </form>
         </div>

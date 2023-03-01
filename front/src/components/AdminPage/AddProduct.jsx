@@ -12,12 +12,13 @@ const AddProduct = (props) => {
         collection_id: "",
         stock: "",
         material: "",
+        price:""
         }
-    const [articleInfo, setArticleInfo] = useState(initialValue)
+    const [productInfo, setProductInfo] = useState(initialValue)
     const [messageErr, setMessageErr] = useState("")
     const [isChangePage, setIsChangePage] = useState(false)
     
-    console.log(articleInfo)
+    console.log(productInfo)
     const handleSubmit = (e) => {
         e.preventDefault()
         
@@ -25,7 +26,7 @@ const AddProduct = (props) => {
         const files = {...e.target.img.files};
         console.log(files)
 
-        if(!checkVide(articleInfo)){
+        if(!checkVide(productInfo)){
             setMessageErr("Champ obligatoire vide") 
             return
         }
@@ -35,8 +36,13 @@ const AddProduct = (props) => {
         }
         console.log(files[0])
         dataFile.append('files', files[0], files[0].name)
-        dataFile.append('title', articleInfo.title)
-        dataFile.append('content', articleInfo.content)
+        dataFile.append('name', productInfo.name)
+        dataFile.append('description', productInfo.description)
+        dataFile.append('collection_id', productInfo.collection_id)
+        dataFile.append('stock', productInfo.stock)
+        dataFile.append('material', productInfo.material)
+        dataFile.append('price', productInfo.price)
+        
         
         axios.post(`${BASE_URL}/admin/addArticle`, dataFile)
         .then(res=>{
@@ -51,49 +57,102 @@ const AddProduct = (props) => {
             console.log(err)
             return
         })
-        setArticleInfo(initialValue)
+        setProductInfo(initialValue)
     }
     
     const handleChange = (e) => {
         setMessageErr("")
-        if(!lengthLimit(articleInfo.title, 100)){
-            setMessageErr("Title est limité à 100 caractaires") 
-            return
-        }else if(!lengthLimit(articleInfo.content, 5000)){
-            setMessageErr("Chaque content est limité à 5000 caractaires") 
-            return
-        }
-        let newInfo = { ...articleInfo, [e.target.name]: e.target.value }
-        setArticleInfo(newInfo)
+        // if(!lengthLimit(productInfo.name, 100)){
+        //     setMessageErr("Title est limité à 100 caractères") 
+        //     return
+        // }else if(!lengthLimit(productInfo.description, 5000)){
+        //     setMessageErr("Chaque content est limité à 5000 caractères") 
+        //     return
+        // }
+        let newInfo = { ...productInfo, [e.target.name]: e.target.value }
+        setProductInfo(newInfo)
     }
 
     return (
-        <div>
-            {isChangePage && <Navigate to="/admin/articles" replace={true} />}
-            <h5>Inscription</h5>
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
-                <label htmlFor="title">Title: </label>
+        <div className="container-admin">
+            {isChangePage && <Navigate to="/admin/products" replace={true} />}
+            <div className="admin-header">
+                <div>
+                    <h2>Créer un nouveau produit</h2>
+                    <p>meilleur proportion de photo est 3:4, tous les dimensions sont en CM.</p>
+                    {messageErr.length > 0 && <p  className="rounded py-2 px-4 bg-primary">{messageErr}</p>}
+                </div>   
+            </div>
+            <form onSubmit={handleSubmit} encType="multipart/form-data"
+                className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+            >
+                <label htmlFor="name">Nom du produit: </label>
                 <input 
                     type="text" 
-                    name="title" 
-                    value={articleInfo.title} 
-                    placeholder="title" 
+                    name="name" 
+                    value={productInfo.name} 
+                    placeholder="Nom du produit" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="content">Content: </label>
+                <label htmlFor="stock">Stockage: </label>
+                <input 
+                    type="text" 
+                    name="stock" 
+                    value={productInfo.stock} 
+                    placeholder="Stockage" 
+                    onChange={(e)=>handleChange(e)} 
+                />
+                <label htmlFor="material">Material: </label>
+                <input 
+                    type="text" 
+                    name="material" 
+                    value={productInfo.material} 
+                    placeholder="Material"
+                    onChange={(e)=>handleChange(e)} 
+                />
+                <label htmlFor="price">Prix: </label>
+                <input 
+                    type="text" 
+                    name="price" 
+                    value={productInfo.price} 
+                    placeholder="Prix" 
+                    onChange={(e)=>handleChange(e)} 
+                />
+                <label htmlFor="name">Nom du produit: </label>
+                <input 
+                    type="text" 
+                    name="name" 
+                    value={productInfo.name} 
+                    placeholder="Nom du produit" 
+                    onChange={(e)=>handleChange(e)} 
+                />
+                <label htmlFor="name">Nom du produit: </label>
+                <input 
+                    type="text" 
+                    name="name" 
+                    value={productInfo.name} 
+                    placeholder="Nom du produit" 
+                    onChange={(e)=>handleChange(e)} 
+                />
+                <label htmlFor="description">Description: </label>
                 <textarea 
-                    name="content" 
-                    value={articleInfo.content} 
-                    placeholder="content" 
+                    name="description" 
+                    value={productInfo.description} 
+                    placeholder="description" 
                     onChange={(e)=>handleChange(e)} 
                     rows="15" cols="33"
                 />
-                <label htmlFor="img">Cover image: </label>
+                <label htmlFor="img">Produit image: </label>
                 <div className="form-item">
-                    <input type='file' name='img'/>
+                    <input type='file' name='img'
+                         className="file:bg-gray-500 hover:file:bg-gray-700 py-2 px-4 file:rounded focus:outline-none focus:shadow-outline text-gray-100"
+                    />
                 </div>
-                <button type="submit">Valider</button>
-                {messageErr.length > 0 && <p>{messageErr}</p>}
+                <button type="submit"
+                    className="py-2 px-4 rounded bg-gray-900 hover:bg-primary my-2"
+                >
+                    Valider
+                </button>
             </form>
         </div>
     );

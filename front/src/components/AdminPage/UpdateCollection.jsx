@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BASE_URL } from "../../tools/constante.js"
 import { lengthLimit, checkVide } from "../../tools/inputCheck.js"
+import ConfirmationWindow from "../ConfirmationWindow.jsx"
 import { useParams } from "react-router-dom"
 
 
@@ -10,6 +11,8 @@ const UpdateCollection = (props) => {
     const [collectionInfo, setCollectionInfo] = useState([])
     const [messageErr, setMessageErr] = useState("")
     const [isLoading, setIsLoading] = useState(true)
+    const [isSure, setIsSure] = useState(false)
+    const [isDelete, setIsDelete] = useState(false)
     
     useEffect(() => {
         setIsLoading(true)
@@ -47,6 +50,15 @@ const UpdateCollection = (props) => {
         })
     }
     
+    const handleDelete = () => {
+        axios.post(`${BASE_URL}/admin/`,{id:collectionId})
+        .then(res=>{
+                if(res.data.data.affectedRows > 0){
+                    setIsDelete(true)
+                }
+        })
+    }
+    
     const handleChange = (e) => {
         setMessageErr("")
         if(!lengthLimit(collectionInfo.title, 100)){
@@ -58,6 +70,10 @@ const UpdateCollection = (props) => {
         setCollectionInfo(newInfo)
     }
     
+    const handleCheck = () =>{
+        setIsSure(!isSure)
+    }
+    
     console.log(collectionInfo)
     
     if(isLoading){
@@ -66,12 +82,18 @@ const UpdateCollection = (props) => {
     
     return (
         <div className="container-admin">
-            <div className="admin-header">
+            <div className="admin-header flex justify-between">
                 <div>
-                    <h2>Modifier l'article</h2>
-                    <p>Utiliser Ctrl+F pour chercher title d'utilisateur, meilleur proportion de photo est 3:4</p>
+                    <h2>Modifier la collection</h2>
+                    <p>Title est limité à 250 caractères, Description est limité à 510 caractères.</p>
                     {messageErr.length > 0 && <p className="rounded py-2 px-4 bg-primary">{messageErr}</p>}
-                </div>   
+                </div>
+                <div className="flex items-center">
+                    <button onClick={handleCheck}
+                        className="rounded bg-primary hover:bg-gray-900 p-2">
+                        Supprimer collection
+                    </button>
+                </div>
             </div>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <label htmlFor="title" className="text-lg">Title: </label>
@@ -94,6 +116,9 @@ const UpdateCollection = (props) => {
                 />
                 <button type="submit" className="py-2 px-4 rounded bg-gray-900 hover:bg-primary">Valider</button>
             </form>
+            {isSure && 
+                <ConfirmationWindow isOpen={handleCheck} deleteFunction={handleDelete} name="cette collection?" />
+            }  
         </div>
     )
 }
