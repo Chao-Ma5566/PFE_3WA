@@ -1,11 +1,10 @@
 
-
 const ConfirmationWindow = ({isOpen, deleteFunction, name}) =>{
     
     
     return (
         <div
-          className={`fixed inset-0 bg-gray-900 opacity-50`}
+          className={`fixed inset-0 bg-gray-900 opacity-60`}
         >
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-100 rounded-md p-8 w-96">
             <button

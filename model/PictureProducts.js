@@ -5,9 +5,9 @@ class PictureProducts {
         this.asyncQuery = bdd.asyncQuery 
     }
     
-    async create({url,captions,product_id}){
-        const sql = "INSERT INTO pictures (url,captions,product_id) VALUES (?,?,?)"
-        const paramsSql = [url,captions,product_id]
+    async create({url,caption,product_id}){
+        const sql = "INSERT INTO pictures (url,caption,product_id) VALUES (?,?,?)"
+        const paramsSql = [url,caption,product_id]
         
         try{
             const result = await this.asyncQuery(sql,paramsSql)

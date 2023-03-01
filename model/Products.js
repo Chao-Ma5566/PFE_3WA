@@ -6,8 +6,8 @@ class Products {
     }
     
     async create({name, description, price, collection_id, stock, material}){
-        const sql = "INSERT INTO products (name, description, price,collection_id, stock, material) VALUES (?,?,?,?,?,?)"
-        const paramsSql = [name, description, price,collection_id,stock,material ]
+        const sql = "INSERT INTO products (name, description, price, collection_id, stock, material) VALUES (?,?,?,?,?,?)"
+        const paramsSql = [name, description, price, collection_id, stock, material ]
         
         try{
             const result = await this.asyncQuery(sql,paramsSql)

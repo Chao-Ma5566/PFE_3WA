@@ -48,7 +48,6 @@ const routesPOST = [
     {route:"/admin/updateArticle", controller: updateArticlePostController},
     {route:"/admin/updateCollection", controller: updateCollectionPostController},
     {route:"/admin/getCollectionById", controller: getCollectionByIdPostController},
-    
 ]
 const routesUpload = [
     {route:"/admin/addArticle", controller: addArticlePostController},

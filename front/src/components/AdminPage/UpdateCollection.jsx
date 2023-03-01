@@ -95,7 +95,9 @@ const UpdateCollection = (props) => {
                     </button>
                 </div>
             </div>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => handleSubmit(e)}
+                className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+            >
                 <label htmlFor="title" className="text-lg">Title: </label>
                 <input 
                     type="text" 

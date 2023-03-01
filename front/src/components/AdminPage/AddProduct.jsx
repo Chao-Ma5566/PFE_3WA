@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {BASE_URL} from "../../tools/constante.js"
 import {lengthLimit, checkVide} from "../../tools/inputCheck.js"
 import { Navigate } from "react-router-dom"
@@ -17,8 +17,22 @@ const AddProduct = (props) => {
     const [productInfo, setProductInfo] = useState(initialValue)
     const [messageErr, setMessageErr] = useState("")
     const [isChangePage, setIsChangePage] = useState(false)
+    const [collectionList, setCollectionList] = useState([])
     
     console.log(productInfo)
+    console.log(collectionList)
+    
+    useEffect(() => {
+        axios.get(`${BASE_URL}/admin/collection`)
+            .then(function(response) {
+                console.log(response.data.data)
+                setCollectionList(response.data.data.result);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }, [])
+    
     const handleSubmit = (e) => {
         e.preventDefault()
         
@@ -44,7 +58,7 @@ const AddProduct = (props) => {
         dataFile.append('price', productInfo.price)
         
         
-        axios.post(`${BASE_URL}/admin/addArticle`, dataFile)
+        axios.post(`${BASE_URL}/admin/addProduct`, dataFile)
         .then(res=>{
             if(res.data.data.result.affectedRows > 0){
                 setIsChangePage(true)
@@ -75,7 +89,7 @@ const AddProduct = (props) => {
 
     return (
         <div className="container-admin">
-            {isChangePage && <Navigate to="/admin/products" replace={true} />}
+            {isChangePage && <Navigate to="/admin/produits" replace={true} />}
             <div className="admin-header">
                 <div>
                     <h2>Créer un nouveau produit</h2>
@@ -110,7 +124,7 @@ const AddProduct = (props) => {
                     placeholder="Material"
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="price">Prix: </label>
+                <label htmlFor="price">Prix(€): </label>
                 <input 
                     type="text" 
                     name="price" 
@@ -118,22 +132,17 @@ const AddProduct = (props) => {
                     placeholder="Prix" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="name">Nom du produit: </label>
-                <input 
-                    type="text" 
-                    name="name" 
-                    value={productInfo.name} 
-                    placeholder="Nom du produit" 
-                    onChange={(e)=>handleChange(e)} 
-                />
-                <label htmlFor="name">Nom du produit: </label>
-                <input 
-                    type="text" 
-                    name="name" 
-                    value={productInfo.name} 
-                    placeholder="Nom du produit" 
-                    onChange={(e)=>handleChange(e)} 
-                />
+                <label htmlFor="collection_id">Collection: </label>
+                <select name="collection_id" 
+                    onChange={(e)=> handleChange(e)} 
+                    value={productInfo.collection_id}
+                    className="text-gray-700 block"
+                >
+                <option value="">--Veillez choisir une collection--</option>
+                    {collectionList.map((collection,i)=>{
+                        return <option key={i} value={collection.id}>{collection.title}</option>
+                    })}
+                </select>
                 <label htmlFor="description">Description: </label>
                 <textarea 
                     name="description" 
