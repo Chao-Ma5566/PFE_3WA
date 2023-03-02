@@ -953,12 +953,16 @@ textarea {
   color: rgb(31 29 43 / var(--tw-text-opacity));
 }
 
+.opacity-100 {
+  opacity: 1;
+}
+
 .opacity-60 {
   opacity: 0.6;
 }
 
-.opacity-100 {
-  opacity: 1;
+.opacity-80 {
+  opacity: 0.8;
 }
 
 .shadow-md {
@@ -1041,6 +1045,10 @@ img{
 .hover\:bg-primary:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(252 94 100 / var(--tw-bg-opacity));
+}
+
+.hover\:opacity-100:hover {
+  opacity: 1;
 }
 
 .hover\:file\:bg-gray-700::-webkit-file-upload-button:hover {

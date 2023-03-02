@@ -9,9 +9,11 @@ export default async (req, res) => {
         const {id} = req.body
         const articleInfo = await article.getById({id})
         const fileName = articleInfo.result[0].url
-        
-        await deleteFile(fileName)
         const data = await article.deleted({id})
+        if(data.result.affectedRows > 0){
+            const fileName = articleInfo.result[0].url
+            await deleteFile(fileName)
+        }
         res.json({data})
     }catch(err) {
         console.log(err);

@@ -4,22 +4,23 @@ import {BASE_URL, BASE_IMG} from "../../tools/constante.js"
 import { useParams,Navigate } from "react-router-dom"
 import {lengthLimit, checkVide} from "../../tools/inputCheck.js"
 
-const UpdateArticlePhoto = (props) => {
-    const { articleId } = useParams();
-    const [articleInfo, setArticleInfo] = useState(null)
+const UpdateProductPhoto = (props) => {
+    const { productId } = useParams();
+    const [productInfo, setProductInfo] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [messageErr, setMessageErr] = useState("")
     const [isChangePage, setIsChangePage] = useState(false)
     
     useEffect(() => {
         setIsLoading(true)
-        axios.post(`${BASE_URL}/getArticleById`, { id: articleId })
+        axios.post(`${BASE_URL}/getProductById`, { id: productId })
             .catch(err => console.log(err))
             .then(res => {
-                setArticleInfo(res.data.data.result[0])
-                })
+                console.log(res)
+                setProductInfo(res.data.data.result[0])
+        })
             .then(res => setIsLoading(false))
-    }, [articleId])
+    }, [productId])
     
 const handleSubmit = (e) => {
         e.preventDefault()
@@ -30,17 +31,17 @@ const handleSubmit = (e) => {
         const files = {...e.target.img.files};
         console.log(files)
 
-        if(!checkVide(articleInfo.caption)){
+        if(!checkVide(productInfo.caption)){
             setMessageErr("Champ obligatoire vide") 
             return
         }
         
         console.log(files[0])
         dataFile.append('files', files[0], files[0].name)
-        dataFile.append('caption', articleInfo.caption)
-        dataFile.append('id', articleId)
+        dataFile.append('caption', productInfo.caption)
+        dataFile.append('id', productId)
         
-        axios.post(`${BASE_URL}/admin/updateArticlePhoto`, dataFile)
+        axios.post(`${BASE_URL}/admin/updateProductPhoto`, dataFile)
         .then(res=>{
             console.log(res)
             if(res.data.data.result.affectedRows > 0){
@@ -58,11 +59,11 @@ const handleSubmit = (e) => {
     
     const handleChange = (e) => {
         setMessageErr("")
-        if(!lengthLimit(articleInfo.caption, 100)){
+        if(!lengthLimit(productInfo.caption, 100)){
             setMessageErr("Caption est limité à 100 caractères") 
         }
-        let newInfo = { ...articleInfo, [e.target.name]: e.target.value }
-        setArticleInfo(newInfo)
+        let newInfo = { ...productInfo, [e.target.name]: e.target.value }
+        setProductInfo(newInfo)
     }
     
     if(isLoading){
@@ -71,10 +72,10 @@ const handleSubmit = (e) => {
     
     return (
         <div className="container-admin">
-            {isChangePage && <Navigate to={`/article/${articleId}`} replace={true} />}
+            {isChangePage && <Navigate to={`/product/${productId}`} replace={true} />}
             <div className="admin-header">
                 <div>
-                    <h2>Modifier Cover d'article</h2>
+                    <h2>Modifier Photo de Produit</h2>
                     <p>meilleur proportion de photo est 3:4</p>
                     {messageErr.length > 0 && <p  className="rounded py-2 px-4 bg-primary">{messageErr}</p>}
                 </div>   
@@ -82,8 +83,8 @@ const handleSubmit = (e) => {
             
             <form onSubmit={handleSubmit} encType="multipart/form-data"
             className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <p className="text-xl">Title: {articleInfo.title}</p>
-                <img src={`${BASE_IMG}/${articleInfo.url}`} alt={articleInfo.caption} />
+                <p className="text-xl mb-4">Nom de Produit: {productInfo.name}</p>
+                <img src={`${BASE_IMG}/${productInfo.url}`} alt={productInfo.caption} />
                 <label htmlFor="img">Cover image: </label>
                 <div className="form-item">
                     <input type='file' name='img' 
@@ -94,7 +95,7 @@ const handleSubmit = (e) => {
                 <input 
                     type="text" 
                     name="caption" 
-                    value={articleInfo.caption} 
+                    value={productInfo.caption} 
                     placeholder="caption" 
                     onChange={(e)=>handleChange(e)} 
                 />
@@ -109,4 +110,4 @@ const handleSubmit = (e) => {
         )
 }
 
-export default UpdateArticlePhoto
+export default UpdateProductPhoto

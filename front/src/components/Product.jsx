@@ -3,11 +3,9 @@ import {useState, useEffect, useContext} from "react"
 import { useParams } from "react-router-dom";
 import {BASE_URL, BASE_IMG} from "../tools/constante.js"
 import { NavLink, Navigate } from "react-router-dom"
-import {StoreContext} from "../tools/context.js"
 
 const Product = (props) => {
     const { productId } = useParams();
-    const [state, dispatch] = useContext(StoreContext);
     const [productInfo, setProductInfo] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [collectionList, setCollectionList] = useState([])
@@ -32,6 +30,7 @@ const Product = (props) => {
     }, [productId])
     
     console.log(productInfo)
+    
     if(isLoading){
         return <div>Loading....</div>
     }

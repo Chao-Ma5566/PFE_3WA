@@ -42,22 +42,9 @@ class PictureProducts {
         }
     }
     
-    
-    async getAll(){
-        const sql = "SELECT * FROM pictures_products"
-        
-        try{
-            const result = await this.asyncQuery(sql)
-            return {result}
-        } catch(err){
-            console.log(err)
-            return err
-        }
-    }
-    
-    async update({url,captions,products_id,id}){
-        const sql = "UPDATE pictures_products SET url=?,captions=?,products_id=? WHERE id = ?"
-        const paramsSql = [url,captions,products_id,id]
+    async update({url,caption,id}){
+        const sql = "UPDATE pictures SET url=?,caption=? WHERE product_id = ?"
+        const paramsSql = [url,caption,id]
         
         try{
             const result = await this.asyncQuery(sql,paramsSql)

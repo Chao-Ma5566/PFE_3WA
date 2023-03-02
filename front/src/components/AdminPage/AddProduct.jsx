@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import {BASE_URL} from "../../tools/constante.js"
-import {lengthLimit, checkVide} from "../../tools/inputCheck.js"
+import {lengthLimit, checkVide, isNumber, isPositiveInteger} from "../../tools/inputCheck.js"
 import { Navigate } from "react-router-dom"
 
 const AddProduct = (props) => {
@@ -52,7 +52,17 @@ const AddProduct = (props) => {
         else if(files[0]===undefined){
             setMessageErr("Une photo obligatoire")
             return
+        }else if(!isPositiveInteger(productInfo.stock)){
+            setMessageErr("Stockage doit être un numbre entier.") 
+            return
+        }else if(!isNumber([productInfo.price, productInfo.height, productInfo.width, productInfo.depth,productInfo.seat_depth,productInfo.seat_height,productInfo.stock])){
+            setMessageErr("Le prix, stockage et les dimensions ne peuvent qu'être chiffre")  
+            return
         }
+        else if(messageErr.length > 0){
+            return
+        }
+        
         console.log(files[0])
         dataFile.append('files', files[0], files[0].name)
         dataFile.append('name', productInfo.name)
@@ -86,17 +96,22 @@ const AddProduct = (props) => {
     
     const handleChange = (e) => {
         setMessageErr("")
-        // if(!lengthLimit(productInfo.name, 100)){
-        //     setMessageErr("Title est limité à 100 caractères") 
-        //     return
-        // }else if(!lengthLimit(productInfo.description, 5000)){
-        //     setMessageErr("Chaque content est limité à 5000 caractères") 
-        //     return
-        // }
+        if(!lengthLimit(productInfo.name, 100)){
+            setMessageErr("Nom de produit est limité à 100 caractères") 
+            
+        }else if(!lengthLimit(productInfo.material)){
+            setMessageErr("Matériel est limité à 255 caractères") 
+            
+        }else if(!lengthLimit([productInfo.price, productInfo.height, productInfo.width, productInfo.depth,productInfo.seat_depth,productInfo.seat_height,productInfo.stock],10)){
+            setMessageErr("Le prix, stockage et les dimensions ne peuvent pas dépassés 10 caractère.")  
+        }else if(!lengthLimit(productInfo.description, 5000)){
+            setMessageErr("Chaque content est limité à 5000 caractères") 
+            
+        }
         let newInfo = { ...productInfo, [e.target.name]: e.target.value }
         setProductInfo(newInfo)
     }
-
+    console.log(productInfo)
     return (
         <div className="container-admin">
             {isChangePage && <Navigate to="/admin/produits" replace={true} />}
@@ -126,12 +141,12 @@ const AddProduct = (props) => {
                     placeholder="Stockage" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="material">Material: </label>
+                <label htmlFor="material">Materiel: </label>
                 <input 
                     type="text" 
                     name="material" 
                     value={productInfo.material} 
-                    placeholder="Material"
+                    placeholder="Materiel"
                     onChange={(e)=>handleChange(e)} 
                 />
                 <label htmlFor="price">Prix(€): </label>

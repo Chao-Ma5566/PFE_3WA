@@ -19,6 +19,7 @@ import deleteArticleByIdPostController from "../controller/deleteArticle.js"
 import getArticleByIdPostController from "../controller/getArticleById.js"
 import addProductPostController from "../controller/addProduct.js"
 import getProductByIdPostController from "../controller/getProductById.js"
+import updateProductPhotoPostController from "../controller/updateProductPhoto.js"
 import updateProductPostController from "../controller/updateProduct.js"
 import deleteProductPostController from "../controller/deleteProduct.js"
 import allCollectionGetController from "../controller/allCollection.js"
@@ -61,6 +62,7 @@ const routesUpload = [
     {route:"/admin/addArticle", controller: addArticlePostController},
     {route:"/admin/updateArticlePhoto", controller: updateArticlePhotoPostController},
     {route:"/admin/addProduct", controller: addProductPostController},
+    {route:"/admin/updateProductPhoto", controller: updateProductPhotoPostController},
     
 ]
 

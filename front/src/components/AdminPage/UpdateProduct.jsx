@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import {BASE_URL} from "../../tools/constante.js"
-import {lengthLimit, checkVide} from "../../tools/inputCheck.js"
+import {lengthLimit, checkVide, isPositiveInteger, isNumber} from "../../tools/inputCheck.js"
 import { Navigate, useParams } from "react-router-dom"
 import ConfirmationWindow from "../ConfirmationWindow.jsx"
 
@@ -22,6 +22,7 @@ const UpdateProduct = (props) => {
         seat_depth:"",
         id: productId,
         }
+        
     const [productInfo, setProductInfo] = useState(initialValue)
     const [messageErr, setMessageErr] = useState("")
     const [isLoading, setIsLoading] = useState(true)
@@ -29,18 +30,13 @@ const UpdateProduct = (props) => {
     const [isDelete, setIsDelete] = useState(false)
     const [collectionList, setCollectionList] = useState([])
     
-    console.log(productInfo)
-    console.log(collectionList)
-    
     useEffect(() => {
         axios.post(`${BASE_URL}/getProductById`, { id: productId })
             .catch(err => console.log(err))
             .then(res => {
-                console.log(res)
                 setProductInfo(res.data.data.result[0])
                 axios.get(`${BASE_URL}/admin/collection`)
                     .then(function(response) {
-                        console.log(response.data.data)
                         setCollectionList(response.data.data.result);
                     })
                     .catch(function(error) {
@@ -57,8 +53,13 @@ const UpdateProduct = (props) => {
         if(!checkVide(Object.values(productInfo))){
             setMessageErr("Champ obligatoire vide") 
             return
+        }else if(!isPositiveInteger(productInfo.stock)){
+            setMessageErr("Stockage doit être un numbre entier et positive.") 
+            return
+        }else if(!isNumber([productInfo.price, productInfo.height, productInfo.width, productInfo.depth,productInfo.seat_depth,productInfo.seat_height,productInfo.stock])){
+            setMessageErr("Le prix, stockage et les dimensions ne peuvent qu'être chiffre") 
+            return
         }
-        
         axios.post(`${BASE_URL}/admin/updateProduct`, {
         name: productInfo.name, 
         description: productInfo.description,
@@ -72,11 +73,9 @@ const UpdateProduct = (props) => {
         seat_height:productInfo.seat_height,
         seat_depth:productInfo.depth,
         id: productId,
-        })
-        .then(res=>{
-            console.log(res)
+        }).then(res=>{
             if(res.data.data.result.affectedRows > 0 && res.data.dataDimensions.result.affectedRows > 0){
-                setMessageErr("L'infolation est bien enregistré.")
+                setMessageErr("L'information est bien enregistré.")
                 return
             }
             setMessageErr(res.data.data.response)
@@ -88,13 +87,17 @@ const UpdateProduct = (props) => {
     
     const handleChange = (e) => {
         setMessageErr("")
-        // if(!lengthLimit(productInfo.name, 100)){
-        //     setMessageErr("Title est limité à 100 caractères") 
-        //     return
-        // }else if(!lengthLimit(productInfo.description, 5000)){
-        //     setMessageErr("Chaque content est limité à 5000 caractères") 
-        //     return
-        // }
+        if(!lengthLimit(productInfo.name, 100)){
+            setMessageErr("Title est limité à 100 caractères") 
+        }else if(!lengthLimit(productInfo.material)){
+            setMessageErr("Matériel est limité à 255 caractères") 
+            
+        }else if(!lengthLimit([productInfo.price, productInfo.height, productInfo.width, productInfo.depth,productInfo.seat_depth,productInfo.seat_height,productInfo.stock],10)){
+            setMessageErr("Le prix, stockage et les dimensions ne peuvent pas dépassés 10 caractère.")  
+        }else if(!lengthLimit(productInfo.description, 5000)){
+            setMessageErr("Chaque content est limité à 5000 caractères") 
+            
+        }
         let newInfo = { ...productInfo, [e.target.name]: e.target.value }
         setProductInfo(newInfo)
     }
@@ -110,6 +113,10 @@ const UpdateProduct = (props) => {
                     setIsDelete(true)
                 }
         })
+    }
+    
+    if(isLoading){
+        <div>Loading...</div>
     }
     
     return (

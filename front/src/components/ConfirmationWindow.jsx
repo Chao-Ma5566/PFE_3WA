@@ -4,9 +4,9 @@ const ConfirmationWindow = ({isOpen, deleteFunction, name}) =>{
     
     return (
         <div
-          className={`fixed inset-0 bg-gray-900 opacity-60`}
+          className={`fixed inset-0 bg-gray-900 opacity-80`}
         >
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-100 rounded-md p-8 w-96 opacity-100">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-100 rounded-md p-8 w-96">
             <button
               className="absolute top-2 right-2 text-gray-400 hover:bg-primary focus:outline-none"
               onClick={isOpen}

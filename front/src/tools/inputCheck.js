@@ -1,22 +1,32 @@
 /*
  *check data from input is passed the length limite
  *@param {number} num Input length limited number
- *@param {data} data Input data need to check
+ *@param {value} data Input data need to check
  */
-const lengthLimit = (data, num = 255) => {
-    if ((typeof data === 'string' || typeof data === 'number') && data.length > num) {
-        return false
+const lengthLimit = (value, max = 255) => {
+    if(typeof value === "number") {
+        const el = value.length;
+        // on verrifie la length 
+        if(el > max) {
+            return false
+        }
+    } else if(typeof value === "string") {
+        const el = value.trim().length;
+        // on verrifie la length 
+        if(el > max) {
+            return false
+        }
     }
-    else if (typeof data === "object") {
-        for (var info in data) {
-            if (data[info].length > num) {
+    else if (typeof value === "object") {
+        for (var info in value) {
+            if (value[info].length > max) {
                 return false
             }
         }
     }
-    else if (Array.isArray(data)) {
-        data.forEach(info =>{
-            if(info.length > num){
+    else if (Array.isArray(value)) {
+        value.forEach(info =>{
+            if(info.length > max){
                 return false
             }
         })
@@ -28,19 +38,21 @@ const lengthLimit = (data, num = 255) => {
 *
 *@param {array} data Input data need to check
 */
-const checkVide = (data) => {
-    if ((typeof data === 'string' || typeof data === 'number') && data.trim().length === 0) {
+const checkVide = (value) => {
+    if (typeof value === 'string' && value.trim().length === 0) {
+        return false
+    }else if(typeof value === "number" && value.length === 0){
         return false
     }
-    else if(typeof data === "object"){
-        for (var info in data) {
-            if (data[info].length === 0) {
+    else if(typeof value === "object"){
+        for (const key in value) {
+            if (value[key].length === 0) {
                 return false
             }
         }
     }
-    else if (Array.isArray(data)) {
-        data.forEach(info =>{
+    else if (Array.isArray(value)) {
+        value.forEach(info =>{
             if(info.length === 0){
                 return false
             }
@@ -48,5 +60,50 @@ const checkVide = (data) => {
     }
     return true
 }
+/*
 
-export { lengthLimit, checkVide }
+/*
+*check data from input is a interger and positive
+*
+*@param {num} data Input data need to check
+*/
+const isPositiveInteger = (num) => {
+    if(Array.isArray(num)){
+        num.forEach(n=>{
+            const number = Number(n)
+            if(!Number.isInteger(number) || number < 0){
+                return false
+            }
+        })
+        return true
+    }else{
+      const number = Number(num)
+      if( Number.isInteger(number) && number >= 0){
+          return true
+      }else{
+          return false
+      }
+    }
+}
+/*
+*check data from input is a number
+*
+*@param {num} data Input data need to check
+*/
+const isNumber = (num) => {
+    if(Array.isArray(num)){
+        num.forEach(n=>{
+            if(isNaN(n)){
+                return false
+            }
+        })
+        return true
+    }else{
+      if(isNaN(num)){
+          return false
+      }else{
+          return true
+      }
+    }
+}
+export { lengthLimit, checkVide, isPositiveInteger, isNumber }
