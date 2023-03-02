@@ -19,7 +19,11 @@ class Products {
     }
     
     async getById({id}){
-        const sql = "SELECT * FROM products WHERE id = ?"
+        const sql = `SELECT name, description, price, collection_id, stock, material, height, width, depth, seat_height, seat_depth, url, caption
+        FROM products 
+        JOIN pictures ON products.id = pictures.product_id
+        JOIN dimensions ON products.id = dimensions.product_id
+        WHERE products.id = ?`
         
         try{
             const result = await this.asyncQuery(sql,[id])
@@ -32,7 +36,8 @@ class Products {
     
     
     async getAll(){
-        const sql = "SELECT * FROM products"
+        const sql = `SELECT products.id AS id, name, price, stock, url, caption 
+        FROM products JOIN pictures ON products.id = pictures.product_id`
         
         try{
             const result = await this.asyncQuery(sql)
@@ -43,9 +48,9 @@ class Products {
         }
     }
     
-    async update({name, description, prix, stock, id}){
-        const sql = "UPDATE products SET name = ?, description = ?, prix = ?, stock = ? WHERE id = ?"
-        const paramsSql = [name, description, prix, stock, id]
+    async update({name, description, price, collection_id, stock, material, id}){
+        const sql = "UPDATE products SET name = ?, description = ?, price = ?, collection_id = ?, stock = ?, material=? WHERE id = ?"
+        const paramsSql = [name, description, price, collection_id, stock, material, id]
         
         try{
             const result = await this.asyncQuery(sql,paramsSql)
@@ -69,7 +74,7 @@ class Products {
     }
     
     async deleted({id}){
-        const sql = "DELETE products WHERE id = ?"
+        const sql = "DELETE FROM products WHERE id = ?"
         
         try{
             const result = await this.asyncQuery(sql,[id])

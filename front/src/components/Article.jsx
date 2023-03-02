@@ -3,7 +3,6 @@ import {useContext, useEffect, useState, Fragment} from "react"
 import {StoreContext} from "../tools/context.js"
 import {BASE_URL, BASE_IMG} from "../tools/constante.js"
 import { NavLink, Navigate,useParams } from "react-router-dom"
-import ConfirmationWindow from "./ConfirmationWindow.jsx"
 
 const Article = (props) => {
     const { articleId } = useParams();

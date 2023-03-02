@@ -665,10 +665,6 @@ textarea {
   position: absolute;
 }
 
-.relative {
-  position: relative;
-}
-
 .sticky {
   position: -webkit-sticky;
   position: sticky;
@@ -681,16 +677,16 @@ textarea {
   left: 0px;
 }
 
-.top-0 {
-  top: 0px;
-}
-
 .left-1\/2 {
   left: 50%;
 }
 
 .right-2 {
   right: 0.5rem;
+}
+
+.top-0 {
+  top: 0px;
 }
 
 .top-1\/2 {
@@ -748,10 +744,6 @@ textarea {
   height: 100%;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
 .max-h-96 {
   max-height: 24rem;
 }
@@ -772,16 +764,12 @@ textarea {
   width: 9rem;
 }
 
-.w-full {
-  width: 100%;
-}
-
-.w-screen {
-  width: 100vw;
-}
-
 .w-96 {
   width: 24rem;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .table-fixed {
@@ -841,16 +829,21 @@ textarea {
   border-radius: 0.25rem;
 }
 
-.rounded-xl {
-  border-radius: 0.75rem;
-}
-
 .rounded-md {
   border-radius: 0.375rem;
 }
 
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
 .border-b-2 {
   border-bottom-width: 2px;
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(230 230 230 / var(--tw-bg-opacity));
 }
 
 .bg-gray-500 {
@@ -878,11 +871,6 @@ textarea {
   background-color: rgb(252 94 100 / var(--tw-bg-opacity));
 }
 
-.bg-gray-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(230 230 230 / var(--tw-bg-opacity));
-}
-
 .fill-gray-500 {
   fill: #ABBBC2;
 }
@@ -904,6 +892,11 @@ textarea {
   padding-right: 1rem;
 }
 
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -917,16 +910,6 @@ textarea {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-}
-
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 
 .pb-8 {
@@ -955,10 +938,6 @@ textarea {
   line-height: 1.75rem;
 }
 
-.font-bold {
-  font-weight: 700;
-}
-
 .text-gray-100 {
   --tw-text-opacity: 1;
   color: rgb(230 230 230 / var(--tw-text-opacity));
@@ -974,16 +953,12 @@ textarea {
   color: rgb(31 29 43 / var(--tw-text-opacity));
 }
 
-.opacity-10 {
-  opacity: 0.1;
-}
-
-.opacity-50 {
-  opacity: 0.5;
-}
-
 .opacity-60 {
   opacity: 0.6;
+}
+
+.opacity-100 {
+  opacity: 1;
 }
 
 .shadow-md {
@@ -1066,11 +1041,6 @@ img{
 .hover\:bg-primary:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(252 94 100 / var(--tw-bg-opacity));
-}
-
-.hover\:text-gray-700:hover {
-  --tw-text-opacity: 1;
-  color: rgb(57 60 73 / var(--tw-text-opacity));
 }
 
 .hover\:file\:bg-gray-700::-webkit-file-upload-button:hover {

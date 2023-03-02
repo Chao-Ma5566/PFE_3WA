@@ -12,7 +12,12 @@ const AddProduct = (props) => {
         collection_id: "",
         stock: "",
         material: "",
-        price:""
+        price:"",
+        height:"",
+        width:"",
+        depth:"",
+        seat_height:"",
+        seat_depth:"",
         }
     const [productInfo, setProductInfo] = useState(initialValue)
     const [messageErr, setMessageErr] = useState("")
@@ -56,6 +61,11 @@ const AddProduct = (props) => {
         dataFile.append('stock', productInfo.stock)
         dataFile.append('material', productInfo.material)
         dataFile.append('price', productInfo.price)
+        dataFile.append('height', productInfo.height)
+        dataFile.append('width', productInfo.width)
+        dataFile.append('depth', productInfo.depth)
+        dataFile.append('seat_height', productInfo.seat_height)
+        dataFile.append('seat_depth', productInfo.seat_depth)
         
         
         axios.post(`${BASE_URL}/admin/addProduct`, dataFile)
@@ -93,7 +103,7 @@ const AddProduct = (props) => {
             <div className="admin-header">
                 <div>
                     <h2>Créer un nouveau produit</h2>
-                    <p>meilleur proportion de photo est 3:4, tous les dimensions sont en CM.</p>
+                    <p>meilleur proportion de photo est 3:4, tous les dimensions sont en centimètre. Les dimensions et le prix sont limités 2 chiffres décimals.</p>
                     {messageErr.length > 0 && <p  className="rounded py-2 px-4 bg-primary">{messageErr}</p>}
                 </div>   
             </div>
@@ -110,7 +120,7 @@ const AddProduct = (props) => {
                 />
                 <label htmlFor="stock">Stockage: </label>
                 <input 
-                    type="text" 
+                    type="number" 
                     name="stock" 
                     value={productInfo.stock} 
                     placeholder="Stockage" 
@@ -126,7 +136,7 @@ const AddProduct = (props) => {
                 />
                 <label htmlFor="price">Prix(€): </label>
                 <input 
-                    type="text" 
+                    type="number" 
                     name="price" 
                     value={productInfo.price} 
                     placeholder="Prix" 
@@ -143,6 +153,47 @@ const AddProduct = (props) => {
                         return <option key={i} value={collection.id}>{collection.title}</option>
                     })}
                 </select>
+                <label htmlFor="hauteur">Hauteur(cm): </label>
+                <input 
+                    type="number" 
+                    name="height" 
+                    value={productInfo.height} 
+                    placeholder="Hauteur" 
+                    onChange={(e)=>handleChange(e)} 
+                />
+                <label htmlFor="width">Largeur(cm): </label>
+                <input 
+                    type="number" 
+                    name="width" 
+                    value={productInfo.width} 
+                    placeholder="Largeur" 
+                    onChange={(e)=>handleChange(e)} 
+                />
+                <label htmlFor="depth">Profondeur(cm): </label>
+                <input 
+                    type="number" 
+                    name="depth" 
+                    value={productInfo.depth} 
+                    placeholder="Profondeur" 
+                    onChange={(e)=>handleChange(e)} 
+                />
+                <label htmlFor="seat_height">Hauteur de siège(cm): </label>
+                <input 
+                    type="number" 
+                    name="seat_height" 
+                    value={productInfo.seat_height} 
+                    placeholder="Hauteur de siège" 
+                    onChange={(e)=>handleChange(e)} 
+                />
+                <label htmlFor="seat_depth">Profondeur de siège(cm): </label>
+                <input 
+                    type="number" 
+                    name="seat_depth" 
+                    value={productInfo.seat_depth} 
+                    placeholder="Profondeur de siège" 
+                    onChange={(e)=>handleChange(e)} 
+                />
+                
                 <label htmlFor="description">Description: </label>
                 <textarea 
                     name="description" 

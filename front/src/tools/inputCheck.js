@@ -34,14 +34,14 @@ const checkVide = (data) => {
     }
     else if(typeof data === "object"){
         for (var info in data) {
-            if (data[info].trim().length === 0) {
+            if (data[info].length === 0) {
                 return false
             }
         }
     }
     else if (Array.isArray(data)) {
         data.forEach(info =>{
-            if(info.trim().length === 0){
+            if(info.length === 0){
                 return false
             }
         })

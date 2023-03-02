@@ -57,7 +57,7 @@ class Collection {
         
         if(!inputCheck(title)){
             return {response:'Champ title ne doit être vide ou dépasser 250 '}
-        }else if(!inputCheck(description,510)){
+        }else if(!inputCheck(description,5000)){
             return {response:'Champ description doit pas être vide ou dépasser 510 '}
         }
         
@@ -71,7 +71,7 @@ class Collection {
     }
     
     async deleted({id}){
-        const sql = "DELETE collection WHERE id = ?"
+        const sql = "DELETE FROM collection WHERE id = ?"
         
         try{
             const result = await this.asyncQuery(sql,[id])

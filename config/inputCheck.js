@@ -5,7 +5,7 @@
 */
 const inputCheck = (value, max = 255, min = 1) => {
     if(typeof value === "string" || typeof value === "number") {
-        const el = value.trim().length;
+        const el = value.length;
         // on verrifie la length 
         if(el > max || el < min) {
             return false
@@ -18,7 +18,7 @@ const inputCheck = (value, max = 255, min = 1) => {
         
         // on verrifie chaque valeur du tableau
         value.forEach(element => {
-            const e = element.trim().length;
+            const e = element.length;
             if(e > max || e < min) {
                 return false
             }
@@ -31,7 +31,7 @@ const inputCheck = (value, max = 255, min = 1) => {
         
         // on verrifie si une valeur est vide
         for (const key in value) {
-            const element = value[key].trim().length;
+            const element = value[key].length;
                 if(element > max || element < min) {
                     return false
                 }

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { BASE_URL } from "../../tools/constante.js"
 import { lengthLimit, checkVide } from "../../tools/inputCheck.js"
 import ConfirmationWindow from "../ConfirmationWindow.jsx"
-import { useParams } from "react-router-dom"
+import { useParams,Navigate } from "react-router-dom"
 
 
 const UpdateCollection = (props) => {
@@ -43,6 +43,8 @@ const UpdateCollection = (props) => {
             console.log(res)
             if(res.data.data.result.affectedRows > 0){
                 setMessageErr("L'informations sont bien enregistrer")
+            }else{
+                setMessageErr(res.data.data.response)
             }
         }).catch(err=>{
             console.log(err)
@@ -51,9 +53,9 @@ const UpdateCollection = (props) => {
     }
     
     const handleDelete = () => {
-        axios.post(`${BASE_URL}/admin/`,{id:collectionId})
+        axios.post(`${BASE_URL}/admin/deleteCollection`,{id:collectionId})
         .then(res=>{
-                if(res.data.data.affectedRows > 0){
+                if(res.data.data.result.affectedRows > 0){
                     setIsDelete(true)
                 }
         })
@@ -82,10 +84,11 @@ const UpdateCollection = (props) => {
     
     return (
         <div className="container-admin">
+            {isDelete && <Navigate to="/admin/collection" replace={true} />}
             <div className="admin-header flex justify-between">
                 <div>
                     <h2>Modifier la collection</h2>
-                    <p>Title est limité à 250 caractères, Description est limité à 510 caractères.</p>
+                    <p>Title est limité à 250 caractères, Description est limité à 5000 caractères.</p>
                     {messageErr.length > 0 && <p className="rounded py-2 px-4 bg-primary">{messageErr}</p>}
                 </div>
                 <div className="flex items-center">

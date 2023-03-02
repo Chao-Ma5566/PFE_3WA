@@ -18,21 +18,25 @@ import updateArticlePhotoPostController from "../controller/updateArticlePhoto.j
 import deleteArticleByIdPostController from "../controller/deleteArticle.js"
 import getArticleByIdPostController from "../controller/getArticleById.js"
 import addProductPostController from "../controller/addProduct.js"
+import getProductByIdPostController from "../controller/getProductById.js"
+import updateProductPostController from "../controller/updateProduct.js"
+import deleteProductPostController from "../controller/deleteProduct.js"
 import allCollectionGetController from "../controller/allCollection.js"
+import allProductGetController from "../controller/allProduct.js"
 import updateCollectionPostController from "../controller/updateCollection.js"
 import getCollectionByIdPostController from "../controller/getCollectionById.js"
+import deleteCollectionByIdPostController from "../controller/deleteCollection.js"
 import checkToken from "../controller/checkToken.js"
 
 const router = express.Router()
-
-router.get("/", homeGetController)
 
 const routesGET = [
     {route:"/", controller: homeGetController},
     {route:"/admin/users", controller: allUserGetController},
     {route:"/relogged", controller: checkToken},
     {route:"/admin/articles", controller: allArticleGetController},
-    {route:"/admin/collection", controller: allCollectionGetController}
+    {route:"/admin/collection", controller: allCollectionGetController},
+    {route:"/products", controller: allProductGetController},
 ]
 const routesPOST = [
     {route:"/addUser", controller: addUserPostController},
@@ -48,6 +52,10 @@ const routesPOST = [
     {route:"/admin/updateArticle", controller: updateArticlePostController},
     {route:"/admin/updateCollection", controller: updateCollectionPostController},
     {route:"/admin/getCollectionById", controller: getCollectionByIdPostController},
+    {route:"/admin/deleteCollection", controller: deleteCollectionByIdPostController},
+    {route:"/admin/updateProduct", controller: updateProductPostController},
+    {route:"/admin/deleteProduct", controller: deleteProductPostController},
+    {route:"/getProductById", controller: getProductByIdPostController},
 ]
 const routesUpload = [
     {route:"/admin/addArticle", controller: addArticlePostController},
