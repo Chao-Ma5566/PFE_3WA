@@ -4,6 +4,7 @@ import Article from "../components/Article.jsx"
 import Error404 from "../components/Error404.jsx"
 import Login from "../components/Login.jsx"
 import Logout from "../components/Logout.jsx"
+import Shop from "../components/Shop.jsx"
 import Profil from "../components/Profil.jsx"
 import Product from "../components/Product.jsx"
 import Register from "../components/Register.jsx"
@@ -32,6 +33,7 @@ const routesUser = [
     {path:"logout", component:<Logout />, auth:"user"},
     {path:"article/:articleId", component:<Article />},
     {path:"product/:productId", component:<Product />},
+    {path:"shop", component:<Shop />},
     {path:"*", component:<Error404 />}
 ]
 

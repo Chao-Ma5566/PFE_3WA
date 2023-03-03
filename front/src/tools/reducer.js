@@ -14,6 +14,13 @@ const reducer = (state, action) => {
                 user: {},
                 isLogged: false
             }
+            
+        case "PRODUCTLIST":
+            
+            return {
+                ...state,
+                products: action.payload,
+            }
         default:
             return state
     }        

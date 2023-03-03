@@ -15,6 +15,11 @@ const NavBar = (props) => {
                             Accueil
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/shop">
+                            E-Commerce
+                        </NavLink>
+                    </li>
                 {state.isLogged ?   
                     <Logged />
                  : 

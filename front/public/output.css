@@ -697,6 +697,10 @@ textarea {
   top: 0.5rem;
 }
 
+.m-2 {
+  margin: 0.5rem;
+}
+
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
@@ -728,6 +732,10 @@ textarea {
   display: block;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -736,12 +744,36 @@ textarea {
   display: table;
 }
 
+.grid {
+  display: grid;
+}
+
 .h-24 {
   height: 6rem;
 }
 
 .h-full {
   height: 100%;
+}
+
+.h-36 {
+  height: 9rem;
+}
+
+.h-48 {
+  height: 12rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
+.h-8 {
+  height: 2rem;
 }
 
 .max-h-96 {
@@ -772,6 +804,22 @@ textarea {
   width: 100%;
 }
 
+.w-4 {
+  width: 1rem;
+}
+
+.w-8 {
+  width: 2rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.w-10 {
+  width: 2.5rem;
+}
+
 .table-fixed {
   table-layout: fixed;
 }
@@ -793,6 +841,10 @@ textarea {
           transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -807,6 +859,14 @@ textarea {
 
 .justify-between {
   justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .gap-y-1 {
@@ -835,6 +895,10 @@ textarea {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .border-b-2 {
@@ -953,14 +1017,6 @@ textarea {
   color: rgb(31 29 43 / var(--tw-text-opacity));
 }
 
-.opacity-100 {
-  opacity: 1;
-}
-
-.opacity-60 {
-  opacity: 0.6;
-}
-
 .opacity-80 {
   opacity: 0.8;
 }
@@ -1045,10 +1101,6 @@ img{
 .hover\:bg-primary:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(252 94 100 / var(--tw-bg-opacity));
-}
-
-.hover\:opacity-100:hover {
-  opacity: 1;
 }
 
 .hover\:file\:bg-gray-700::-webkit-file-upload-button:hover {
