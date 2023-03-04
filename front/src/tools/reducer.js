@@ -22,7 +22,7 @@ const reducer = (state, action) => {
                 products: action.payload,
             }
 
-        case "ADD_CHAT":
+        case "ADD_CART":
             //find same product index by product_id
             const foundProductIndex = state.cart.findIndex(e => e.product_id === action.payload.product_id)
             console.log(foundProductIndex)
@@ -47,6 +47,13 @@ const reducer = (state, action) => {
                     cart: newCart
                 }
             }
+            
+        case "GET_CART":
+
+            return {
+                ...state,
+                cart: action.payload,
+            }    
 
         default:
             return state

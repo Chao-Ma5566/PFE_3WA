@@ -6,6 +6,7 @@ export default async (req, res) => {
         const cart = new Cart(myBDD)
         const {user_id, product_id, quantity } = req.body
         const checkData = await cart.getByUserId({user_id: user_id})
+        
         //check did user already have a cart, if not creat one then add product_id and quantity
         if(checkData.result.length === 0){
             const data = await cart.create({user_id: user_id})
@@ -31,17 +32,28 @@ export default async (req, res) => {
             })
             res.json({dataCart})
         }
-        // if index > -1, means there already have same product, then we have to do a update 
+        // if index > -1, means there already have same product, then need to get new quantity 
         else if(foundProductIndex > -1){
             const data = await cart.getIdByUserId({user_id: user_id})
             const cart_id = await data.result[0].id
             const newQuantity = checkData.result[foundProductIndex].quantity + quantity
-            const dataCart = await cart.update({
-                newQuantity: newQuantity,
-                product_id: product_id,
-                cart_id: cart_id
-            })
-            res.json({dataCart})
+            //if newQuantity > 0, we need to do a update
+            if(newQuantity > 0){
+                const dataCart = await cart.update({
+                    newQuantity: newQuantity,
+                    product_id: product_id,
+                    cart_id: cart_id
+                })
+                res.json({dataCart})
+            }
+            //if newQuantity <= 0, we do a delete Product from user_cart
+            else if(newQuantity <= 0){
+                const dataCart = await cart.deletedProduct({
+                    product_id: product_id,
+                    user_id: user_id
+                })
+                res.json({dataCart})
+            }
         }
         
     }}catch(err) {

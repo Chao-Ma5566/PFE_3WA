@@ -47,7 +47,7 @@ const ProductCard = ({data, setProductList, productList, index})=>{
         setProductList(newProductList)
         dispatch({type:"PRODUCTLIST", payload: productList})
         console.log(data.quantity)
-        dispatch({type:"ADD_CHAT", payload: {product_id: data.id, quantity:quantity}})
+        dispatch({type:"ADD_CART", payload: {product_id: data.id, quantity:quantity}})
         axios.post(`${BASE_URL}/addCart`,{
             user_id: state.user.id, 
             product_id: data.id,

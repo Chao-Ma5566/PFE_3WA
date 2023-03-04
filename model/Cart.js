@@ -84,11 +84,23 @@ class Cart {
         }
     }
     
-    async deleted({id}){
-        const sql = "DELETE FROM collection WHERE id = ?"
+    async deletedByUserId({user_id}){
+        const sql = "DELETE FROM cart WHERE user_id = ?"
         
         try{
-            const result = await this.asyncQuery(sql,[id])
+            const result = await this.asyncQuery(sql,[user_id])
+            return {result}
+        } catch(err){
+            console.log(err)
+            return err
+        }
+    }
+    
+    async deletedProduct({cart_id, product_id}){
+        const sql = "DELETE FROM user_cart WHERE product_id = ? AND cart_id = ?"
+        
+        try{
+            const result = await this.asyncQuery(sql,[product_id, cart_id])
             return {result}
         } catch(err){
             console.log(err)

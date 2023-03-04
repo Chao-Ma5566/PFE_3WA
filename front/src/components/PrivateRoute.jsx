@@ -29,7 +29,10 @@ const PrivateRoute = ({children, auth = null}) => {
             axios.defaults.headers.common["Authorization"] = `Bearer ${jwtToken}`
             // on verrifie le token puis on sauvegarde les donner dans le reducer
             axios.get(`${BASE_URL}/relogged`)
-            .then(res => dispatch({type:"LOGIN", payload:res.data.result}))
+            .then(res => {
+              dispatch({type:"LOGIN", payload:res.data.result})
+              dispatch({type:"GET_CART", payload:res.data.cart.result})
+            })
             .catch(e => console.log(e))
           } else { setisLoading(false) }
         }
@@ -51,7 +54,7 @@ const PrivateRoute = ({children, auth = null}) => {
     * Si la route est reserver aux utilisateur et qu'il est connecter
     */
   const isUserAuthorized = isPublic || (isLimitedToAdmin && admin) || (isLimitedToConnected && isLogged);
-
+  
   if(isLoading) return <p>Loading</p>
   
   return isUserAuthorized ? children : <Navigate to="/login" />;
