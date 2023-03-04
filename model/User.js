@@ -25,7 +25,7 @@ class User {
             const passwordIsValide = await bcrypt.compare(password,dataBDD[0].password)
             
             if(passwordIsValide){
-                await this._updateLogintimeById(dataBDD[0].id)
+                await this.updateLogintimeById(dataBDD[0].id)
                 console.log(dataBDD[0].id)
                 return{response: passwordIsValide, data:dataBDD}
             }
@@ -160,7 +160,7 @@ class User {
             
         }
     }
-    async _updateLogintimeById(id){
+    async updateLogintimeById(id){
         const sql = "UPDATE users SET last_connection = NOW() WHERE id=?"
         
         try {

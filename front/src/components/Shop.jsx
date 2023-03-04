@@ -11,21 +11,21 @@ const Shop = () =>{
     const [isLoading, setIsLoading] = useState(true)
     
     useEffect(() => {
-        setIsLoading(true)
         if(state.products.length > 0){
             setProductList(state.products)
             setIsLoading(false)
         }else{
-        axios.get(`${BASE_URL}/products`)
-            .then(function(response) {
-                setProductList(response.data.data.result);
-                dispatch({type:"PRODUCTLIST", payload: response.data.data.result})     
-            })
-            .catch(function(error) {
-                console.log(error);
-            })
-            .then(
-            setIsLoading(false))
+            setIsLoading(true)
+            axios.get(`${BASE_URL}/products`)
+                .then(function(response) {
+                    setProductList(response.data.data.result);
+                    dispatch({type:"PRODUCTLIST", payload: response.data.data.result})     
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+                .then(
+                setIsLoading(false))
         }
     }, [])
     

@@ -27,6 +27,7 @@ import allProductGetController from "../controller/allProduct.js"
 import updateCollectionPostController from "../controller/updateCollection.js"
 import getCollectionByIdPostController from "../controller/getCollectionById.js"
 import deleteCollectionByIdPostController from "../controller/deleteCollection.js"
+import addCartPostController from "../controller/addCart.js"
 import checkToken from "../controller/checkToken.js"
 
 const router = express.Router()
@@ -57,6 +58,7 @@ const routesPOST = [
     {route:"/admin/updateProduct", controller: updateProductPostController},
     {route:"/admin/deleteProduct", controller: deleteProductPostController},
     {route:"/getProductById", controller: getProductByIdPostController},
+    {route:"/addCart", controller: addCartPostController},
 ]
 const routesUpload = [
     {route:"/admin/addArticle", controller: addArticlePostController},
