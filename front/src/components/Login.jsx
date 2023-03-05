@@ -33,7 +33,10 @@ const Login = () => {
             .then(res => {
                 console.log(res.data.response.response)
                 if(res.data.response.response) {
+                    console.log(res)
                     dispatch({ type: "LOGIN", payload: res.data.response.response})
+                    dispatch({type:"GET_CART_ITEMS", payload:res.data.cart})
+                    dispatch({type:"PRODUCTLIST", payload:res.data.products})
                     localStorage.setItem('jwtToken', res.data.response.token)
                     axios.defaults.headers.common['Authorization'] = 'Bearer '+res.data.response.token
                     setInfo(initialState)

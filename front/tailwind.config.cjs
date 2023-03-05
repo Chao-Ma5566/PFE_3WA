@@ -17,6 +17,10 @@ module.exports = {
         900: "#1F1D2B",
        } ,
        primary: "#FC5E64",
+       neutral : {
+       50 : "#fafafa",
+       100 : "#f5f5f5"
+       }
       }, 
     extend: {},
   },

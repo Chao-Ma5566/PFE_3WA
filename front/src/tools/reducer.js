@@ -12,7 +12,9 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 user: {},
-                isLogged: false
+                isLogged: false,
+                products:[],
+                cartItems: []
             }
 
         case "PRODUCTLIST":
@@ -46,13 +48,6 @@ const reducer = (state, action) => {
                     ...state,
                     cart: newCart
                 }
-            }
-            
-        case "GET_CART":
-
-            return {
-                ...state,
-                cart: action.payload,
             }
         
         case "GET_CART_ITEMS":

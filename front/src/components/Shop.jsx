@@ -16,10 +16,12 @@ const Shop = () =>{
             setIsLoading(false)
         }else{
             setIsLoading(true)
-            axios.get(`${BASE_URL}/products`)
-                .then(function(response) {
-                    setProductList(response.data.data.result);
-                    dispatch({type:"PRODUCTLIST", payload: response.data.data.result})     
+            axios.get(`${BASE_URL}/relogged`)
+                .then(function(res) {
+                    setProductList(res.data.products);
+                    dispatch({type:"LOGIN", payload:res.data.result})
+                    dispatch({type:"GET_CART_ITEMS", payload:res.data.cart})
+                    dispatch({type:"PRODUCTLIST", payload:res.data.products})    
                 })
                 .catch(function(error) {
                     console.log(error);

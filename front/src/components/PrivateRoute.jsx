@@ -30,8 +30,10 @@ const PrivateRoute = ({children, auth = null}) => {
             // on verrifie le token puis on sauvegarde les donner dans le reducer
             axios.get(`${BASE_URL}/relogged`)
             .then(res => {
+              console.log(res)
               dispatch({type:"LOGIN", payload:res.data.result})
-              dispatch({type:"GET_CART", payload:res.data.cart.result})
+              dispatch({type:"GET_CART_ITEMS", payload:res.data.cart})
+              dispatch({type:"PRODUCTLIST", payload:res.data.products})
             })
             .catch(e => console.log(e))
           } else { setisLoading(false) }

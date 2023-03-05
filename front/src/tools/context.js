@@ -5,7 +5,6 @@ const StoreContext = React.createContext([])
 const initialState = {
     user: {},
     isLogged: false,
-    cart: [],
     products:[],
     cartItems: []
 }
