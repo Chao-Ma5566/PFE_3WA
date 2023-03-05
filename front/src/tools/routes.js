@@ -5,6 +5,7 @@ import Error404 from "../components/Error404.jsx"
 import Login from "../components/Login.jsx"
 import Logout from "../components/Logout.jsx"
 import Shop from "../components/Shop.jsx"
+import Cart from "../components/Cart.jsx"
 import Profil from "../components/Profil.jsx"
 import Product from "../components/Product.jsx"
 import Register from "../components/Register.jsx"
@@ -31,6 +32,7 @@ const routesUser = [
     {path:"updateProfil/:userId", component:<UpdateProfil />, auth:"user"},
     {path:"updatePassword/:userId", component:<UpdatePassword />, auth:"user"},
     {path:"logout", component:<Logout />, auth:"user"},
+    {path:"cart", component:<Cart />},
     {path:"article/:articleId", component:<Article />},
     {path:"product/:productId", component:<Product />},
     {path:"shop", component:<Shop />},

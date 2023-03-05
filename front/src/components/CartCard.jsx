@@ -4,16 +4,21 @@ import { NavLink, Navigate } from "react-router-dom"
 import { StoreContext } from "../tools/context.js"
 import axios from "axios"
 
-const ProductCard = ({data, setProductList, productList, index})=>{
+const CartCard = ({data, setProductList, productList, index})=>{
     const [quantity, setQuantity] = useState(0)
     const [state, dispatch] = useContext(StoreContext);
-    const [isChange, setIsChange] = useState(false)
     
     const handleChange = (e) =>{
         if(e.target.value >= data.stock || e.target.value + data.quantity >= data.stock || e.target.value < 0){
             return
         }
-        setQuantity(Number(e.target.value))
+        let newProductList = productList
+        newProductList.map(product=>{
+            if(product.id===data.id){
+                return product.quantity = Number(e.target.value)
+            }
+        })
+        setProductList(newProductList)
     }
     
     const incre = () =>{
@@ -31,10 +36,7 @@ const ProductCard = ({data, setProductList, productList, index})=>{
     
     const addCart = () =>{
         
-        if(!state.isLogged){
-            setIsChange(true)
-            return
-        }else if(quantity === 0){
+        if(quantity === 0){
             return
         }
         
@@ -61,32 +63,30 @@ const ProductCard = ({data, setProductList, productList, index})=>{
         setQuantity(0)
     }
     
+    console.log(productList)
     return (
-        <div className="rounded overflow-hidden">
-        {isChange && <Navigate to="/login" replace={true} />}
-            <div>
-                <NavLink className="text-center" to={`/product/${data.id}`}>
-                    <img className="object-contain w-full h-full" 
+        <div className="rounded overflow-hidden h-48 w-full flex flex-row justify-between my-2">
+            <div className="object-contain w-full h-full">
+                <NavLink className="text-center w-auto" to={`/product/${data.id}`}>
+                    <img className="object-contain w-auto h-full" 
                         src={`${BASE_IMG}/${data.url}`} alt={data.caption} />
                 </NavLink>
             </div>
-            <div className="bg-gray-100 p-2">
-                <h5>
+            <div className="bg-gray-100 px-4 w-full">
+                <h2>
                     {data.name}
-                </h5>
-                <div>
-                    <div className="flex flex-cols justify-between">
-                        <div>
-                            <button className="w-10 h-8" onClick={decre}>-</button>
-                            <input type="number" value={quantity} className="w-16 h-8" onChange={handleChange}/>
-                            <button className="w-10 h-8" onClick={incre}>+</button>
-                            
-                        </div>
-                        <button onClick={()=>{addCart()}}>Ajouter</button>
-                    </div>
+                </h2>
+                <div className="flex flex-row justify-between">
+                    
                     <div>
                         <p>Stockage: {data.stock}</p>
                         <h5>Prix: {data.price}€</h5>
+                    </div>
+                    <div className="flex flex-cols justify-between">
+                        <div>
+                            <input type="number" value={data.quantity} className="w-16 h-8" onChange={(e)=>handleChange(e)}/>
+                        </div>
+                        <button onClick={()=>{addCart()}}>Ajouter</button>
                     </div>
                 </div>
             </div>
@@ -94,4 +94,4 @@ const ProductCard = ({data, setProductList, productList, index})=>{
     )
 }
 
-export default ProductCard
+export default CartCard

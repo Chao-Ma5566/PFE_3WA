@@ -53,7 +53,14 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 cart: action.payload,
-            }    
+            }
+        
+        case "GET_CART_ITEMS":
+            
+            return {
+                ...state,
+                cartItems: action.payload,
+            }
 
         default:
             return state
