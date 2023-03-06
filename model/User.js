@@ -16,7 +16,7 @@ class User {
         }
             
         try{
-            const dataBDD = await this._emailExist(email) 
+            let dataBDD = await this._emailExist(email) 
             
             if(!dataBDD[0]){
                 return {response: "email ou mot de passe invalide"}
@@ -26,7 +26,6 @@ class User {
             
             if(passwordIsValide){
                 await this.updateLogintimeById(dataBDD[0].id)
-                console.log(dataBDD[0].id)
                 return{response: passwordIsValide, data:dataBDD}
             }
             
@@ -34,12 +33,14 @@ class User {
         } catch (err){
             return {error: err}
         }
-            
     }
     
     async _emailExist(email){
         try {
-            const sql = "SELECT first_name, last_name, id, email, password, role_id FROM users WHERE email = ?"
+            const sql = `SELECT first_name, last_name, users.id AS id, email, password, role_id, cart.id AS cart_id 
+            FROM users
+            JOIN cart ON users.id = cart.user_id
+            WHERE email = ?`
             const response  = await this.asyncQuery(sql,[email])
             if(response.length > 0) return response
             return false

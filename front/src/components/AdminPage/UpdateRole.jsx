@@ -10,7 +10,6 @@ const UpdateRole = (props) => {
     useEffect(() => {
         axios.get(`${BASE_URL}/admin/users`)
             .then(function(response) {
-                console.log(response.data.data)
                 setUserList(response.data.data);
             })
             .catch(function(error) {

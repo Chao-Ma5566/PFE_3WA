@@ -10,46 +10,26 @@ const Cart = () => {
     const [isLoading, setIsLoading] = useState(true)
     
     useEffect( () => {
-            if (state.cartItems.length > 0){
-                setIsLoading(false)
+        //check quantity is passed stock or not?
+            let checkQuantity = false
+            state.cartItems.forEach(item=>{
+                if(item.quantity > item.stock){
+                    checkQuantity = true
+                }
+            })
+            if(checkQuantity){
+                let newList = state.cartItems
+                newList = newList.map(item=>{
+                    if(item.quantity > item.stock){
+                        return {...item, quantity: item.stock}
+                    }else{
+                        return item
+                    }
+                })
+                dispatch({ type: "GET_CART_ITEMS", payload: newList});
             }
-            else if(state.products.length > 0 || state.cartItems === []) {
-               getCartItemsArray();
-               setIsLoading(false)
-            }
-            else {
-               setIsLoading(true);
-                axios
-                  .get(`${BASE_URL}/products`)
-                  .then(function (response) {
-                    dispatch({ type: "PRODUCTLIST", payload: response.data.data.result});
-                    getCartItemsArray();
-                  })
-                  .catch(function (error) {
-                    console.log(error);
-                  })
-                  .finally(()=>setIsLoading(false))
-              }
+            setIsLoading(false)
     }, []);
-    
-    
-    const getCartItemsArray =  () => {
-        const data =  state.cart.map(item => {
-        const product = state.products.find(p => p.id === item.product_id);
-        return {
-            id: product.id,
-            url: product.url,
-            stock: Number(product.stock),
-            name: product.name,
-            price: product.price,
-            quantity: Number(item.quantity),
-            caption: product.caption
-        };
-        });
-        console.log(data)
-        dispatch({ type: "GET_CART_ITEMS", payload: data});
-        setIsLoading(false)
-    }
     
     const getCartSum =  () => {
         let sum = 0
@@ -59,26 +39,6 @@ const Cart = () => {
         return sum.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })
     }
     
-    // const incre = (index) =>{
-    //     //check quantity in his chart
-    //     // if(e.targer.value >= cartItems[index].stock || quantity + data.quantity >= data.stock){
-    //     //     return
-    //     // }
-    //     let newList = state.cartItems
-    //     newList[index].quantity = newList[index].quantity + 1
-    //     console.log(newList)
-    //     dispatch({ type: "GET_CART_ITEMS", payload: newList});
-    // }
-    // const decre = (index) =>{
-    //     // if(quantity > 0){
-    //     //     setQuantity(quantity-1)
-    //     // }
-    //     let newList = state.cartItems
-    //     newList[index].quantity = newList[index].quantity - 1
-    //     console.log(newList)
-    //     dispatch({ type: "GET_CART_ITEMS", payload: newList});
-    // }
-    console.log()
     
     if(isLoading){
         // return <div>{!state.is Logged && <Navigate to="/login" replace={true} />}Loading...</div>
@@ -105,7 +65,7 @@ const Cart = () => {
               <thead className="">
                 <tr className="bg-neutral-100 rounded overflow-hidden">
                   <th className="py-4 text-lg">Photo</th>
-                  <th className="py-4 text-lg">Nom du produits</th>
+                  <th className="py-4 text-lg">Nom du produit</th>
                   <th className="py-4 text-lg">Quantité</th>
                   <th className="py-4 text-lg">Prix</th>
                   <th className="py-4 text-lg">Supprimer</th>
@@ -114,7 +74,7 @@ const Cart = () => {
               <tbody className="overscroll-auto overflow-y-scroll">
               {state.cartItems.map((product, i) => {
                     return (
-                        <CartCard product={product} index={i} />
+                        <CartCard product={product} index={i} key={i}/>
                 )})}
               </tbody>
               <tfoot className="sticky bottom-0 py-8">

@@ -4,13 +4,13 @@ import { NavLink, Navigate } from "react-router-dom"
 import { StoreContext } from "../tools/context.js"
 import axios from "axios"
 
-const ProductCard = ({data, setProductList, productList, index})=>{
+const ProductCard = ({data, index})=>{
     const [quantity, setQuantity] = useState(0)
     const [state, dispatch] = useContext(StoreContext);
     const [isChange, setIsChange] = useState(false)
     
     const handleChange = (e) =>{
-        if(e.target.value >= data.stock || e.target.value + data.quantity >= data.stock || e.target.value < 0){
+        if(e.target.value > data.stock || e.target.value < 0){
             return
         }
         setQuantity(Number(e.target.value))
@@ -18,7 +18,7 @@ const ProductCard = ({data, setProductList, productList, index})=>{
     
     const incre = () =>{
         //check quantity in his chart
-        if(quantity >= data.stock || quantity + data.quantity >= data.stock){
+        if(quantity >= data.stock){
             return
         }
         setQuantity(quantity+1)
@@ -38,20 +38,33 @@ const ProductCard = ({data, setProductList, productList, index})=>{
             return
         }
         
-        let newProductList = productList
-        if(newProductList[index].quantity){
-            newProductList[index].quantity += quantity
+        const productIndex = state.cartItems.findIndex(product=>
+            product.id === data.id
+        )
+        if(productIndex === -1){
+            let newProductList = state.cartItems
+            const newData = {
+                id: data.id, 
+                url: data.url, 
+                stock: data.stock, 
+                name: data.name,
+                price: data.price,
+                quantity: quantity,
+                caption:data.caption
+            }
+            newProductList.push(newData)
+            dispatch({type:"GET_CART_ITEMS", payload: newProductList})
         }else{
-            newProductList[index].quantity = quantity
+            let newProductList = state.cartItems
+            newProductList[productIndex].quantity += quantity
+            dispatch({type:"GET_CART_ITEMS", payload: newProductList})
         }
-        setProductList(newProductList)
-        dispatch({type:"PRODUCTLIST", payload: productList})
-        console.log(data.quantity)
-        dispatch({type:"ADD_CART", payload: {product_id: data.id, quantity:quantity}})
+        
         axios.post(`${BASE_URL}/addCart`,{
             user_id: state.user.id, 
             product_id: data.id,
-            quantity: quantity
+            quantity: quantity,
+            cart_id: state.user.cart_id
         })
         .then(res=>{
             console.log(res)

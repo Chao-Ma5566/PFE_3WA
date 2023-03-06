@@ -76,7 +76,6 @@ const UpdateCollection = (props) => {
         setIsSure(!isSure)
     }
     
-    console.log(collectionInfo)
     
     if(isLoading){
         return <div>Loading....</div>

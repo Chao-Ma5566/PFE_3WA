@@ -19,7 +19,7 @@ const generateResponse = async (userDataSQL) => {
         nom:userDataSQL.last_name,
         prenom:userDataSQL.first_name,
         email:userDataSQL.email,
-        
+        cart_id:userDataSQL.cart_id,
         user:true,
         admin
     }

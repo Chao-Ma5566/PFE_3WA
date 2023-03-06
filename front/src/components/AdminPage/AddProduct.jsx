@@ -24,13 +24,9 @@ const AddProduct = (props) => {
     const [isChangePage, setIsChangePage] = useState(false)
     const [collectionList, setCollectionList] = useState([])
     
-    console.log(productInfo)
-    console.log(collectionList)
-    
     useEffect(() => {
         axios.get(`${BASE_URL}/admin/collection`)
             .then(function(response) {
-                console.log(response.data.data)
                 setCollectionList(response.data.data.result);
             })
             .catch(function(error) {
@@ -43,7 +39,6 @@ const AddProduct = (props) => {
         
         const dataFile = new FormData();
         const files = {...e.target.img.files};
-        console.log(files)
 
         if(!checkVide(productInfo)){
             setMessageErr("Champ obligatoire vide") 
@@ -63,7 +58,6 @@ const AddProduct = (props) => {
             return
         }
         
-        console.log(files[0])
         dataFile.append('files', files[0], files[0].name)
         dataFile.append('name', productInfo.name)
         dataFile.append('description', productInfo.description)
@@ -111,7 +105,7 @@ const AddProduct = (props) => {
         let newInfo = { ...productInfo, [e.target.name]: e.target.value }
         setProductInfo(newInfo)
     }
-    console.log(productInfo)
+    
     return (
         <div className="container-admin">
             {isChangePage && <Navigate to="/admin/produits" replace={true} />}

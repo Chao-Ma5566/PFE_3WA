@@ -17,7 +17,6 @@ const PrivateRoute = ({children, auth = null}) => {
     // On recupere les variable qui permette de savoir si l'utilisateur est connecter et/ou admin
     const {admin} = user;
     
-    
     useEffect(() => {
         // on verrifie que l'utilisateur n'est pas deja connecter
         if(!isLogged){
@@ -46,7 +45,6 @@ const PrivateRoute = ({children, auth = null}) => {
     const isLimitedToAdmin = auth === "admin";
     // On verrifie si a route est reserver au utilisateur connecter
     const isLimitedToConnected = auth === "user";
-    
     // si il n'y a pas de restriction sur cette route
     const isPublic = auth === null
   

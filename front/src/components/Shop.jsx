@@ -38,9 +38,7 @@ const Shop = () =>{
         <div className="w-full h-full grid grid-cols-4 gap-2 m-2 overscroll-auto">
             {productList.map((product,i)=>{
                return <ProductCard 
-                    data={product} 
-                    setProductList={setProductList} 
-                    productList={productList} 
+                    data={product}
                     key={i}
                     index={i}
                     />

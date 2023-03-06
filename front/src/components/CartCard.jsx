@@ -5,27 +5,66 @@ import { StoreContext } from "../tools/context.js"
 import axios from "axios"
 
 const CartCard = ({ product, index }) => {
+    
     const [state, dispatch] = useContext(StoreContext);
-
 
     const incre = (index) =>{
         //check quantity in his chart
-        // if(e.targer.value >= cartItems[index].stock || quantity + data.quantity >= data.stock){
-        //     return
-        // }
+        if(product.quantity >= product.stock){
+            return
+        }
         let newList = state.cartItems
         newList[index].quantity = newList[index].quantity + 1
         console.log(newList)
         dispatch({ type: "GET_CART_ITEMS", payload: newList});
+        axios.post(`${BASE_URL}/addCart`,{
+            user_id: state.user.id, 
+            product_id: product.id,
+            cart_id: state.user.cart_id, 
+            quantity: 1
+        })
+        .then(res=>{
+            console.log(res)
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+    
+    const deleteProduct = ()=>{
+        let newList = state.cartItems
+        newList = newList.filter(item=>item.id !==product.id)
+        dispatch({ type: "GET_CART_ITEMS", payload: newList});
+            axios.post(`${BASE_URL}/deleteProductCart`,{
+            cart_id: state.user.cart_id, 
+            product_id: product.id,
+        })
+            .then(res=>{
+                console.log(res)
+            }).catch(err=>{
+                console.log(err)
+            })
     }
     const decre = (index) =>{
-        // if(quantity > 0){
-        //     setQuantity(quantity-1)
-        // }
-        let newList = state.cartItems
-        newList[index].quantity = newList[index].quantity - 1
-        console.log(newList)
-        dispatch({ type: "GET_CART_ITEMS", payload: newList});
+        //if quantity === 0
+        if(product.quantity ===1 ){
+            deleteProduct()
+        }else{
+            let newList = state.cartItems
+            newList[index].quantity = newList[index].quantity - 1
+            console.log(newList)
+            dispatch({ type: "GET_CART_ITEMS", payload: newList});
+            axios.post(`${BASE_URL}/addCart`,{
+                user_id: state.user.id, 
+                product_id: product.id,
+                cart_id: state.user.cart_id, 
+                quantity: -1
+            })
+            .then(res=>{
+                console.log(res)
+            }).catch(err=>{
+                console.log(err)
+            })
+        }    
     }
 
 
@@ -53,7 +92,7 @@ const CartCard = ({ product, index }) => {
                 <p>{(product.quantity*product.price).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</p>
             </td>
             <td className="text-center">
-                <button className="py-2 px-4 rounded bg-gray-900 hover:bg-primary">X</button>
+                <button onClick={deleteProduct} className="py-2 px-4 rounded bg-gray-900 hover:bg-primary">X</button>
             </td>
         </tr>
     )

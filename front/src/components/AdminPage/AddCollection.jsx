@@ -31,7 +31,6 @@ const AddCollection = (props) => {
     }
     const handleChange = (e) => {
         setMessageErr("")
-        console.log(collectionInfo)
         if(!lengthLimit(e.target.value)){
             setMessageErr("Tous les infos sont limit à 250 caractères") 
         }

@@ -31,7 +31,6 @@ const Login = () => {
         }
         axios.post(`${BASE_URL}/login`,{password:info.password, email:info.email})
             .then(res => {
-                console.log(res.data.response.response)
                 if(res.data.response.response) {
                     console.log(res)
                     dispatch({ type: "LOGIN", payload: res.data.response.response})
@@ -50,7 +49,7 @@ const Login = () => {
                 console.log(err)
             })
     }
-    console.log(state)
+    console.log({state,messageErr})
     return(
         <div>
         {state.isLogged ? 
@@ -63,7 +62,7 @@ const Login = () => {
                 <input type='text' name='email' value={info.email} onChange={handleChange} placeholder='email' />
                 <input type='password' name='password' value={info.password} onChange={handleChange} placeholder='password' />
                 <button type="submit">Me Connecter</button>
-                {messageErr.length > 0 && <p>{messageErr}</p>}
+                {(messageErr && messageErr.length > 0) && <p>{messageErr}</p>}
             
             </form>
             <div>

@@ -18,7 +18,6 @@ const CollectionList = (props) => {
             });
     }, [])
     
-    console.log(productList)
     return (
         <div className="container-admin">
             <div className="admin-header flex justify-between">

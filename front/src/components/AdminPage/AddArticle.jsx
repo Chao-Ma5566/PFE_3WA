@@ -11,13 +11,11 @@ const AddArticle = (props) => {
     const [messageErr, setMessageErr] = useState("")
     const [isChangePage, setIsChangePage] = useState(false)
     
-    console.log(articleInfo)
     const handleSubmit = (e) => {
         e.preventDefault()
         
         const dataFile = new FormData();
         const files = {...e.target.img.files};
-        console.log(files)
 
         if(!checkVide(articleInfo)){
             setMessageErr("Champ obligatoire vide") 
@@ -27,7 +25,6 @@ const AddArticle = (props) => {
             setMessageErr("Une photo obligatoire")
             return
         }
-        console.log(files[0])
         dataFile.append('files', files[0], files[0].name)
         dataFile.append('title', articleInfo.title)
         dataFile.append('content', articleInfo.content)

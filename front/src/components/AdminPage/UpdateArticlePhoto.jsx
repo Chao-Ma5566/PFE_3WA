@@ -28,21 +28,18 @@ const handleSubmit = (e) => {
         }
         const dataFile = new FormData();
         const files = {...e.target.img.files};
-        console.log(files)
 
         if(!checkVide(articleInfo.caption)){
             setMessageErr("Champ obligatoire vide") 
             return
         }
         
-        console.log(files[0])
         dataFile.append('files', files[0], files[0].name)
         dataFile.append('caption', articleInfo.caption)
         dataFile.append('id', articleId)
         
         axios.post(`${BASE_URL}/admin/updateArticlePhoto`, dataFile)
         .then(res=>{
-            console.log(res)
             if(res.data.data.result.affectedRows > 0){
                 setIsChangePage(true)
                 return

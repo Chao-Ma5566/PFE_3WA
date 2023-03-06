@@ -22,6 +22,8 @@ import UpdateCollection from "../components/AdminPage/UpdateCollection.jsx"
 import ProductsList from "../components/AdminPage/ProductsList.jsx"
 import UpdateProduct from "../components/AdminPage/UpdateProduct.jsx"
 import UpdateProductPhoto from "../components/AdminPage/UpdateProductPhoto.jsx"
+import CommandesList from "../components/AdminPage/CommandesList.jsx"
+import PromosList from "../components/AdminPage/PromosList.jsx"
 
 
 
@@ -53,6 +55,8 @@ const routesAdmin = [
     {path:"/admin/updateCollection/:collectionId", component:<UpdateCollection />, auth:"admin"},
     {path:"/admin/updateProduct/:productId", component:<UpdateProduct />, auth:"admin"},
     {path:"/admin/updateProductPhoto/:productId", component:<UpdateProductPhoto />, auth:"admin"},
+    {path:"/admin/commandes", component:<CommandesList />, auth:"admin"},
+    {path:"/admin/promos", component:<PromosList />, auth:"admin"},
     
 ]
 

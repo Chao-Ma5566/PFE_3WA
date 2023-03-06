@@ -11,7 +11,6 @@ const CollectionList = (props) => {
     useEffect(() => {
         axios.get(`${BASE_URL}/admin/collection`)
             .then(function(response) {
-                console.log(response.data.data)
                 setCollectionList(response.data.data.result);
             })
             .catch(function(error) {
@@ -19,7 +18,6 @@ const CollectionList = (props) => {
             });
     }, [])
     
-    console.log(collectionList)
     return (
         <div className="container-admin">
             <div className="admin-header flex justify-between">
