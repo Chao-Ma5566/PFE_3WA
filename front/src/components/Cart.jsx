@@ -2,7 +2,7 @@ import {useEffect,useContext,useState} from 'react'
 import axios from 'axios'
 import { StoreContext } from "../tools/context.js"
 import {BASE_URL, BASE_IMG} from "../tools/constante.js"
-import { NavLink, Navigate } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import CartCard from "./CartCard.jsx"
 
 const Cart = () => {
@@ -10,26 +10,31 @@ const Cart = () => {
     const [isLoading, setIsLoading] = useState(true)
     
     useEffect( () => {
-        //check quantity is passed stock or not?
-            let checkQuantity = false
-            state.cartItems.forEach(item=>{
-                if(item.quantity > item.stock){
-                    checkQuantity = true
-                }
-            })
-            if(checkQuantity){
-                let newList = state.cartItems
-                newList = newList.map(item=>{
-                    if(item.quantity > item.stock){
-                        return {...item, quantity: item.stock}
-                    }else{
-                        return item
-                    }
-                })
-                dispatch({ type: "GET_CART_ITEMS", payload: newList});
-            }
             setIsLoading(false)
     }, []);
+    
+    useEffect(() => {
+        if (!isLoading) {
+            let checkQuantity = false
+            let newList = state.cartItems.map(item => {
+                if (item.quantity > item.stock) {
+                    checkQuantity = true
+                    axios.post(`${BASE_URL}/addCart`,{
+                        user_id: state.user.id, 
+                        product_id: item.id,
+                        cart_id: state.user.cart_id, 
+                        quantity: item.stock-item.quantity
+                    })
+                    return { ...item, quantity: item.stock }
+                } else {
+                    return item
+                }
+            })
+            if (checkQuantity) {
+                dispatch({ type: "GET_CART_ITEMS", payload: newList });
+            }
+        }
+    }, [state.cartItems, dispatch, isLoading]);
     
     const getCartSum =  () => {
         let sum = 0
