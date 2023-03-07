@@ -20,7 +20,12 @@ module.exports = {
        neutral : {
        50 : "#fafafa",
        100 : "#f5f5f5"
-       }
+       },
+       green: {
+       500: "#00b0a6",
+       800: "#008290"
+       },
+       yellow: "#e1aa12",
       }, 
     extend: {},
   },

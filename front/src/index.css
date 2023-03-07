@@ -26,10 +26,9 @@
   .container-admin {
     @apply px-4 md:px-16 text-gray-100 w-full border-gray-500 overflow-auto;
   }
+  .valided{
+    @apply opacity-50 line-through;
 }
-
-* {
-  box-sizing: border-box;
 }
 
 body {
@@ -54,11 +53,4 @@ code {
   height: 100%;
   margin: 0 16px;
   background-color: #bbbbbb;
-}
-.valided{
-  opacity:0.5;
-  text-decoration:line-through
-}
-img{
-  width:40%;
 }
