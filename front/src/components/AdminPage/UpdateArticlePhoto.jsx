@@ -33,7 +33,10 @@ const handleSubmit = (e) => {
             setMessageErr("Champ obligatoire vide") 
             return
         }
-        
+        if(files[0]===undefined){
+            setMessageErr("Une photo obligatoire")
+            return
+        }
         dataFile.append('files', files[0], files[0].name)
         dataFile.append('caption', articleInfo.caption)
         dataFile.append('id', articleId)

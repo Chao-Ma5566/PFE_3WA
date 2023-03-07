@@ -16,7 +16,6 @@ const UpdateProductPhoto = (props) => {
         axios.post(`${BASE_URL}/getProductById`, { id: productId })
             .catch(err => console.log(err))
             .then(res => {
-                console.log(res)
                 setProductInfo(res.data.data.result[0])
         })
             .then(res => setIsLoading(false))
@@ -26,17 +25,20 @@ const handleSubmit = (e) => {
         e.preventDefault()
         if(messageErr.length > 0){
             return
-        }
-        const dataFile = new FormData();
-        const files = {...e.target.img.files};
-        console.log(files)
-
-        if(!checkVide(productInfo.caption)){
+        }else if(!checkVide(productInfo.caption)){
             setMessageErr("Champ obligatoire vide") 
             return
         }
         
-        console.log(files[0])
+        const dataFile = new FormData();
+        const files = {...e.target.img.files};
+        console.log(files)
+
+        if(files[0]===undefined){
+            setMessageErr("Une photo obligatoire")
+            return
+        }
+        
         dataFile.append('files', files[0], files[0].name)
         dataFile.append('caption', productInfo.caption)
         dataFile.append('id', productId)

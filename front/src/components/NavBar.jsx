@@ -21,6 +21,10 @@ const NavBar = (props) => {
         window.addEventListener("scroll", onScroll);
 
         return () => window.removeEventListener("scroll", onScroll);
+    }, [state.cartSum])
+    
+    useEffect(() => {
+        dispatch({type:"GET_CART_ITEMS", payload: state.cartItems})
     }, [])
     
     const handlenMenu = () => {
@@ -28,7 +32,7 @@ const NavBar = (props) => {
     }
     
     return (
-            <nav className= {`sticky relative max-x-screen px-2 h-18 top-0 ${scrolled ? "bg-neutral-50": ""}`}>
+            <nav className= {`sticky relative max-x-screen px-2 h-18 top-0 ${scrolled ? "shadow bg-neutral-50": ""}`}>
                 <div className={`flex flex-row justify-between items-center relative ${scrolled ? "top-1": "py-4"}`}>
                     <div className="w-16">
                         <NavLink className="flex flex-col items-center" to="/" title="Three Body Home">
@@ -36,20 +40,20 @@ const NavBar = (props) => {
                         </NavLink>
                     </div >
                     <div className="flex flex-row gap-2 mr-4">
-                        <NavLink className="flex flex-col items-center" to={`/profil/${state.user.id}`}>
+                        <NavLink className="flex flex-col items-center" to={state.isLogged ? `/profil/${state.user.id}` : "/login"}>
                             <img className="hover:bg-green-500 rounded-full p-2" src={profil} alt="Profil Icon" />
                         </NavLink>
                         <NavLink className="flex flex-row items-center relative" to={`/cart`}>
                             <img className="hover:bg-green-500 rounded-full p-2 relative" src={cart} alt="Cart Icon" />
-                            <p className={state.cartSum === 0 ? "hidden" : "relative z-10 rounded-full bg-yellow text-neutral-50 text-xs px-1 translate-y-2 -translate-x-4" }>{state.cartSum}</p>
+                            <p className={state.cartSum === 0 ? "hidden" : "rounded-full bg-yellow text-neutral-50 text-xs px-1 translate-y-2 -translate-x-4" }>{state.cartSum}</p>
                         </NavLink>
                         <div>
-                            <img className="ease-in-out rounded-full p-2" onClick={handlenMenu} src={bugerMenuOpen? close : burger} alt="Menu burger icon" />
+                            <img className="ease-in-out rounded-full p-2 relative z-20" onClick={handlenMenu} src={bugerMenuOpen? close : burger} alt="Menu burger icon" />
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div className={bugerMenuOpen ? "hi":""}>
+                <div className={bugerMenuOpen ? "fixed inset-0 top-0 right-0 left-0 bottom-0 p-4":"hidden"}>
+                    <div className="bg-green-500 h-full w-full relative z-10">
                     </div>
                 </div>
                 {/*<div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
