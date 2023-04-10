@@ -19,7 +19,8 @@ module.exports = {
        primary: "#FC5E64",
        neutral : {
        50 : "#fafafa",
-       100 : "#f5f5f5"
+       100 : "#f5f5f5",
+       500: "#737373"
        },
        green: {
        500: "#00b0a6",
@@ -27,7 +28,11 @@ module.exports = {
        },
        yellow: "#e1aa12",
       }, 
-    extend: {},
+    extend: {
+        boxShadow: {
+        'lg': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+      }
+    },
   },
   plugins: [],
 }

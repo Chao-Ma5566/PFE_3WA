@@ -66,7 +66,7 @@ const Cart = () => {
             <div className="border-b-2 border-gray-100 mb-4 py-8">
                 <h2>Votre Panier: </h2>
             </div>
-            <table className="table-fixed w-full max-h-96">
+            <table className="table-fixed w-full text-sx max-h-96 md:text-base">
               <thead className="">
                 <tr className="bg-neutral-100 rounded overflow-hidden">
                   <th className="py-4 text-lg">Photo</th>
@@ -82,13 +82,13 @@ const Cart = () => {
                         <CartCard product={product} index={i} key={i}/>
                 )})}
               </tbody>
-              <tfoot className="sticky bottom-0 py-8">
+              <tfoot className="bottom-0 py-8 rounded overflow-hidden">
                 <tr className="bg-gray-100 rounded overflow-hidden py-2">
-                    <td ></td>
+                    <td className="rounded overflow-hidden" ></td>
                     <td ></td>
                     <td className="text-center">Total:</td>
                     <td className="text-center">{getCartSum()}</td>
-                    <td className="text-center py-2 px-4 rounded bg-primary text-gray-100 my-2 hover:bg-gray-800">COMMANDER</td>
+                    <td className="text-center py-2 px-2 rounded bg-primary text-gray-100 my-2 hover:bg-gray-800">Commander</td>
                 </tr>
             </tfoot>
             </table>

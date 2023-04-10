@@ -32,10 +32,10 @@ const AdminSidebar = (props) => {
   }
   
   return (
-    <nav className="flex flex-col max-h-screen gap-y-1 items-center py-4 w-36 bg-gray-900 text-gray-700">
+    <nav className="flex flex-col max-h-screen h-screen gap-y-1 items-center py-4 w-32 bg-gray-900 text-gray-700">
       <div>
         <NavLink className="flex flex-col items-center" to={`/admin`}>
-          <img className="fill-gray-500" src={logo} alt="Logo Three Body" />
+          <img className="fill-gray-500 h-10" src={logo} alt="Logo Three Body" />
         </NavLink>
       </div>
       {routeList.map((item, i) => {
