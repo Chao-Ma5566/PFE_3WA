@@ -32,9 +32,9 @@ const AdminSidebar = (props) => {
   }
   
   return (
-    <nav className="flex flex-col max-h-screen h-screen gap-y-1 items-center py-4 w-32 bg-gray-900 text-gray-700">
+    <nav className="flex flex-col justify-between max-h-screen h-screen items-center py-4 w-32 bg-gray-900 text-gray-700">
       <div>
-        <NavLink className="flex flex-col items-center" to={`/admin`}>
+        <NavLink className="flex flex-col flex-auto items-center" to={`/admin`}>
           <img className="fill-gray-500 h-10" src={logo} alt="Logo Three Body" />
         </NavLink>
       </div>
@@ -43,7 +43,7 @@ const AdminSidebar = (props) => {
           <div key={i} className={`p-2 w-24 my-1 mx-3 rounded-xl
               ${activeIcon===item ? "bg-primary" : "bg-gray-500"}`}>
             <NavLink 
-              className="flex flex-col items-center" 
+              className="flex flex-col flex-auto items-center" 
               to={`/admin/${item.toLowerCase()}`}
               onClick={()=>changeActive(item)}  
             >

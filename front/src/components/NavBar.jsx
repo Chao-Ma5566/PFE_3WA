@@ -17,6 +17,7 @@ const NavBar = (props) => {
     const [scrolled, setScrolled] = useState(false);
     const [bugerMenuOpen, setBurgerMenuOpen] = useState(false)
     const [viewWidth, setViewWidth] = useState(window.innerWidth)
+    const [contactOpen, setContactOpen] = useState(true);
     
     useEffect(() => {
         const onScroll = () => {
@@ -40,6 +41,10 @@ const NavBar = (props) => {
     
     const handlenMenu = () => {
         setBurgerMenuOpen(!bugerMenuOpen)
+    }
+    
+    const openContact = () => {
+        setContactOpen(!contactOpen)
     }
     
     return (
@@ -69,10 +74,30 @@ const NavBar = (props) => {
                 </div>
                 ) : (
                 <div className="mx-auto px-2 lg:px-8">
-                    <div className="fixed bottom-4 right-4">
-                        <div className="bg-green-500 rounded-full w-12 h-12 flex justify-center items-center drop-shadow ">
-                            <img src={contact} className="full-neutral-50" alt="Contactez-Nous" />
+                    <div className="fixed bottom-8 right-4 z-50" onClick={openContact}>
+                        <div className="cursor-pointer bg-green-500 hover:bg-yellow rounded-full w-12 h-12 flex justify-center items-center drop-shadow">
+                            <img src={contact} className="stroke-neutral-50" alt="Contactez-Nous" />
                         </div>
+                    </div>
+                    <div className={contactOpen ? "hidden" : "fixed bottom-24 right-4"} onClick={openContact}>
+                        <a href="mailto:contact.us@threebody.com" className="cursor-pointer bg-green-500 hover:bg-yellow rounded-full w-12 h-12 flex justify-center items-center" title="Notre Mail" >
+                            <img src={mail} alt="Notre Mail" />
+                        </a>
+                    </div>
+                    <div className={contactOpen ? "hidden" : "fixed bottom-40 right-4"} onClick={openContact}>
+                        <NavLink to="/location" title="Notre Localisation" className="cursor-pointer bg-green-500 hover:bg-yellow rounded-full w-12 h-12 flex justify-center items-center"  >
+                            <img src={map} alt="Notre Localisation" />
+                        </NavLink>
+                    </div>
+                    <div className={contactOpen ? "hidden" : "fixed bottom-56 right-4"} onClick={openContact}>
+                        <a target="_blank" rel="noreferrer" className="cursor-pointer bg-green-500 hover:bg-yellow rounded-full w-12 h-12 flex justify-center items-center" href="https://twitter.com/?lang=fr" title="Notre Twitter" >
+                            <img src={twitter} className="h-10 p-2" alt="Notre Twitter" />
+                        </a>
+                    </div>
+                    <div className={contactOpen ? "hidden" : "fixed bottom-72 right-4"} onClick={openContact}>
+                        <a target="_blank" rel="noreferrer" className="cursor-pointer bg-green-500 hover:bg-yellow rounded-full w-12 h-12 flex justify-center items-center" href="https://www.instagram.com/" title="Notre Instagram" >
+                            <img src={instagram} className="h-10 p-2" alt="Notre Instagram" />
+                        </a>
                     </div>
                     <div className="relative flex h-16 items-center justify-between">
                         <div className="w-10">
