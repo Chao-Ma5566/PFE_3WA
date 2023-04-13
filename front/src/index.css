@@ -28,7 +28,7 @@
   }
   .valided{
     @apply opacity-50 line-through;
-}
+} 
 }
 
 body {

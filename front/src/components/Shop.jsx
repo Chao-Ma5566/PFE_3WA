@@ -14,6 +14,18 @@ const Shop = () =>{
         if(state.products.length > 0){
             setProductList(state.products)
             setIsLoading(false)
+        }else if(!state.isLogged){
+            setIsLoading(true)
+            axios.get(`${BASE_URL}/products`)
+            .then(function(response) {
+                setProductList(response.data.data.result);
+            })
+            .catch(function(error) {
+                console.log(error);
+            })
+            .then(
+                setIsLoading(false)
+            )
         }else{
             setIsLoading(true)
             axios.get(`${BASE_URL}/relogged`)
@@ -35,7 +47,7 @@ const Shop = () =>{
         return <div>Loading...</div>
     }
     return (
-        <div className="w-full h-full grid grid-cols-4 gap-2 m-2 overscroll-auto">
+        <div className="w-full pt-4 max-w-screen overflow-hidden h-full px-4 grid grid-cols-1 lg:grid-cols-4 gap-2 overscroll-auto md:grid-cols-2">
             {productList.map((product,i)=>{
                return <ProductCard 
                     data={product}

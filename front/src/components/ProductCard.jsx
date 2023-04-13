@@ -98,7 +98,7 @@ const ProductCard = ({data, index})=>{
                         <button onClick={()=>{addCart()}}>Ajouter</button>
                     </div>
                     <div>
-                        <p>Stockage: {data.stock}</p>
+                        <p>En stock: {data.stock}</p>
                         <h5>Prix: {data.price}€</h5>
                     </div>
                 </div>

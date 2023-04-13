@@ -48,7 +48,8 @@ const NavBar = (props) => {
     }
     
     return (
-            <nav className= {`sticky max-x-screen h-18 top-0 ${scrolled ? "shadow bg-neutral-50 ": ""}`}>
+        <header>
+            <nav className= {`fixed w-full max-x-screen z-40 h-18 top-0 ${scrolled ? "shadow bg-neutral-50 ": ""}`}>
             {viewWidth <= 768 ? (
                 <div className={`flex flex-row justify-between items-center`}>
                     <div className="w-16">
@@ -106,19 +107,19 @@ const NavBar = (props) => {
                             </NavLink>
                         </div>
                         <div className="flex flex-row justify-around w-9/12 items-center mx-5">
-                             <NavLink  className="flex md:text-sm p-2 rounded justify-center hover:bg-neutral-500 hover:text-neutral-50" to="/" title="ABOUT US">
-                                ABOUT US
+                             <NavLink  className="flex md:text-sm p-2 rounded justify-center hover:bg-yellow hover:text-neutral-50" to="/" title="HomePage">
+                                HOME
                             </NavLink>
-                            <NavLink  className="flex md:text-sm p-2 rounded justify-center hover:bg-neutral-500 hover:text-neutral-50" to="/" title="COLLECTION">
+                            <NavLink  className="flex md:text-sm p-2 rounded justify-center hover:bg-yellow hover:text-neutral-50" to="/collection" title="COLLECTION">
                                 COLLECTION
                             </NavLink>
-                            <NavLink  className="flex md:text-sm p-2 rounded justify-center hover:bg-neutral-500 hover:text-neutral-50" to="/" title="DESIGNER">
-                                DESIGNER
+                            <NavLink  className="flex md:text-sm p-2 rounded justify-center hover:bg-yellow hover:text-neutral-50" to="/contact" title="CONTACT">
+                                CONTACT
                             </NavLink>
-                            <NavLink  className="flex md:text-sm p-2 rounded justify-center hover:bg-neutral-500 hover:text-neutral-50" to="/" title="ACTUALITES">
+                            <NavLink  className="flex md:text-sm p-2 rounded justify-center hover:bg-yellow hover:text-neutral-50" to="/articles" title="ACTUALITES">
                                 ACTUALITES
                             </NavLink>
-                            <NavLink  className="flex md:text-sm p-2 rounded justify-center  mr-3 hover:bg-neutral-500 hover:text-neutral-50" to="/shop" title="E-COMMERCE">
+                            <NavLink  className="flex md:text-sm p-2 rounded justify-center  mr-3 hover:bg-yellow hover:text-neutral-50" to="/shop" title="E-COMMERCE">
                                 E-COMMERCE
                             </NavLink>
                         </div>
@@ -138,40 +139,40 @@ const NavBar = (props) => {
                 <div className={bugerMenuOpen ? "fixed overflow-hidden rounded-md inset-0 top-0 right-0 left-0 bottom-0 p-3":"hidden"}>
                     <div className="bg-neutral-50 overflow-hidden rounded-md h-full w-full relative z-50 flex flex-col justify-between drop-shadow">
                        <div></div>
-                       <div className="translate-y-36 tracking-wide">
-                           <NavLink onClick={handlenMenu} className="flex justify-center text-lg mb-3 hover:bg-neutral-100" to="/" title="ABOUT US">
-                                ABOUT US
+                       <div className="translate-y-36 tracking-wide z-50">
+                           <NavLink onClick={handlenMenu} className="flex justify-center text-lg mb-3 hover:bg-neutral-100 z-50" to="/" title="HomePage">
+                                HOME
                             </NavLink>
-                            <NavLink onClick={handlenMenu} className="flex justify-center text-lg mb-3 hover:bg-neutral-100" to="/" title="COLLECTION">
+                            <NavLink onClick={handlenMenu} className="flex justify-center text-lg mb-3 hover:bg-neutral-100 z-50" to="/collection" title="COLLECTION">
                                 COLLECTION
                             </NavLink>
-                            <NavLink onClick={handlenMenu} className="flex justify-center text-lg mb-3 hover:bg-neutral-100" to="/" title="DESIGNER">
-                                DESIGNER
+                            <NavLink onClick={handlenMenu} className="flex justify-center text-lg mb-3 hover:bg-neutral-100 z-50" to="/contact" title="CONTACT">
+                                CONTACT
                             </NavLink>
-                            <NavLink onClick={handlenMenu} className="flex justify-center text-lg mb-3 hover:bg-neutral-100" to="/" title="ACTUALITES">
+                            <NavLink onClick={handlenMenu} className="flex justify-center text-lg mb-3 hover:bg-neutral-100 z-50" to="/articles" title="ACTUALITES">
                                 ACTUALITES
                             </NavLink>
-                            <NavLink onClick={handlenMenu} className="flex justify-center text-lg mb-3 hover:bg-neutral-100" to="/shop" title="E-COMMERCE">
+                            <NavLink onClick={handlenMenu} className="flex justify-center text-lg mb-3 hover:bg-neutral-100 z-50" to="/shop" title="E-COMMERCE">
                                 E-COMMERCE
                             </NavLink>
                         </div>
                         <div className="h-52 w-screen scale-125 -translate-x-8 translate-y-56 px-20 rotate-12 bg-gradient-to-r from-green-500 to-yellow z-0 relative">
                         </div>
-                        <div className="z-10 -translate-y-10 flex flex-col justify-center">
+                        <div className="z-10 -translate-y-10 flex flex-col justify-center z-50">
                             <div className="text-center text-sm mb-2">
                                 Nous Contacter: 
                             </div>
                             <div className="grid grid-cols-4 px-24">
-                                <a href="mailto:contact.us@threebody.com" className="flex flex-col items-center" title="Notre Mail" >
+                                <a onClick={handlenMenu} href="mailto:contact.us@threebody.com" className="flex flex-col items-center" title="Notre Mail" >
                                     <img className="hover:bg-neutral-50 rounded-full p-2" src={mail} alt="Notre Mail" />
                                 </a>
-                                <NavLink className="flex flex-col items-center" to="/location" title="Notre Localisation">
+                                <NavLink onClick={handlenMenu} className="flex flex-col items-center" to="/location" title="Notre Localisation">
                                     <img className="hover:bg-neutral-50 rounded-full p-2" src={map} alt="Notre Localisation" />
                                 </NavLink>
-                                <a target="_blank" rel="noreferrer" className="flex flex-col items-center" href="https://twitter.com/?lang=fr" title="Notre Twitter">
+                                <a target="_blank" onClick={handlenMenu} rel="noreferrer" className="flex flex-col items-center" href="https://twitter.com/?lang=fr" title="Notre Twitter">
                                     <img className="hover:bg-neutral-50 rounded-full h-10 p-2" src={twitter} alt="Notre Twitter" />
                                 </a>
-                                <a target="_blank" rel="noreferrer" className="flex flex-col items-center" href="https://www.instagram.com/" title="Notre Instagram">
+                                <a target="_blank" onClick={handlenMenu} rel="noreferrer" className="flex flex-col items-center" href="https://www.instagram.com/" title="Notre Instagram">
                                     <img className="hover:bg-neutral-50 rounded-full h-10 p-2" src={instagram} alt="Notre Instagram" />
                                 </a>
                             </div>
@@ -180,6 +181,7 @@ const NavBar = (props) => {
                 </div>
                 
             </nav>
+        </header>    
         )
 }
 

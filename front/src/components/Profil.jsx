@@ -45,28 +45,32 @@ const Profil = (props) => {
     }
     
     return (
-        <div>
+        <div className="min-h-screen bg-gradient-to-t from-green-500 to-yellow px-4 pt-20">
             {isDelete && 
-                    <Navigate to={state.user.admin ? "/admin/users" : "/logout"} replace={true} /> 
+                <Navigate to={state.user.admin ? "/admin/users" : "/logout"} replace={true} /> 
             }
-            <h2>User Information</h2>
-            <NavLink to={`/updateProfil/${userId}`}>
-                <p>Modifier Info</p>
-            </NavLink>
-            <NavLink to={`/updatePassword/${userId}`}>
-                <p>Modifier Mots de Passe</p>
-            </NavLink>
-            <h3>Nom: {userInfo.last_name}</h3>
-            <h3>Prénom: {userInfo.first_name}</h3>
-            <p>User ID: {userInfo.id}</p>
-            <p>Email: {userInfo.email}</p>
-            <p>Date de naissance: {reformeDate(userInfo.birthday)}</p>
-            <p>Date d'inscription: {reformeDate(userInfo.registration_date)}</p>
-            <p>Dernière connexion: {reformeDate(userInfo.last_connection)}</p>
-            <button onClick={handleCheck}>Supprimer le compte</button>
-            {isSure && 
-                <ConfirmationWindow isOpen={handleCheck} deleteFunction={handleDelete} name="ce compte?" />
-            }    
+            <div className="p-8 max-h-screen bg-neutral-50 rounded-lg shadow lg:w-2/5 lg:mx-auto">
+                <h2 className="mb-12">User Information</h2>
+                <div className="flex justify-between mb-8 md:flex-col">
+                    <NavLink className="bg-green-500 px-4 py-1 rounded text-white hover:bg-green-800 md:w-32 md:text-center md:mb-4" to={`/updateProfil/${userId}`}>
+                        Modifier Info
+                    </NavLink>
+                    <NavLink className="bg-green-500 px-4 py-1 rounded text-white hover:bg-green-800 md:w-52 md:text-center" to={`/updatePassword/${userId}`}>
+                        Modifier Mots de Passe
+                    </NavLink>
+                </div>
+                <h3 className="mb-2">Nom: {userInfo.last_name}</h3>
+                <h3 className="mb-2">Prénom: {userInfo.first_name}</h3>
+                <p className="mb-2">User ID: {userInfo.id}</p>
+                <p className="mb-2">Email: {userInfo.email}</p>
+                <p className="mb-2">Date de naissance: {reformeDate(userInfo.birthday)}</p>
+                <p className="mb-2">Date d'inscription: {reformeDate(userInfo.registration_date)}</p>
+                <p className="mb-8">Dernière connexion: {reformeDate(userInfo.last_connection)}</p>
+                <button className="mb-8 py-1 px-4" onClick={handleCheck}>Supprimer le compte</button>
+                {isSure && 
+                    <ConfirmationWindow isOpen={handleCheck} deleteFunction={handleDelete} name="ce compte?" />
+                }
+            </div>
         </div>  
         )
 }

@@ -9,6 +9,7 @@ const Register = (props) => {
     const [userInfo, setUserInfo] = useState(initialValue)
     const [messageErr, setMessageErr] = useState("")
     const [isChangePage, setIsChangePage] = useState(false)
+    const [isFocused, setIsFocused] = useState(false);
     // const [isShowPassWord, setIsShowPassWord] = useState(false)
     
     const lower = new RegExp('(?=.*[a-z])')
@@ -39,9 +40,12 @@ const Register = (props) => {
             birthday: userInfo.birthday
         }).then(res=>{
             if(res.data.data.response.affectedRows > 0){
-                    setIsChangePage(true)
+                setIsChangePage(true)
                 }
             setMessageErr(res.data.data.response)
+            if(res.data.data.response){
+                return
+            }
         }).catch(err=>{
             console.log(err)
             return
@@ -58,10 +62,11 @@ const Register = (props) => {
     }
 
     return (
-        <div>
+        <div className="min-h-screen bg-gradient-to-t from-green-500 to-yellow flex flex-col justify-between gap-2 lg:items-center lg:pt-20">
             {isChangePage && <Navigate to="/login" replace={true} />}
-            <h5>Inscription</h5>
-            <form onSubmit={handleSubmit}>
+            
+            <form className="p-8 mt-12 bg-neutral-50 shadow m-4 rounded-lg lg:m-0 lg:w-3/5" onSubmit={handleSubmit}>
+            <h5 className="text-xl mb-10 lg:text-3xl">Inscription</h5>
                 <label htmlFor="nom">Nom: </label>
                 <input type="text" name="nom" value={userInfo.nom} placeholder="nom" onChange={(e)=>handleChange(e)} />
                 <label htmlFor="prenom">Prénom: </label>
@@ -69,36 +74,47 @@ const Register = (props) => {
                 <label htmlFor="email">Email: </label>
                 <input type="email" name="email" value={userInfo.email} placeholder="email" onChange={(e)=>handleChange(e)} />
                 <label htmlFor="password">Password: </label>
-                <input type="password" name="password" value={userInfo.password} placeholder="password" onChange={(e)=>handleChange(e)} />
+                <input 
+                    type="password" 
+                    onFocus={() => setIsFocused(true)} 
+                    onBlur={() => setIsFocused(false)} 
+                    name="password" value={userInfo.password} 
+                    placeholder="password" 
+                    onChange={(e)=>handleChange(e)} 
+                />
+                {isFocused && (
+                <div className="m-2">
+                <h5 className="text-lg">Le mot de passe doit comporter :</h5>
+                    <ul>
+                        <li className={length.test(userInfo.password) ? "valided" : "" }>
+                            au moins 8 caractères
+                        </li>
+                        <li className={upper.test(userInfo.password) ? "valided" : "" }>
+                            au moins une lettre majuscule
+                        </li>
+                        <li className={lower.test(userInfo.password) ? "valided" : "" }>
+                            au moins une lettre minuscule
+                        </li>
+                        <li className={special.test(userInfo.password) ? "valided" : "" }>
+                            au moins un caractère special
+                        </li>
+                        <li className={number.test(userInfo.password) ? "valided" : "" }>
+                            au moins un chiffre
+                        </li>
+                    </ul>
+                </div>
+                )}
                 <label htmlFor="birthday">Votre date de naissance: </label>
                 <input type="date" name="birthday" value={userInfo.birthday} onChange={(e)=>handleChange(e)} max={nowDate}/>
-                <button type="submit">Valider</button>
-                {messageErr.length > 0 && <p>{messageErr}</p>}
+                <button type="submit" className="bg-green-500 px-4 py-2 rounded text-white mt-4">Valider</button>
+                {messageErr.length > 0 && <p className="mt-2 bg-primary rounded px-4 py-1">{messageErr}</p>}
             </form>
-            <div>
-                <h5>Le mot de passe doit comporter :</h5>
-                <ul>
-                    <li className={length.test(userInfo.password) ? "valided" : "" }>
-                        au moins 8 caractères
-                    </li>
-                    <li className={upper.test(userInfo.password) ? "valided" : "" }>
-                        au moins une lettre majuscule
-                    </li>
-                    <li className={lower.test(userInfo.password) ? "valided" : "" }>
-                        au moins une lettre minuscule
-                    </li>
-                    <li className={special.test(userInfo.password) ? "valided" : "" }>
-                        au moins un caractère special
-                    </li>
-                    <li className={number.test(userInfo.password) ? "valided" : "" }>
-                        au moins un chiffre
-                    </li>
-                </ul>
+            <div className="p-8 bg-neutral-50 shadow mx-4 mb-4 rounded-lg lg:m-0 lg:w-3/5 lg:my-4">
+                <h5 className="text-xl mb-10">Déjà Client?</h5>
+                <NavLink to="/login" className="bg-green-500 px-4 py-2 rounded text-white hover:bg-gray-700" title="Loggin">
+                    Me Connecter
+                </NavLink>
             </div>
-            <h5>Déjà Client?</h5>
-            <NavLink to="/login">
-                Me Connecter
-            </NavLink>
         </div>
     );
 }

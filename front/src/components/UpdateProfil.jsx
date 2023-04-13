@@ -84,22 +84,24 @@ const UpdateProfil = (props) => {
     }
     
     return (
-        <div>
+        <div className="min-h-screen bg-gradient-to-t from-green-500 to-yellow px-4 pt-20">
         {isDelete && 
-                    <Navigate to={"/admin/users"} replace={true} /> 
-            }
-            <h2>Modifier Info</h2>
-            <form onSubmit={handleSubmit}>
+            <Navigate to={"/admin/users"} replace={true} /> 
+        }
+            
+            <form className="p-8 max-h-screen bg-neutral-50 rounded-lg shadow lg:w-2/5 lg:mx-auto" onSubmit={handleSubmit}>
+                <h2 className="mb-12">Modifier Info</h2>
                 <label htmlFor="nom">Nom: </label>
                 <input type="text" name="last_name" value={userInfo.last_name} placeholder="nom" onChange={(e)=>handleChange(e)} />
                 <label htmlFor="prenom">Prénom: </label>
                 <input type="text" name="first_name" value={userInfo.first_name} placeholder="prenom" onChange={(e)=>handleChange(e)} />
                 <label htmlFor="birthday">Votre date de naissance: </label>
                 <input type="date" name="birthday" value={userInfo.birthday} onChange={(e)=>handleChange(e)} max={nowDate} />
-                <button type="submit">Valider</button>
-                {messageErr.length > 0 && <p>{messageErr}</p>}
+                <button className="bg-green-500 px-4 py-1 rounded text-white mt-8" type="submit">Valider</button>
+                {messageErr.length > 0 && <p className="mt-2 bg-primary rounded px-4 py-1">{messageErr}</p>}
+                <button className="block my-8 py-1 px-4" onClick={handleCheck}>Supprimer le compte</button>
             </form>
-            <button onClick={handleCheck}>Supprimer le compte</button>
+            
             {isSure && 
                 <ConfirmationWindow isOpen={handleCheck} deleteFunction={handleDelete} name="ce compte?" />
             }
