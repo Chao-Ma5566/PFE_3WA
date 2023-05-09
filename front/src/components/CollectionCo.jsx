@@ -7,7 +7,7 @@ const CollectionCo = (props) => {
     const [isDeleting, setIsDeleting] = useState(false)
     const toRotate = [ "Gammy Bear", "Jeff Koons", "LEGO", "Co-Collection",""] 
     const [text, setText] = useState("")
-    const [delta,setDelta]=useState(300-Math.random() * 30)
+    const [delta,setDelta]=useState(400-Math.random() * 30)
     const period = 500;
 
     useEffect(() => {

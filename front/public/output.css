@@ -1829,8 +1829,8 @@ body {
 
 @-webkit-keyframes animatedBubbleTitle {
   from {
-    -webkit-transform: translate(-100rem, -40rem);
-            transform: translate(-100rem, -40rem);
+    -webkit-transform: translate(100rem, -40rem);
+            transform: translate(100rem, -40rem);
   }
 
   to{
@@ -1841,8 +1841,8 @@ body {
 
 @keyframes animatedBubbleTitle {
   from {
-    -webkit-transform: translate(-100rem, -40rem);
-            transform: translate(-100rem, -40rem);
+    -webkit-transform: translate(100rem, -40rem);
+            transform: translate(100rem, -40rem);
   }
 
   to{
@@ -1856,14 +1856,14 @@ body {
   font-size: 7rem;
   -webkit-transform: translate(10px, -40rem);
           transform: translate(10px, -40rem);
-  -webkit-animation: animatedBubbleTitle 3s alternate;
-          animation: animatedBubbleTitle 3s alternate;
+  -webkit-animation: animatedBubbleTitle 5s alternate infinite;
+          animation: animatedBubbleTitle 5s alternate infinite;
 }
 
 @-webkit-keyframes animatedBubbleFront {
   from {
-    -webkit-transform: translate(200rem, -20rem);
-            transform: translate(200rem, -20rem);
+    -webkit-transform: translate(-200rem, -20rem);
+            transform: translate(-200rem, -20rem);
   }
 
   to{
@@ -1874,8 +1874,8 @@ body {
 
 @keyframes animatedBubbleFront {
   from {
-    -webkit-transform: translate(200rem, -20rem);
-            transform: translate(200rem, -20rem);
+    -webkit-transform: translate(-200rem, -20rem);
+            transform: translate(-200rem, -20rem);
   }
 
   to{
@@ -2268,8 +2268,8 @@ body {
   /***** Collection *****/
 
   .bubble_title{
-    -webkit-animation: animatedBubbleTitle 6s alternate;
-            animation: animatedBubbleTitle 6s alternate;
+    -webkit-animation: animatedBubbleTitle 6s alternate infinite;
+            animation: animatedBubbleTitle 6s alternate infinite;
   }
 
   .bubble_front{

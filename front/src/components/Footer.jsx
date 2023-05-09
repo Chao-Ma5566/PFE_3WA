@@ -10,7 +10,7 @@ const Footer = () => {
             </span>
             <ul className="flex flex-wrap flex-col items-center mt-3 text-sm text-gray-700 sm:mt-0 md:flex-row">
                 <li className="">
-                    <NavLink href="#" className="hover:underline md:mr-6 ">About</NavLink>
+                    <NavLink to="/" className="hover:underline md:mr-6 ">About</NavLink>
                 </li>
                 <li className="">
                     <NavLink href="#" className="hover:underline md:mr-6">Privacy Policy</NavLink>
@@ -19,7 +19,7 @@ const Footer = () => {
                     <NavLink href="#" className="hover:underline md:mr-6">Condition de Vente en Ligne</NavLink>
                 </li>
                 <li className="">
-                    <NavLink href="#" className="hover:underline">Contact</NavLink>
+                    <NavLink to="/location" title="Notre Localisation" className="hover:underline">Contact</NavLink>
                 </li>
             </ul>
         </footer>

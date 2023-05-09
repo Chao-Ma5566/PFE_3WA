@@ -1,4 +1,3 @@
-import TrackVisibility from 'react-on-screen'
 import bubble1 from "../assert/img/bubble1.jpg"
 
 const CollectionBubble = (props) => {
@@ -9,14 +8,10 @@ const CollectionBubble = (props) => {
                 <div>
                 </div>
             </div>
-            <TrackVisibility>
-                {({ isVisible }) => 
-                    (<div>
-                        <h2 className="bubble_title">BUBBLE</h2>
-                        <h3 className="bubble_front">BUBBLE</h3>
-                    </div>)
-                }
-            </TrackVisibility>
+            <div>
+                <h2 className="bubble_title">BUBBLE</h2>
+                <h3 className="bubble_front">BUBBLE</h3>
+            </div>
             <article className="collection_desription">
                 <img className="collection_product_img_left" src={bubble1} alt="Bubble Collection Chair" />
                 <p>

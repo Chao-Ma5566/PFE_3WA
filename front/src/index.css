@@ -161,7 +161,7 @@ body {
 
 @keyframes animatedBubbleTitle {
   from {
-    transform: translate(-100rem, -40rem);
+    transform: translate(100rem, -40rem);
   }
   to{
     transform: translate(10px, -40rem);
@@ -172,12 +172,12 @@ body {
   color: white;
   font-size: 7rem;
   transform: translate(10px, -40rem);
-  animation: animatedBubbleTitle 3s alternate;
+  animation: animatedBubbleTitle 5s alternate infinite;
 }
 
 @keyframes animatedBubbleFront {
   from {
-    transform: translate(200rem, -20rem);
+    transform: translate(-200rem, -20rem);
   }
   to{
     transform: translate(14rem, -20rem);
@@ -464,7 +464,7 @@ body {
   }
   /***** Collection *****/
   .bubble_title{
-    animation: animatedBubbleTitle 6s alternate;
+    animation: animatedBubbleTitle 6s alternate infinite;
   }
   .bubble_front{
     animation: animatedBubbleFront 6s alternate;
