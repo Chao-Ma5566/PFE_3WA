@@ -1829,8 +1829,8 @@ body {
 
 @-webkit-keyframes animatedBubbleTitle {
   from {
-    -webkit-transform: translate(100rem, -40rem);
-            transform: translate(100rem, -40rem);
+    -webkit-transform: translate(70rem, -40rem);
+            transform: translate(70rem, -40rem);
   }
 
   to{
@@ -1841,8 +1841,8 @@ body {
 
 @keyframes animatedBubbleTitle {
   from {
-    -webkit-transform: translate(100rem, -40rem);
-            transform: translate(100rem, -40rem);
+    -webkit-transform: translate(70rem, -40rem);
+            transform: translate(70rem, -40rem);
   }
 
   to{

@@ -161,7 +161,7 @@ body {
 
 @keyframes animatedBubbleTitle {
   from {
-    transform: translate(100rem, -40rem);
+    transform: translate(70rem, -40rem);
   }
   to{
     transform: translate(10px, -40rem);
