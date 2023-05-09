@@ -74,7 +74,8 @@ const AddArticle = (props) => {
                 <label htmlFor="title">Title: </label>
                 <input 
                     type="text" 
-                    name="title" 
+                    name="title"  
+                    id="title" 
                     value={articleInfo.title} 
                     placeholder="title" 
                     onChange={(e)=>handleChange(e)} 
@@ -82,6 +83,7 @@ const AddArticle = (props) => {
                 <label htmlFor="content">Content: </label>
                 <textarea 
                     name="content" 
+                    id="content" 
                     value={articleInfo.content} 
                     placeholder="content" 
                     onChange={(e)=>handleChange(e)} 
@@ -89,7 +91,7 @@ const AddArticle = (props) => {
                 />
                 <label htmlFor="img">Cover image: </label>
                 <div className="form-item">
-                    <input type='file' name='img'
+                    <input type='file' name='img' id="img"
                         className="file:bg-gray-500 hover:file:bg-gray-700 py-2 px-4 file:rounded focus:outline-none focus:shadow-outline text-gray-100"
                     />
                 </div>

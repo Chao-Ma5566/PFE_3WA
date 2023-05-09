@@ -2,7 +2,7 @@ import {NavLink} from "react-router-dom"
 
 const Footer = () => {
     return (
-        <footer className="p-4 bg-neutral-50 mt-2 rounded-lg shadow md:flex md:items-center md:justify-between md:p-6">
+        <footer className="p-4 bg-neutral-50 mt-2 drop-shadow rounded-lg shadow md:flex md:items-center md:justify-between md:p-6">
             <span className="flex flex-col items-center text-sm text-gray-700 sm:text-center md:flex-row">
                 © 2023 
                 <NavLink href="#" className="mx-2 hover:underline">ThreeBody™</NavLink>

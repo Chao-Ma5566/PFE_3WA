@@ -49,7 +49,6 @@ const Login = () => {
                 console.log(err)
             })
     }
-    console.log({state,messageErr})
     return(
         <div className="h-screen bg-gradient-to-t from-green-500 to-yellow flex bg-contain flex-col justify-between gap-2 lg:flex-row lg:items-center lg:justify-between">
         {state.isLogged ? 

@@ -1,20 +1,13 @@
-import {useState,useContext} from "react"
-import axios from "axios"
 import {BASE_URL} from "../tools/constante.js"
-// import { StoreContext } from "../tools/context.js"
-import AdminSidebar from "./AdminPage/AdminSidebar.jsx"
-import UserList from "./AdminPage/UserList.jsx"
-    
+import fauxDashboard from "../assert/img/fauxDashboard.jpg"
    
 
 const AdminHome = () => {
     
-    // const [state, dispatch] = useContext(StoreContext);
-    const [messageErr, setMessageErr] = useState("")
     
     return(
         <div className="admin">
-            Page Admin
+            <img className="inset-0 absolute top-0 h-screen block bg-blakc object-cover m-auto" src={fauxDashboard} alt="Bubble Collection" />
         </div>
     )
 }

@@ -1,8 +1,8 @@
 import axios from "axios"
-import {useContext, useEffect, useState, Fragment} from "react"
+import {useContext, useEffect, useState} from "react"
 import {StoreContext} from "../tools/context.js"
 import {BASE_URL, BASE_IMG} from "../tools/constante.js"
-import { NavLink, Navigate,useParams } from "react-router-dom"
+import { NavLink,useParams } from "react-router-dom"
 
 const Article = (props) => {
     const { articleId } = useParams();
@@ -25,23 +25,23 @@ const Article = (props) => {
     }
     
     return (
-        <div>
-            <img src={`${BASE_IMG}/${articleInfo.url}`} alt={articleInfo.caption} />
-            <h2>{articleInfo.title}</h2>
-            
-            {state.user.admin &&
-            <Fragment>
-                <NavLink to={`/admin/updateArticle/${articleId}`}>
-                    <p>Modifier article</p>
-                </NavLink>
-                <NavLink to={`/admin/updateArticlePhoto/${articleId}`}>
-                    <p>Modifier Photo</p>
-                </NavLink>
-            </Fragment>
-            }
-            
-            <p>{articleInfo.content}</p>
-        </div>  
+        <article className='flex flex-col items-center'>
+            <img src={`${BASE_IMG}/${articleInfo.url}`} className='max-w-[48rem]' alt={articleInfo.caption} />
+            <div className='px-12 w-full max-w-[48rem]'>
+                <h2>{articleInfo.title}</h2>
+                {state.user.admin &&
+                <div className='mt-12 flex flex-row justify-between mb-8'>
+                    <NavLink className=" bg-green-500 hover:bg-yellow text-md md:text-lg py-1 px-4 rounded-lg text-light text-white mt-4" to={`/admin/updateArticle/${articleId}`}>
+                        Modifier article
+                    </NavLink>
+                    <NavLink className=" bg-green-500 hover:bg-yellow text-md md:text-lg py-1 px-4 rounded-lg text-light text-white mt-4" to={`/admin/updateArticlePhoto/${articleId}`}>
+                        Modifier Photo
+                    </NavLink>
+                </div>
+                }
+            </div>
+            <p className='text-left px-16 mb-4'>{articleInfo.content}</p>
+        </article>  
         )
 }
 

@@ -123,6 +123,7 @@ const AddProduct = (props) => {
                 <input 
                     type="text" 
                     name="name" 
+                    id="name" 
                     value={productInfo.name} 
                     placeholder="Nom du produit" 
                     onChange={(e)=>handleChange(e)} 
@@ -130,6 +131,7 @@ const AddProduct = (props) => {
                 <label htmlFor="stock">Stockage: </label>
                 <input 
                     type="number" 
+                    id="stock" 
                     name="stock" 
                     value={productInfo.stock} 
                     placeholder="Stockage" 
@@ -138,6 +140,7 @@ const AddProduct = (props) => {
                 <label htmlFor="material">Materiel: </label>
                 <input 
                     type="text" 
+                    id="material" 
                     name="material" 
                     value={productInfo.material} 
                     placeholder="Materiel"
@@ -146,6 +149,7 @@ const AddProduct = (props) => {
                 <label htmlFor="price">Prix(€): </label>
                 <input 
                     type="number" 
+                    id="price" 
                     name="price" 
                     value={productInfo.price} 
                     placeholder="Prix" 
@@ -153,6 +157,7 @@ const AddProduct = (props) => {
                 />
                 <label htmlFor="collection_id">Collection: </label>
                 <select name="collection_id" 
+                    id="collection_id" 
                     onChange={(e)=> handleChange(e)} 
                     value={productInfo.collection_id}
                     className="text-gray-700 block"
@@ -166,6 +171,7 @@ const AddProduct = (props) => {
                 <input 
                     type="number" 
                     name="height" 
+                    id="hauteur" 
                     value={productInfo.height} 
                     placeholder="Hauteur" 
                     onChange={(e)=>handleChange(e)} 
@@ -173,6 +179,7 @@ const AddProduct = (props) => {
                 <label htmlFor="width">Largeur(cm): </label>
                 <input 
                     type="number" 
+                    id="width" 
                     name="width" 
                     value={productInfo.width} 
                     placeholder="Largeur" 
@@ -181,6 +188,7 @@ const AddProduct = (props) => {
                 <label htmlFor="depth">Profondeur(cm): </label>
                 <input 
                     type="number" 
+                    id="depth" 
                     name="depth" 
                     value={productInfo.depth} 
                     placeholder="Profondeur" 
@@ -189,6 +197,7 @@ const AddProduct = (props) => {
                 <label htmlFor="seat_height">Hauteur de siège(cm): </label>
                 <input 
                     type="number" 
+                    id="seat_height" 
                     name="seat_height" 
                     value={productInfo.seat_height} 
                     placeholder="Hauteur de siège" 
@@ -197,23 +206,25 @@ const AddProduct = (props) => {
                 <label htmlFor="seat_depth">Profondeur de siège(cm): </label>
                 <input 
                     type="number" 
+                    id="seat_depth" 
                     name="seat_depth" 
                     value={productInfo.seat_depth} 
                     placeholder="Profondeur de siège" 
                     onChange={(e)=>handleChange(e)} 
                 />
                 
-                <label htmlFor="description">Description: </label>
+                <label htmlFor="descriptionProduct">Description: </label>
                 <textarea 
                     name="description" 
+                    id="descriptionProduct"
                     value={productInfo.description} 
                     placeholder="description" 
                     onChange={(e)=>handleChange(e)} 
                     rows="15" cols="33"
                 />
-                <label htmlFor="img">Produit image: </label>
+                <label htmlFor="imgProduct">Produit image: </label>
                 <div className="form-item">
-                    <input type='file' name='img'
+                    <input type='file' name='img' id="imgProduct" 
                          className="file:bg-gray-500 hover:file:bg-gray-700 py-2 px-4 file:rounded focus:outline-none focus:shadow-outline text-gray-100"
                     />
                 </div>

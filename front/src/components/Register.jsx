@@ -67,15 +67,16 @@ const Register = (props) => {
             
             <form className="p-8 mt-12 bg-neutral-50 shadow m-4 rounded-lg lg:m-0 lg:w-3/5" onSubmit={handleSubmit}>
             <h5 className="text-xl mb-10 lg:text-3xl">Inscription</h5>
-                <label htmlFor="nom">Nom: </label>
-                <input type="text" name="nom" value={userInfo.nom} placeholder="nom" onChange={(e)=>handleChange(e)} />
-                <label htmlFor="prenom">Prénom: </label>
-                <input type="text" name="prenom" value={userInfo.prenom} placeholder="prenom" onChange={(e)=>handleChange(e)} />
-                <label htmlFor="email">Email: </label>
-                <input type="email" name="email" value={userInfo.email} placeholder="email" onChange={(e)=>handleChange(e)} />
-                <label htmlFor="password">Password: </label>
+                <label htmlFor="nomRegister">Nom: </label>
+                <input type="text" id="nomRegister" name="nom" value={userInfo.nom} placeholder="nom" onChange={(e)=>handleChange(e)} />
+                <label htmlFor="prenomRegister">Prénom: </label>
+                <input type="text" id="prenomRegister" name="prenom" value={userInfo.prenom} placeholder="prenom" onChange={(e)=>handleChange(e)} />
+                <label htmlFor="emailRegister">Email: </label>
+                <input type="email" id="emailRegister" name="email" value={userInfo.email} placeholder="email" onChange={(e)=>handleChange(e)} />
+                <label htmlFor="passwordRegister">Password: </label>
                 <input 
-                    type="password" 
+                    type="password"
+                    id="passwordRegister" 
                     onFocus={() => setIsFocused(true)} 
                     onBlur={() => setIsFocused(false)} 
                     name="password" value={userInfo.password} 
@@ -84,7 +85,7 @@ const Register = (props) => {
                 />
                 {isFocused && (
                 <div className="m-2">
-                <h5 className="text-lg">Le mot de passe doit comporter :</h5>
+                    <h5 className="text-lg">Le mot de passe doit comporter :</h5>
                     <ul>
                         <li className={length.test(userInfo.password) ? "valided" : "" }>
                             au moins 8 caractères
@@ -104,8 +105,8 @@ const Register = (props) => {
                     </ul>
                 </div>
                 )}
-                <label htmlFor="birthday">Votre date de naissance: </label>
-                <input type="date" name="birthday" value={userInfo.birthday} onChange={(e)=>handleChange(e)} max={nowDate}/>
+                <label htmlFor="birthdayRegister">Votre date de naissance: </label>
+                <input type="date" id="birthdayRegister" name="birthday" value={userInfo.birthday} onChange={(e)=>handleChange(e)} max={nowDate}/>
                 <button type="submit" className="bg-green-500 px-4 py-2 rounded text-white mt-4">Valider</button>
                 {messageErr.length > 0 && <p className="mt-2 bg-primary rounded px-4 py-1">{messageErr}</p>}
             </form>

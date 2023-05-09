@@ -138,40 +138,45 @@ const UpdateProduct = (props) => {
             <form onSubmit={handleSubmit} encType="multipart/form-data"
                 className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
             >
-                <label htmlFor="name">Nom du produit: </label>
+                <label htmlFor="nameUpdate">Nom du produit: </label>
                 <input 
                     type="text" 
                     name="name" 
+                    id="nameUpdate" 
                     value={productInfo.name} 
                     placeholder="Nom du produit" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="stock">Stockage: </label>
+                <label htmlFor="stockUpdate">Stockage: </label>
                 <input 
-                    type="number" 
+                    type="number"
+                    id="stockUpdate" 
                     name="stock" 
                     value={productInfo.stock} 
                     placeholder="Stockage" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="material">Material: </label>
+                <label htmlFor="materialUpdate">Material: </label>
                 <input 
                     type="text" 
+                    id="materialUpdate" 
                     name="material" 
                     value={productInfo.material} 
                     placeholder="Material"
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="price">Prix(€): </label>
+                <label htmlFor="priceUpdate">Prix(€): </label>
                 <input 
                     type="number" 
+                    id="priceUpdate" 
                     name="price" 
                     value={productInfo.price} 
                     placeholder="Prix" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="collection_id">Collection: </label>
+                <label htmlFor="collection_idUpdate">Collection: </label>
                 <select name="collection_id" 
+                    id="collection_idUpdate" 
                     onChange={(e)=> handleChange(e)} 
                     value={productInfo.collection_id}
                     className="text-gray-700 block"
@@ -181,50 +186,56 @@ const UpdateProduct = (props) => {
                         return <option key={i} value={collection.id}>{collection.title}</option>
                     })}
                 </select>
-                <label htmlFor="hauteur">Hauteur(cm): </label>
+                <label htmlFor="hauteurUpdate">Hauteur(cm): </label>
                 <input 
                     type="number" 
+                    id="hauteurUpdate" 
                     name="height" 
                     value={productInfo.height} 
                     placeholder="Hauteur" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="width">Largeur(cm): </label>
+                <label htmlFor="widthUpdate">Largeur(cm): </label>
                 <input 
                     type="number" 
+                    id="widthUpdate" 
                     name="width" 
                     value={productInfo.width} 
                     placeholder="Largeur" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="depth">Profondeur(cm): </label>
+                <label htmlFor="depthUpdate">Profondeur(cm): </label>
                 <input 
                     type="number" 
+                    id="depthUpdate" 
                     name="depth" 
                     value={productInfo.depth} 
                     placeholder="Profondeur" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="seat_height">Hauteur de siège(cm): </label>
+                <label htmlFor="seat_heightUpdate">Hauteur de siège(cm): </label>
                 <input 
                     type="number" 
+                    id="seat_heightUpdate" 
                     name="seat_height" 
                     value={productInfo.seat_height} 
                     placeholder="Hauteur de siège" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="seat_depth">Profondeur de siège(cm): </label>
+                <label htmlFor="seat_depthUpdate">Profondeur de siège(cm): </label>
                 <input 
                     type="number" 
+                    id="seat_depthUpdate" 
                     name="seat_depth" 
                     value={productInfo.seat_depth} 
                     placeholder="Profondeur de siège" 
                     onChange={(e)=>handleChange(e)} 
                 />
                 
-                <label htmlFor="description">Description: </label>
+                <label htmlFor="descriptionUpdate">Description: </label>
                 <textarea 
                     name="description" 
+                    id="descriptionUpdate" 
                     value={productInfo.description} 
                     placeholder="description" 
                     onChange={(e)=>handleChange(e)} 

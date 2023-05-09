@@ -5,10 +5,13 @@ import Error404 from "../components/Error404.jsx"
 import Login from "../components/Login.jsx"
 import Logout from "../components/Logout.jsx"
 import Shop from "../components/Shop.jsx"
+import Articles from "../components/Articles.jsx"
 import Cart from "../components/Cart.jsx"
+import Location from "../components/Location.jsx"
 import Profil from "../components/Profil.jsx"
 import Product from "../components/Product.jsx"
 import Register from "../components/Register.jsx"
+import Collection from "../components/Collection.jsx"
 import UpdateArticle from "../components/AdminPage/UpdateArticle.jsx"
 import UpdateArticlePhoto from "../components/AdminPage/UpdateArticlePhoto.jsx"
 import UpdatePassword from "../components/UpdatePassword.jsx"
@@ -30,6 +33,9 @@ import PromosList from "../components/AdminPage/PromosList.jsx"
 const routesUser = [
     {path:"login", component:<Login />},
     {path:"register", component:<Register />},
+    {path:"location", component:<Location />},
+    {path:"articles", component:<Articles />},
+    {path:"collection", component:<Collection />},
     {path:"profil/:userId", component:<Profil />, auth:"user"},
     {path:"updateProfil/:userId", component:<UpdateProfil />, auth:"user"},
     {path:"updatePassword/:userId", component:<UpdatePassword />, auth:"user"},

@@ -100,18 +100,20 @@ const UpdateCollection = (props) => {
             <form onSubmit={(e) => handleSubmit(e)}
                 className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
             >
-                <label htmlFor="title" className="text-lg">Title: </label>
+                <label htmlFor="titleCollectionUpdate" className="text-lg">Title: </label>
                 <input 
                     type="text" 
                     className="my-2"
+                    id="titleCollectionUpdate" 
                     name="title" 
                     value={collectionInfo.title} 
                     placeholder="title" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="description" className="text-lg">Description: </label>
+                <label htmlFor="descriptionCollectionUpdate" className="text-lg">Description: </label>
                 <textarea 
                     name="description" 
+                    id="descriptionCollectionUpdate" 
                     className="my-2"
                     value={collectionInfo.description} 
                     placeholder="description" 

@@ -96,18 +96,20 @@ const UpdateArticle = (props) => {
             <form onSubmit={(e) => handleSubmit(e)}
                 className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
             >
-                <label htmlFor="title" className="text-lg">Title: </label>
+                <label htmlFor="titleUpdate" className="text-lg">Title: </label>
                 <input 
                     type="text" 
+                    id="titleUpdate" 
                     className="my-2"
                     name="title" 
                     value={articleInfo.title} 
                     placeholder="title" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="content" className="text-lg">Content: </label>
+                <label htmlFor="contentUpdate" className="text-lg">Content: </label>
                 <textarea 
                     name="content" 
+                    id="contentUpdate" 
                     className="my-2"
                     value={articleInfo.content} 
                     placeholder="content" 

@@ -45,7 +45,6 @@ const handleSubmit = (e) => {
         
         axios.post(`${BASE_URL}/admin/updateProductPhoto`, dataFile)
         .then(res=>{
-            console.log(res)
             if(res.data.data.result.affectedRows > 0){
                 setIsChangePage(true)
                 return
@@ -87,16 +86,17 @@ const handleSubmit = (e) => {
             className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <p className="text-xl mb-4">Nom de Produit: {productInfo.name}</p>
                 <img src={`${BASE_IMG}/${productInfo.url}`} alt={productInfo.caption} />
-                <label htmlFor="img">Cover image: </label>
+                <label htmlFor="imgProductUpdate">Cover image: </label>
                 <div className="form-item">
-                    <input type='file' name='img' 
+                    <input type='file' name='img' id="imgProductUpdate"  
                     className="file:bg-gray-500 hover:file:bg-gray-700 py-2 px-4 file:rounded focus:outline-none focus:shadow-outline text-gray-100"
                     />
                 </div>
-                <label htmlFor="caption">Caption: </label>
+                <label htmlFor="captionProductUpdate">Caption: </label>
                 <input 
                     type="text" 
                     name="caption" 
+                    id="captionProductUpdate" 
                     value={productInfo.caption} 
                     placeholder="caption" 
                     onChange={(e)=>handleChange(e)} 

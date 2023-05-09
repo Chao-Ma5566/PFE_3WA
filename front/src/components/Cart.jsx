@@ -4,10 +4,12 @@ import { StoreContext } from "../tools/context.js"
 import {BASE_URL, BASE_IMG} from "../tools/constante.js"
 import { NavLink } from "react-router-dom"
 import CartCard from "./CartCard.jsx"
+import CartCardMoblie from "./CartCardMoblie.jsx"
 
 const Cart = () => {
     const [state, dispatch] = useContext(StoreContext);
     const [isLoading, setIsLoading] = useState(true)
+    const [viewWidth, setViewWidth] = useState(window.innerWidth)
     
     useEffect( () => {
             setIsLoading(false)
@@ -36,6 +38,18 @@ const Cart = () => {
         }
     }, [state.cartItems, dispatch, isLoading]);
     
+    useEffect(()=>{
+        const changeWidth = () => {
+            setViewWidth(window.innerWidth)
+        }
+        
+        window.addEventListener("resize", changeWidth)
+        
+        return () => {
+            window.removeEventListener('resize', changeWidth)
+        }
+    }, [viewWidth])
+    
     const getCartSum =  () => {
         let sum = 0
         state.cartItems.forEach(item=>{
@@ -52,9 +66,9 @@ const Cart = () => {
     
     if(state.cartItems.length === 0){
         return (
-            <div className="text-center flex flex-col items-center pt-36 h-full w-full">
+            <div className="text-center flex flex-col items-center pt-36 h-full w-full mb-96">
                 <h1>Vous n'avez pas encore de produit dans votre panier.</h1>
-                <NavLink className="text-center" to={`/shop`}>
+                <NavLink className="text-center mb-12" to={`/shop`}>
                     <p className="bg-primary py-4 px-6 rounded mt-6">Visitez notre E-Commerce</p>
                 </NavLink>
             </div>    
@@ -62,7 +76,9 @@ const Cart = () => {
     }
     
     return (
-        <div className="px-4 min-h-full w-full">
+        <section>
+        {viewWidth >= 768 ? (
+        <div className="px-4 min-h-full w-full mt-20">
             <div className="border-b-2 border-gray-100 mb-4 py-8">
                 <h2>Votre Panier: </h2>
             </div>
@@ -93,6 +109,24 @@ const Cart = () => {
             </tfoot>
             </table>
         </div>
+        ):(
+            <div className="px-4 min-h-full w-full mt-12">
+                <div className="border-b-2 border-gray-100 mb-4 py-8">
+                    <h2>Votre Panier: </h2>
+                </div>
+                <div className="flex flex-col gap-y-2">
+                     {state.cartItems.map((product, i) => {
+                        return (
+                            <CartCardMoblie product={product} index={i} key={i}/>
+                    )})}
+                </div>
+                <div className="w-full flex justify-around items-center">
+                    <p className="text-lg">Total:<span className="ml-4">{getCartSum()}</span></p>
+                    <button className="text-center py-2 px-2 rounded bg-primary text-gray-100 my-2 hover:bg-gray-800">Commander</button>
+                </div>
+            </div>
+        )}
+        </section>
     )   
 }    
 

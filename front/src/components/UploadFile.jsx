@@ -33,8 +33,8 @@ const UploadFile = () => {
         <Fragment>
             <h1>Ajouter/Modifier l'avatar</h1>
             <form onSubmit={submit} encType="multipart/form-data">
-                <label name='avatar'>
-                    <input type='file' name='avatar'/>
+                <label htmlFor='avatar'>
+                    <input type='file' name='avatar' id='avatar'/>
                     <input type='submit' value='Submit'/>
                 </label>
             </form>

@@ -84,15 +84,16 @@ const handleSubmit = (e) => {
             className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <p className="text-xl">Title: {articleInfo.title}</p>
                 <img src={`${BASE_IMG}/${articleInfo.url}`} alt={articleInfo.caption} />
-                <label htmlFor="img">Cover image: </label>
+                <label htmlFor="imgUpdate">Cover image: </label>
                 <div className="form-item">
-                    <input type='file' name='img' 
+                    <input type='file' name='img' id="imgUpdate" 
                     className="file:bg-gray-500 hover:file:bg-gray-700 py-2 px-4 file:rounded focus:outline-none focus:shadow-outline text-gray-100"
                     />
                 </div>
-                <label htmlFor="caption">Caption: </label>
+                <label htmlFor="captionUpdate">Caption: </label>
                 <input 
                     type="text" 
+                    id="captionUpdate" 
                     name="caption" 
                     value={articleInfo.caption} 
                     placeholder="caption" 

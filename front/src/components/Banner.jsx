@@ -44,7 +44,7 @@ const Banner = (props) => {
                             e-commerce
                         </NavLink>
                     </div>
-                </div>
+                </div>  
                 }
             </div>
             <div className={dalta===0?" hidden" : "block overflow-auto"}>

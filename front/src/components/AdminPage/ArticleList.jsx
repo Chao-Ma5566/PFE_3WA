@@ -1,9 +1,7 @@
-import { useEffect,useContext,useState, Fragment } from 'react'
+import { useEffect,useState } from 'react'
 import axios from 'axios'
-import { StoreContext } from "../../tools/context.js"
 import {BASE_URL, BASE_IMG} from "../../tools/constante.js"
 import { NavLink } from "react-router-dom"
-import ConfirmationWindow from "../ConfirmationWindow.jsx"
 
 
 const ArticleList = (props) => {

@@ -10,7 +10,6 @@ const Product = (props) => {
     const [state, dispatch] = useContext(StoreContext);
     const [productInfo, setProductInfo] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
-    const [collectionList, setCollectionList] = useState([])
     const [quantity, setQuantity] = useState(0)
     
     useEffect(() => {
@@ -18,7 +17,6 @@ const Product = (props) => {
         axios.post(`${BASE_URL}/getProductById`, { id: productId })
             .catch(err => console.log(err))
             .then(res => {
-                console.log(res)
                 setProductInfo(res.data.data.result[0])
         })
             .then(res => setIsLoading(false))
@@ -87,25 +85,59 @@ const Product = (props) => {
     }
     
     return (
-        <div>
+        <div className='md:max-w-[48rem] md:m-auto'>
             <div>
                 <img src={`${BASE_IMG}/${productInfo.url}`} alt={productInfo.caption} />
-                <h2>{productInfo.name}</h2>
-                <div className="flex flex-cols justify-between">
-                    <div>
-                        <button className="w-10 h-8" onClick={decre}>-</button>
-                        <input type="number" value={quantity} className="w-16 h-8" onChange={handleChange}/>
-                        <button className="w-10 h-8" onClick={incre}>+</button>  
-                    </div>
-                    <button onClick={()=>{addCart()}}>Ajouter</button>
+            </div>
+            <div className="px-4 py-2 md:-translate-y-52">
+                <div className='mb-4 flex justify-between items-center'>
+                    <h2 >{productInfo.name}</h2>
+                    <h3>{productInfo.price} euros</h3>
                 </div>
-                <p>{productInfo.price}</p>
-                <p>{productInfo.material}</p>
-                <p>{productInfo.description}</p>
-                <p>{productInfo.height}</p>
-                <p>{productInfo.width}</p>
-            </div> 
-            
+                <div className="flex flex-col my-4 ">
+                    <div className="mb-4">
+                        <button className="w-10 h-8 mr-2" onClick={decre}>-</button>
+                        <input type="number" value={quantity} className="w-16 h-8 mr-2" onChange={handleChange}/>
+                        <button className="w-10 h-8 " onClick={incre}>+</button> 
+                        <span className="ml-2 text-xl">En stock: {productInfo.stock}</span>
+                    </div>
+                    <button className="w-24 bg-primary px-4 py-2" onClick={()=>{addCart()}}>Ajouter</button>
+                </div>
+                <div>
+                    <p className="mb-4 md:mt-12"><span className="text-lg text-green-500">Matériel: </span>{productInfo.material}</p>
+                    <p className="mb-4"><span className="text-lg text-green-500">Description: </span>{productInfo.description}</p>
+                    <div className="max-w-96">
+                        <table className="table-fixed border-collapse border border-gray-500 w-full">
+                            <caption className='bg-neutral-50 border border-collapse border-gray-500 text-lg caption-top text-center w-full text-green-500'>
+                                Dimension
+                            </caption>
+                            <tbody>
+                                <tr>
+                                  <td className='border border-gray-500'>Hauteur(cm): </td>
+                                  <td className='border border-gray-500'>{productInfo.height}</td>
+                                </tr>
+                                <tr>
+                                  <td className='border border-gray-500'>Largeur(cm): </td>
+                                  <td className='border border-gray-500'>{productInfo.width}</td>
+                                </tr>
+                                <tr>
+                                  <td className='border border-gray-500'>Profonteur(cm):</td>
+                                  <td className='border border-gray-500'>{productInfo.depth}</td>
+                                </tr>
+                                <tr>
+                                  <td className='border border-gray-500'>Hauteur de siège(cm):</td>
+                                  <td className='border border-gray-500'>{productInfo.seat_height}</td>
+                                </tr>
+                                <tr>
+                                  <td className='border border-gray-500'>Profonteur de siège(cm):</td>
+                                  <td className='border border-gray-500'>{productInfo.seat_depth}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p className="my-4 md:my-0 md:mt-4"><span className="text-lg text-green-500">Garanti: </span>5 ans.</p>
+                </div>
+            </div>  
         </div>  
         )
 }

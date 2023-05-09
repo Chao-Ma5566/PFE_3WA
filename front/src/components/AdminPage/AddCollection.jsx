@@ -52,17 +52,19 @@ const AddCollection = (props) => {
             <form onSubmit={(e) => handleSubmit(e)}
                 className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
             >
-                <label htmlFor="title" className="text-lg">Title: </label>
+                <label htmlFor="titleCollection" className="text-lg">Title: </label>
                 <input 
                     type="text" 
                     className="my-2"
                     name="title" 
+                    id="titleCollection" 
                     value={collectionInfo.title} 
                     placeholder="title" 
                     onChange={(e)=>handleChange(e)} 
                 />
-                <label htmlFor="description" className="text-lg">description: </label>
+                <label htmlFor="descriptionCollection" className="text-lg">description: </label>
                 <textarea 
+                    id="descriptionCollection"
                     name="description" 
                     className="my-2"
                     value={collectionInfo.description} 

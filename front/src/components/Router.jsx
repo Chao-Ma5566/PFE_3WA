@@ -1,6 +1,5 @@
 import {Route, Routes} from "react-router-dom";
 import {routesAdmin, routesUser} from '../tools/routes.js'
-
 import AdminHome from "../components/AdminHome.jsx"
 import Home from "../components/Home.jsx"
 import LayerAdmin from "./AdminPage/LayerAdmin"
