@@ -7,7 +7,8 @@ const initialState = {
     isLogged: false,
     products:[],
     cartItems: [],
-    cartSum:0
+    cartSum:0,
+    menuBurgerOpen: false
 }
 
 export {StoreContext, initialState}

@@ -40,7 +40,7 @@ const NavBar = (props) => {
     }, [viewWidth])
     
     const handlenMenu = () => {
-        setBurgerMenuOpen(!bugerMenuOpen)
+        dispatch({ type: "MENU_BURGER"})
     }
     
     const openContact = () => {
@@ -69,7 +69,7 @@ const NavBar = (props) => {
                         </div>)
                     }
                         <div>
-                            <img className="ease-in-out rounded-full p-2 relative z-20" onClick={handlenMenu} src={bugerMenuOpen? close : burger} alt="Menu burger icon" />
+                            <img className="ease-in-out rounded-full p-2 relative z-20" onClick={handlenMenu} src={state.menuBurgerOpen? close : burger} alt="Menu burger icon" />
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@ const NavBar = (props) => {
                     </div>
                 </div>
                 )}
-                <div className={bugerMenuOpen ? "fixed overflow-hidden rounded-md inset-0 top-0 right-0 left-0 bottom-0 p-3":"hidden"}>
+                <div className={state.menuBurgerOpen ? "fixed overflow-hidden rounded-md inset-0 top-0 right-0 left-0 bottom-0 p-3":"hidden"}>
                     <div className="bg-neutral-50 overflow-hidden rounded-md h-full w-full relative z-50 flex flex-col justify-between drop-shadow">
                        <div></div>
                        <div className="translate-y-36 tracking-wide z-50">

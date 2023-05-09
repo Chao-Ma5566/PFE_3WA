@@ -1,4 +1,5 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
+import { StoreContext } from "../tools/context.js"
 import bubbleChaise from "../assert/img/homeImg/bubbleHero.png"
 import bubbleBg from "../assert/img/homeImg/bubbleBanner.png"
 import inflatableBg from "../assert/img/homeImg/inflatableBanner.jpg"
@@ -6,6 +7,7 @@ import inflaBg from "../assert/img/homeImg/inflaHero.png"
 import { NavLink } from "react-router-dom"
 
 const Banner = (props) => {
+    const [state, dispatch] = useContext(StoreContext);
     const [scrolled, setScrolled] = useState(false);
     const [dalta, setDalta] = useState(0)
     
@@ -34,7 +36,7 @@ const Banner = (props) => {
                 
                 <img className="inset-0 m-auto absolute top-0 h-screen object-cover" src={bubbleBg} alt="Bubble Collection" />
                 {!scrolled &&
-                <div>
+                <div className={state.menuBurgerOpen ? "hidden":""}>
                     <p className="z-40 absolute bottom-48 right-4 text-neutral-50 text-7xl md:bottom-48 md:right-36 lg:right-60 lg:bottom-48">BUBBLE</p>
                     <div className="flex flex-col items-center z-40 absolute bottom-12 right-4 lg:right-60 md:right-36 max-w-1/2 pt-4">
                         <p className="text-white w-64 text-sm font-thin inline">
@@ -51,7 +53,7 @@ const Banner = (props) => {
                 <img className="z-30 inset-0 absolute top-0 h-screen block bg-blakc object-cover m-auto" src={inflatableBg} alt="inflatable Collection" />
                 <img className="inset-0 m-auto absolute top-0 h-screen object-cover" src={inflaBg} alt="Bubble Collection" />
                 {!scrolled &&
-                <div>
+                <div className={state.menuBurgerOpen ? "hidden":""}>
                     <p className="z-40 absolute bottom-48 right-4 text-neutral-50 text-6xl md:bottom-48 md:right-36 lg:right-60 lg:bottom-48">
                         INFLATABLE
                     </p>

@@ -1,5 +1,11 @@
 const reducer = (state, action) => {
     switch (action.type) {
+        case "MENU_BURGER":
+
+            return {
+                ...state,
+                menuBurgerOpen: !state.menuBurgerOpen
+            }
         case "LOGIN":
 
             return {
