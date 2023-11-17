@@ -39,6 +39,8 @@
   }
 }
 
+
+
 /************ Custom Font ************/
 @font-face {
     font-family: "Satoshi";
@@ -46,10 +48,14 @@
     src: url("/fonts/Satoshi-Regular.woff2") format("woff2"), url("/fonts/Sans-Regular.woff") format("woff");
   }
 
+
+
 /************ Default Css ************/
 body {
   margin: 0;
 }
+
+
 
 /************ Collection Page ************/
 .collection{
@@ -64,6 +70,8 @@ body {
   padding-top: 4rem;
   font-size: 2.5rem;
 }
+
+
 
 /*** Collection Banner ***/
 .banner_bubble{
@@ -167,10 +175,9 @@ body {
     transform: translate(10px, -40rem);
   }
 }
-
 .bubble_title{
   color: white;
-  font-size: 7rem;
+  font-size: 6rem;
   transform: translate(10px, -40rem);
   animation: animatedBubbleTitle 5s alternate infinite;
 }
@@ -180,16 +187,15 @@ body {
     transform: translate(-200rem, -20rem);
   }
   to{
-    transform: translate(14rem, -20rem);
+    transform: translate(10rem, -20rem);
   }
 }
-
 .bubble_front{
   color: white;
   font-size: 4rem;
   position: relative;
   z-index:11;
-  transform: translate(14rem, -20rem);
+  transform: translate(10rem, -20rem);
   animation: animatedBubbleFront 3s alternate;
 }
 
@@ -209,6 +215,8 @@ body {
   padding: 0 15px 15px 0;
 }
 
+
+
 /*** Collection Inflatable ***/
 .inflatable_banner{
   height: 100vh;
@@ -219,7 +227,6 @@ body {
   overflow: hidden;
   animation: animatedBackground 10s infinite alternate;
 }
-
 @keyframes animatedBackground {
   from {
     background-position: -100% -100%;
@@ -252,18 +259,20 @@ body {
     transform: scale(1) translate(0, -15rem);;
   }
 }
-
 .inflatable_title{
   color: white;
   transform: translate(0, -15rem);
   font-size: 4rem;
   animation: animatedInflatableeTitle 6s alternate;
 }
+
 .collection_product_img_right{
   width: 13rem;
   float: right;
   padding: 0 0 15px 15px;
 }
+
+
 
 /*** Collection Fluff ***/
 .fluff_banner{
@@ -283,6 +292,7 @@ body {
   overflow: hidden;
   margin:auto;
 }
+
 @keyframes spindLetter{
   from {
     transform: rotate(0);
@@ -318,6 +328,8 @@ body {
   transform-origin: center 50%;
 }
 
+
+
 /*** Collection Co-Collection ***/
 .co_banner{
   height: 100vh;
@@ -342,6 +354,8 @@ body {
   padding: 2px 10px;
   background: white;
 }
+
+
 
 /************ Articles ************/
 .article_container{
@@ -379,20 +393,26 @@ body {
   height: auto;
   object-fit: cover;
 }
+
+
+
 /************ Admin Page ************/
 .admin{
   display:flex;
 }
 
-/************ Media Queries ************/
 
+
+/********************** Media Queries *********************/
 @media (min-width:768px) {
   /****** Collection Banner *****/
 	.collection_carousel .big_image{
     height: 30rem;
     width: 30rem;
   }
-  
+  .bubble_title{
+    font-size: 7rem;
+  }
   .collection_choice{
     width: 80%;
     margin-top:2rem;
@@ -404,6 +424,8 @@ body {
   .collection_choice div{
     padding:3px 10px;
   }
+  
+  
   /******* Collection *******/
   .collection_product_img_left{
     width: 20rem;
@@ -419,11 +441,15 @@ body {
     padding: 4px 15px;
     margin-bottom: 1rem;
   }
+  
+  
   /************ Articles ************/
   .article_container{
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+
 
 @media (min-width:1024px) {
   /***** Collection Banner *****/
@@ -462,6 +488,8 @@ body {
   .collection_choice div:nth-child(4){
     background-image: url("/img/co-collection.jpg");
   }
+  
+  
   /***** Collection *****/
   .bubble_title{
     animation: animatedBubbleTitle 6s alternate infinite;
@@ -488,7 +516,9 @@ body {
     font-size:3rem;
     margin-bottom: 2rem;
   }
-/************ Articles ************/
+  
+  
+  /************ Articles ************/
   .article_container{
     grid-template-columns: repeat(4, 1fr);
   }

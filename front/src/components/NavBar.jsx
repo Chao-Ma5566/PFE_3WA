@@ -15,7 +15,6 @@ import contact from "../assert/icon/userIcon/phone.svg"
 const NavBar = (props) => {
     const [state, dispatch] = useContext(StoreContext);
     const [scrolled, setScrolled] = useState(false);
-    const [bugerMenuOpen, setBurgerMenuOpen] = useState(false)
     const [viewWidth, setViewWidth] = useState(window.innerWidth)
     const [contactOpen, setContactOpen] = useState(true);
     

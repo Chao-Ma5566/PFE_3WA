@@ -1853,7 +1853,7 @@ body {
 
 .bubble_title{
   color: white;
-  font-size: 7rem;
+  font-size: 6rem;
   -webkit-transform: translate(10px, -40rem);
           transform: translate(10px, -40rem);
   -webkit-animation: animatedBubbleTitle 5s alternate infinite;
@@ -1867,8 +1867,8 @@ body {
   }
 
   to{
-    -webkit-transform: translate(14rem, -20rem);
-            transform: translate(14rem, -20rem);
+    -webkit-transform: translate(10rem, -20rem);
+            transform: translate(10rem, -20rem);
   }
 }
 
@@ -1879,8 +1879,8 @@ body {
   }
 
   to{
-    -webkit-transform: translate(14rem, -20rem);
-            transform: translate(14rem, -20rem);
+    -webkit-transform: translate(10rem, -20rem);
+            transform: translate(10rem, -20rem);
   }
 }
 
@@ -1889,8 +1889,8 @@ body {
   font-size: 4rem;
   position: relative;
   z-index:11;
-  -webkit-transform: translate(14rem, -20rem);
-          transform: translate(14rem, -20rem);
+  -webkit-transform: translate(10rem, -20rem);
+          transform: translate(10rem, -20rem);
   -webkit-animation: animatedBubbleFront 3s alternate;
           animation: animatedBubbleFront 3s alternate;
 }
@@ -2168,7 +2168,7 @@ body {
   display:flex;
 }
 
-/************ Media Queries ************/
+/********************** Media Queries *********************/
 
 @media (min-width:768px) {
   /****** Collection Banner *****/
@@ -2176,6 +2176,10 @@ body {
   .collection_carousel .big_image{
     height: 30rem;
     width: 30rem;
+  }
+
+  .bubble_title{
+    font-size: 7rem;
   }
 
   .collection_choice{
