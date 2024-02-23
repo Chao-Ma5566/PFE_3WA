@@ -1,11 +1,13 @@
 import mysql from "mysql";
 
+// import mariadb from "mariadb";
+
 export let pool  = mysql.createPool({
   connectionLimit : 10000,
-    host: "db.3wa.io",// on rentre l'hôte, l'adresse url où se trouve la bdd
-    user: "jianchaoma", // identifiant BDD
-    password: "769240a0983403547ccdb317054fc0e7", // le password
-    database: "jianchaoma_tutotest", // nom de la base de donnée
+    host: "localhost:3306",// on rentre l'hôte, l'adresse url où se trouve la bdd
+    user: "root", // identifiant BDD
+    password: "1472589a", // le password
+    database: "sys", // nom de la base de donnée
 });
 
 export const asyncQuery = async (sql, params = []) => {
