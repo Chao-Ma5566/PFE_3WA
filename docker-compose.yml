@@ -1,0 +1,15 @@
+version: "3.1"
+
+services:
+  mariadb:
+    image: mariadb
+    container_name: my-mariadb-container
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456a
+      MYSQL_DATABASE: projet_three_body
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 123456a
+    ports:
+      - "3309:3306"
+    volumes:
+      - ./data:/var/lib/mysql

@@ -1,5 +1,5 @@
-import BDD from "../model/BDD.js"
 import Article from "../model/Article.js"
+import BDD from "../model/BDD.js"
 import deleteFile from "../config/deleteFile.js"
 
 export default async (req, res) => {
@@ -21,3 +21,4 @@ export default async (req, res) => {
     }
 }
 
+// req.param
