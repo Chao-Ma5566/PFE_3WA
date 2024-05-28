@@ -5,7 +5,7 @@ export default async (req, res) => {
     try {
         const myBDD = new BDD()
         const user = new User(myBDD)
-        const {id} = req.body
+        const {id} = req.params
         const data = await user.deleteAccount({id})
         res.json({data})
     }catch(err) {

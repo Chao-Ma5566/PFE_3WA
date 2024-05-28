@@ -54,12 +54,13 @@ const routesPOST = [
 ]
 
 const routesPATCH = [
-    {route:"/users/:id", controller: updateProfilPostController},
-    {route:"/role/:id", controller: updateRolePostController},
-    {route:"/users/password", controller: updatePasswordPostController},
-    {route:"/articles/:id", controller: updateArticlePostController},
-    {route:"/collections/:id", controller: updateCollectionPostController},
-    {route:"/products/:id", controller: updateProductPostController},
+    {route:"/users", controller: updateProfilPostController},
+    {route:"/role", controller: updateRolePostController},
+    {route:"/users/:id/password", controller: updatePasswordPostController},
+    {route:"/articles", controller: updateArticlePostController},
+    {route:"/collections", controller: updateCollectionPostController},
+    {route:"/products", controller: updateProductPostController},
+    {route:"/cart", controller: deleteProductCartPostController},
 ]
 
 const routesDELETE = [
@@ -67,14 +68,16 @@ const routesDELETE = [
     {route:"/articles/:id", controller: deleteArticleByIdPostController},
     {route:"/collections/:id", controller: deleteCollectionByIdPostController},
     {route:"/products/:id", controller: deleteProductPostController},
-    {route:"/cart", controller: deleteProductCartPostController},
 ]
 
 const routesUpload = [
     {route:"/articles", controller: addArticlePostController},
     {route:"/products", controller: addProductPostController},
-    {route:"/articles/photo/:id", controller: updateArticlePhotoPostController},
-    {route:"/products/photo/:id", controller: updateProductPhotoPostController},
+]
+
+const routesPATCHUpload = [
+    {route:"/articles/photo/", controller: updateArticlePhotoPostController},
+    {route:"/products/photo/", controller: updateProductPhotoPostController},
 ]
 
 routesGET.map((item) =>{
@@ -86,15 +89,19 @@ routesPOST.map((item) =>{
 })
 
 routesPATCH.map((item) =>{
-    router.post(item.route, middleware, item.controller);
+    router.patch(item.route, middleware, item.controller);
 })
 
 routesDELETE.map((item) =>{
-    router.post(item.route, middleware, item.controller);
+    router.delete(item.route, middleware, item.controller);
 })
 
 routesUpload.map((item) =>{
         router.post(item.route, middleware, middlewareUpload, item.controller);
+})
+
+routesPATCHUpload.map((item) =>{
+    router.patch(item.route, middleware, middlewareUpload, item.controller);
 })
 
 export default router

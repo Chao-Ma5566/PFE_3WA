@@ -6,7 +6,7 @@ export default async (req, res) => {
     try {
         const myBDD = new BDD()
         const article = new Article(myBDD)
-        const {id} = req.body
+        const {id} = req.params
         const articleInfo = await article.getById({id})
         const fileName = articleInfo.result[0].url
         const data = await article.deleted({id})
