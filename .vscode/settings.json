@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3309,
+            "driver": "MariaDB",
+            "name": "three_body_db",
+            "database": "projet_three_body",
+            "username": "admin"
+        }
+    ]
+}

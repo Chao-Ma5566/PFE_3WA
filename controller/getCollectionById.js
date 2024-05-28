@@ -5,7 +5,7 @@ export default async (req, res) => {
     try {
         const myBDD = new BDD()
         const collection = new Collection(myBDD)
-        const {id} = req.body
+        const {id} = req.params
         const data = await collection.getById({
             id: id,
         })

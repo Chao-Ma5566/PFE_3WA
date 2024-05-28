@@ -5,9 +5,8 @@ export default async (req, res) => {
     try {
         const myBDD = new BDD()
         const user = new User(myBDD)
-        const {id} = req.body
+        const {id} = req.params
         const data = await user.getByID({id})
-        console.log(data)
         res.json({data})
     }catch(err) {
         console.log(err);
