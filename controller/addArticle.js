@@ -1,6 +1,42 @@
-import BDD from "../model/BDD.js"
 import Article from "../model/Article.js"
+import BDD from "../model/BDD.js"
 import PictureArticles from "../model/PictureArticles.js"
+
+/**
+ * @swagger
+ * /articles:
+ *   post:
+ *     summary: Create a new article
+ *     tags: 
+ *       - Articles
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               content:
+ *                 type: string
+ *               files:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Article created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: object
+ *                 dataPicture:
+ *                   type: object
+ *       500:
+ *         description: Internal server error
+ */
 export default async (req, res) => {
     try {
         const myBDD = new BDD()

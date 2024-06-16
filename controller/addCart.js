@@ -1,5 +1,41 @@
 import BDD from "../model/BDD.js"
 import Cart from "../model/Cart.js"
+
+/**
+ * @swagger
+ * /cart:
+ *   post:
+ *     summary: Add a product to the cart
+ *     tags: 
+ *       - Cart
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               user_id:
+ *                 type: integer
+ *               product_id:
+ *                 type: integer
+ *               quantity:
+ *                 type: integer
+ *               cart_id:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Product added to the cart successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 dataCart:
+ *                   type: object
+ *       500:
+ *         description: Internal server error
+ */
 export default async (req, res) => {
     try {
         const myBDD = new BDD()

@@ -1,8 +1,78 @@
 import BDD from "../model/BDD.js"
-import Products from "../model/Products.js"
-import PictureProducts from "../model/PictureProducts.js"
 import Dimensions from "../model/Dimensions.js"
+import PictureProducts from "../model/PictureProducts.js"
+import Products from "../model/Products.js"
 
+/**
+ * @swagger
+ * /products:
+ *   post:
+ *     summary: Create a new product
+ *     tags: 
+ *       - Products
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: The name of the product
+ *               description:
+ *                 type: string
+ *                 description: The description of the product
+ *               price:
+ *                 type: number
+ *                 description: The price of the product
+ *               collection_id:
+ *                 type: integer
+ *                 description: The ID of the collection to which the product belongs
+ *               stock:
+ *                 type: integer
+ *                 description: The stock quantity of the product
+ *               material:
+ *                 type: string
+ *                 description: The material of the product
+ *               files:
+ *                 type: string
+ *                 description: The URL of the product image
+ *               height:
+ *                 type: number
+ *                 description: The height of the product
+ *               width:
+ *                 type: number
+ *                 description: The width of the product
+ *               depth:
+ *                 type: number
+ *                 description: The depth of the product
+ *               seat_height:
+ *                 type: number
+ *                 description: The seat height of the product
+ *               seat_depth:
+ *                 type: number
+ *                 description: The seat depth of the product
+ *     responses:
+ *       200:
+ *         description: Product created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: object
+ *                   description: The data of the created product
+ *                 dataPicture:
+ *                   type: object
+ *                   description: The data of the created product picture
+ *                 dataDimensions:
+ *                   type: object
+ *                   description: The data of the created product dimensions
+ *       500:
+ *         description: Internal server error
+ */
 export default async(req, res) => {
     try {
         const myBDD = new BDD()
