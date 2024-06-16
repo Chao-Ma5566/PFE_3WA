@@ -7,7 +7,7 @@ import {verifyToken} from "../config/token.js"
 
 /**
  * @swagger
- * /user/data:
+ * /relogged:
  *   get:
  *     summary: Retrieve user data, cart items, and product list based on token
  *     tags: 

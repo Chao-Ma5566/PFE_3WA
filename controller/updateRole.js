@@ -3,7 +3,7 @@ import User from "../model/User.js"
 
 /**
  * @swagger
- * /users/role:
+ * /role:
  *   patch:
  *     summary: Update a user's role by ID
  *     tags: 

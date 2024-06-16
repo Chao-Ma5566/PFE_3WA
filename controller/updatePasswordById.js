@@ -3,7 +3,7 @@ import User from "../model/User.js"
 
 /**
  * @swagger
- * /users/password:
+ * /users/{id}/password:
  *   patch:
  *     summary: Update a user's password by ID
  *     tags: 
