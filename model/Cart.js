@@ -1,4 +1,3 @@
-import inputCheck from "../config/inputCheck.js"
 
 class Cart {
     constructor(bdd){

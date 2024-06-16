@@ -143,7 +143,6 @@ class User {
         } catch(err){
             console.log(err)
             if(err) throw err
-            
         }
     }
     
@@ -213,6 +212,7 @@ class User {
                 const paramsSql = [mpdHash,id]
                 
                 // on fait la requete
+                // eslint-disable-next-line no-unused-vars
                 const result = await this.asyncQuery(sql,paramsSql)
                 // on retourn la reponse
                 return {response:"Modification de mots de passe validé"}

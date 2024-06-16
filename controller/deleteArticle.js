@@ -36,7 +36,6 @@ export default async (req, res) => {
         const article = new Article(myBDD)
         const {id} = req.params
         const articleInfo = await article.getById({id})
-        const fileName = articleInfo.result[0].url
         const data = await article.deleted({id})
         if(data.result.affectedRows > 0){
             const fileName = articleInfo.result[0].url
