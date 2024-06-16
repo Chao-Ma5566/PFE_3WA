@@ -2,6 +2,34 @@ import BDD from "../model/BDD.js"
 import Products from "../model/Products.js"
 import deleteFile from "../config/deleteFile.js"
 
+/**
+ * @swagger
+ * /products/{id}:
+ *   delete:
+ *     summary: Delete a product by ID
+ *     tags: 
+ *       - Products
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The ID of the product to delete
+ *     responses:
+ *       200:
+ *         description: Product deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: object
+ *                   description: The result of the delete operation
+ *       500:
+ *         description: Internal server error
+ */
 export default async(req, res) => {
     try {
         const myBDD = new BDD()

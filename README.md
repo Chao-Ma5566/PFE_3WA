@@ -16,3 +16,5 @@ Pour lancer le projet:
         user@user.com      mdp:123456aA&
     compte Admin:
         admin@admin.com      mdp:123456aA&
+
+Swagger API documentation lien: http://localhost:3001/swagger-doc/#/
