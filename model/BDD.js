@@ -4,10 +4,11 @@ class BDD {
     constructor(){
         this.pool = mysql.createPool({
             connectionLimit : 10000,
-            host: "db.3wa.io",// on rentre l'hôte, l'adresse url où se trouve la bdd
-            user: "jianchaoma", // identifiant BDD
-            password: "769240a0983403547ccdb317054fc0e7", // le password
-            database: "jianchaoma_projetdefin", // nom de la base de donnée
+            host: 'localhost',
+            port: 3309, 
+            user: "admin", // identifiant BDD
+            password: "123456a", // le password
+            database: "projet_three_body", // nom de la base de donnée
         });
     }
     

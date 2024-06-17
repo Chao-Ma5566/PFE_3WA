@@ -49,7 +49,15 @@ export default async (req, res) => {
     try {
         const myBDD = new BDD()
         const products = new Products(myBDD)
-        const data = await products.getAll()
+
+        const filters = {
+            name: req.query.name || null,
+            collection: req.query.collection || null,
+            minPrice: req.query.minPrice || null,
+            maxPrice: req.query.maxPrice || null,
+        };
+
+        const data = await products.getAll(filters)
         res.json({data})
     }catch(err) {
         console.log(err);

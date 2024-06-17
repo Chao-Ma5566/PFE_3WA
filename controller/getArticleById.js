@@ -45,7 +45,6 @@ export default async (req, res) => {
         const article = new Article(myBDD)
         const {id} = req.params
         const data = await article.getById({id})
-        console.log(data)
         res.json({data})
     }catch(err) {
         console.log(err);

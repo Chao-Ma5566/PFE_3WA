@@ -1,5 +1,5 @@
-import {verifyToken} from "../config/token.js"
 import parseurl from 'parseurl'
+import {verifyToken} from "../config/token.js"
 
 const ADMIN = 'admin'
 const USER = 'user'
@@ -46,7 +46,6 @@ export default async(req, res, next) => {
     try{
         // ton verrifie le token
         const userData = await verifyToken(token)
-        console.log(userData)
         // on verrifie si la route est autoriser
         const acces = accesAutorized(pathname,userData)
         // la reponse dans le cas ou la route n'est pas autoriser

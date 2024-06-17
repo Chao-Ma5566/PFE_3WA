@@ -35,16 +35,35 @@ class Products {
     }
     
     
-    async getAll(){
-        const sql = `SELECT products.id AS id, name, price, stock, url, caption 
-        FROM products JOIN pictures ON products.id = pictures.product_id`
+    async getAll(filters) {
+        let sql = `SELECT products.id AS id, name, price, stock, url, caption 
+                   FROM products 
+                   JOIN pictures ON products.id = pictures.product_id 
+                   WHERE 1=1`;
         
-        try{
-            const result = await this.asyncQuery(sql)
-            return {result}
-        } catch(err){
-            console.log(err)
-            return err
+        const params = [];
+    
+        if (filters.name) {
+            sql += ` AND name LIKE ?`;
+            params.push(`%${filters.name}%`);
+        }
+    
+        if (filters.minPrice) {
+            sql += ` AND price >= ?`;
+            params.push(filters.minPrice);
+        }
+    
+        if (filters.maxPrice) {
+            sql += ` AND price <= ?`;
+            params.push(filters.maxPrice);
+        }
+    
+        try {
+            const result = await this.asyncQuery(sql, params);
+            return {result};
+        } catch(err) {
+            console.log(err);
+            return err;
         }
     }
     

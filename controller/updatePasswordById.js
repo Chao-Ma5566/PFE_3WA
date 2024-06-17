@@ -49,7 +49,6 @@ export default async (req, res) => {
             oldPassword: oldPassword,
             id: id
         })
-        console.log(data)
         res.json({data})
     }catch(err) {
         console.log(err);

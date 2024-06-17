@@ -107,7 +107,7 @@ export default async (req, res) => {
             return res.status(500).json({response:userData})
         }
         const cartData = await cart.getByUserId({user_id: userData.id})
-        const productList = await products.getAll()
+        const productList = await products.getAll("")
         const cartItems = await getCartArray(productList.result, cartData.result)
         user.updateLogintimeById(userData.id)
         res.json({result:userData, cart: cartItems, products: productList.result})

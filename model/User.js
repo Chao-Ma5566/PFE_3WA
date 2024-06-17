@@ -85,7 +85,6 @@ class User {
             
             // on fait la requete
             const createUser = await this.asyncQuery(sql,paramsSql)
-            console.log(createUser)
             // on retourn la reponse
             return {response:createUser}
         }catch(err){
@@ -110,7 +109,6 @@ class User {
             
             // on fait la requete
             const updateUser = await this.asyncQuery(sql,paramsSql)
-            console.log(updateUser)
             // on retourn la reponse
             return {response:updateUser}
         }catch(err){
@@ -200,12 +198,10 @@ class User {
         
         try {
             const dataBDD = await this.getByID({id})
-            console.log(dataBDD)
             const passwordIsValide = await bcrypt.compare(oldPassword,dataBDD[0].password)
             
             
             if(passwordIsValide){
-                console.log(dataBDD[0].id)
                 const mpdHash = await bcrypt.hash(newPassword,this.saltRounds)
             
             // on creer la liste des params pour add user
