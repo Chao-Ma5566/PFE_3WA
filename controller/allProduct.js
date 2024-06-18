@@ -49,12 +49,11 @@ export default async (req, res) => {
     try {
         const myBDD = new BDD()
         const products = new Products(myBDD)
-
         const filters = {
             name: req.query.name || null,
             collection: req.query.collection || null,
-            minPrice: req.query.minPrice || null,
-            maxPrice: req.query.maxPrice || null,
+            minPrice: Array.isArray(req.query.price) ? req.query.price.find(p => p.startsWith('gt.')).split('gt.')[1] : (req.query.price && req.query.price.startsWith('gt.') ? req.query.price.split('gt.')[1] : null),
+            maxPrice: Array.isArray(req.query.price) ? req.query.price.find(p => p.startsWith('lt.')).split('lt.')[1] : (req.query.price && req.query.price.startsWith('lt.') ? req.query.price.split('lt.')[1] : null),
         };
 
         const data = await products.getAll(filters)
