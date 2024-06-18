@@ -102,12 +102,13 @@ export default async (req, res) => {
         const user = new User(myBDD)
         const cart = new Cart(myBDD)
         const products = new Products(myBDD)
+        const filter = {limit: 100,offset: 0}
         const userData = await verifyToken(token)
         if(!userData){
             return res.status(500).json({response:userData})
         }
         const cartData = await cart.getByUserId({user_id: userData.id})
-        const productList = await products.getAll("")
+        const productList = await products.getAll(filter)
         const cartItems = await getCartArray(productList.result, cartData.result)
         user.updateLogintimeById(userData.id)
         res.json({result:userData, cart: cartItems, products: productList.result})

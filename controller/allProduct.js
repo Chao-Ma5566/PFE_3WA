@@ -54,8 +54,9 @@ export default async (req, res) => {
             collection: req.query.collection || null,
             minPrice: Array.isArray(req.query.price) ? req.query.price.find(p => p.startsWith('gt.')).split('gt.')[1] : (req.query.price && req.query.price.startsWith('gt.') ? req.query.price.split('gt.')[1] : null),
             maxPrice: Array.isArray(req.query.price) ? req.query.price.find(p => p.startsWith('lt.')).split('lt.')[1] : (req.query.price && req.query.price.startsWith('lt.') ? req.query.price.split('lt.')[1] : null),
+            limit: req.query.limit & parseInt(req.query.limit),
+            offset: req.query.offset & parseInt(req.query.offset)
         };
-
         const data = await products.getAll(filters)
         res.json({data})
     }catch(err) {

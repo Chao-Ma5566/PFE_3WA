@@ -62,6 +62,12 @@ class Products {
             sql += ` AND price <= ?`;
             params.push(filters.maxPrice);
         }
+
+        if (filters.limit) {
+
+            sql += ` LIMIT ? OFFSET ?`;
+            params.push(filters.limit, filters.offset);
+        }
     
         try {
             const result = await this.asyncQuery(sql, params);
