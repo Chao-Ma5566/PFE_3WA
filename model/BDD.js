@@ -11,17 +11,23 @@ class BDD {
             user: process.env.DATABASE_USER, 
             password: process.env.DATABASE_PASSWORD, 
             database: process.env.DATABASE_NAME,
-            connectionLimit : 10000,
+            connectionLimit : 10,
          });
     }
     
-    async asyncQuery(sql, params = []){
-        return new Promise((resolve, reject)=>{
-            this.pool.query(sql,params, (error, elements)=>{
-                if(error){
-                    return reject(error);
+    async asyncQuery(sql, params = []) {
+        return new Promise((resolve, reject) => {
+            this.pool.getConnection((err, connection) => {
+                if (err) {
+                    return reject(err);
                 }
-                return resolve(elements);
+                connection.query(sql, params, (error, elements) => {
+                    connection.release(); // Libérez la connexion après usage
+                    if (error) {
+                        return reject(error);
+                    }
+                    return resolve(elements);
+                });
             });
         });
     }
