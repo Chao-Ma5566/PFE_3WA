@@ -38,8 +38,8 @@ import Cart from "../model/Cart.js"
  */
 export default async (req, res) => {
     try {
-        const myBDD = new BDD()
-        const cart = new Cart(myBDD)
+        
+        const cart = new Cart(BDD)
         const {user_id, product_id, quantity, cart_id } = req.body
         const checkData = await cart.getByUserId({user_id: user_id})
         //check if user already have same product in chat, use findIndex

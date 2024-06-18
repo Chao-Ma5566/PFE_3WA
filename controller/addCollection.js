@@ -37,8 +37,8 @@ import Collection from "../model/Collection.js"
  */
 export default async (req, res) => {
     try {
-        const myBDD = new BDD()
-        const collection = new Collection(myBDD)
+        
+        const collection = new Collection(BDD)
         const {title, description} = req.body
         const data = await collection.create({
             title: title,

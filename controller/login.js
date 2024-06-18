@@ -140,10 +140,10 @@ const generateResponse = async (userDataSQL) => {
 export default async (req, res) => {
 
     try {
-        const myBDD = new BDD()
-        const user = new User(myBDD)
-        const cart = new Cart(myBDD)
-        const products = new Products(myBDD)
+        
+        const user = new User(BDD)
+        const cart = new Cart(BDD)
+        const products = new Products(BDD)
         const {email, password} = req.body
         const result = await user.login({email: email, password: password})
         if(!result.data){

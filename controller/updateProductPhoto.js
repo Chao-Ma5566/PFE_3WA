@@ -42,9 +42,9 @@ import deleteFile from "../config/deleteFile.js"
  */
 export default async (req, res) => {
     try {
-        const myBDD = new BDD()
-        const products = new Products(myBDD)
-        const pictureProducts = new PictureProducts(myBDD)
+        
+        const products = new Products(BDD)
+        const pictureProducts = new PictureProducts(BDD)
         const {files, caption, id} = req.body
         const productInfo = await products.getById({id})
         const data = await pictureProducts.update({

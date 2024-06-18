@@ -37,8 +37,8 @@ import Cart from "../model/Cart.js"
  */
 export default async (req, res) => {
     try {
-        const myBDD = new BDD()
-        const cart = new Cart(myBDD)
+        
+        const cart = new Cart(BDD)
         const {product_id, cart_id } = req.body
         const dataCart = await cart.deletedProduct({
                 cart_id: cart_id,

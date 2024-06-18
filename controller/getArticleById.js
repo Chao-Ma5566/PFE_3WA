@@ -41,8 +41,8 @@ import BDD from "../model/BDD.js"
  */
 export default async (req, res) => {
     try {
-        const myBDD = new BDD()
-        const article = new Article(myBDD)
+        
+        const article = new Article(BDD)
         const {id} = req.params
         const data = await article.getById({id})
         res.json({data})

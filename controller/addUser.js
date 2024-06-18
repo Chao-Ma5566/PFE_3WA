@@ -48,9 +48,9 @@ import User from "../model/User.js"
  */
 export default async (req, res) => {
     try {
-        const myBDD = new BDD()
-        const user = new User(myBDD)
-        const cart = new Cart(myBDD)
+        
+        const user = new User(BDD)
+        const cart = new Cart(BDD)
         
         const {last_name, first_name, birthday, email, password} = req.body
         let data = await user.register({

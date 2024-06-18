@@ -77,8 +77,8 @@ import Products from "../model/Products.js"
  */
 export default async (req, res) => {
     try {
-        const myBDD = new BDD()
-        const products = new Products(myBDD)
+        
+        const products = new Products(BDD)
         const filters = {
             name: req.query.name || null,
             collection: req.query.collection || null,

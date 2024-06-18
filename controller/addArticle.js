@@ -39,9 +39,8 @@ import PictureArticles from "../model/PictureArticles.js"
  */
 export default async (req, res) => {
     try {
-        const myBDD = new BDD()
-        const article = new Article(myBDD)
-        const pictureArticles = new PictureArticles(myBDD)
+        const article = new Article(BDD)
+        const pictureArticles = new PictureArticles(BDD)
         const {title, content, files} = req.body
         const data = await article.create({
             title: title,
