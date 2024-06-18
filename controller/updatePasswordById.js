@@ -40,8 +40,8 @@ import User from "../model/User.js"
  */
 export default async (req, res) => {
     try {
-        const myBDD = new BDD()
-        const user = new User(myBDD)
+        
+        const user = new User(BDD)
         const {oldPassword,newPassword, id} = req.body
         
         const data = await user.updatePassewordById({

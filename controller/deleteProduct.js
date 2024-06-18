@@ -32,8 +32,8 @@ import deleteFile from "../config/deleteFile.js"
  */
 export default async(req, res) => {
     try {
-        const myBDD = new BDD()
-        const products = new Products(myBDD)
+        
+        const products = new Products(BDD)
         const { id } = req.params
         const productInfo = await products.getById({id:id})
         const data = await products.deleted({

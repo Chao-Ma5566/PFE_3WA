@@ -3,7 +3,7 @@ import mysql from "mysql";
 
 config();
 
-class BDD {
+class BDDModel {
     constructor(){
         this.pool = mysql.createPool({
             host: process.env.DATABASE_HOST,
@@ -33,4 +33,7 @@ class BDD {
     }
 }
 
-export default BDD
+const BDD = new BDDModel();
+
+export default BDD;
+

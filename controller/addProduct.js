@@ -75,10 +75,10 @@ import Products from "../model/Products.js"
  */
 export default async(req, res) => {
     try {
-        const myBDD = new BDD()
-        const products = new Products(myBDD)
-        const pictureProducts = new PictureProducts(myBDD)
-        const dimensions = new Dimensions(myBDD)
+        
+        const products = new Products(BDD)
+        const pictureProducts = new PictureProducts(BDD)
+        const dimensions = new Dimensions(BDD)
         const { name, description, price, collection_id, stock, material, files, height, width, depth, seat_height, seat_depth } = req.body
         const data = await products.create({
             name: name,

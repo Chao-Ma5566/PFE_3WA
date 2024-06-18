@@ -37,8 +37,8 @@ import User from "../model/User.js"
  */
 export default async (req, res) => {
     try {
-        const myBDD = new BDD()
-        const user = new User(myBDD)
+        
+        const user = new User(BDD)
         const {role_id, id} = req.body
         const data = await user.updateRoleById({
             role_id: role_id,

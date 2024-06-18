@@ -31,8 +31,8 @@ import User from "../model/User.js"
  */
 export default async (req, res) => {
     try {
-        const myBDD = new BDD()
-        const user = new User(myBDD)
+        
+        const user = new User(BDD)
         const {id} = req.params
         const data = await user.deleteAccount({id})
         res.json({data})

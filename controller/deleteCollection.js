@@ -31,8 +31,8 @@ import Collection from "../model/Collection.js"
  */
 export default async (req, res) => {
     try {
-        const myBDD = new BDD()
-        const collection = new Collection(myBDD)
+        
+        const collection = new Collection(BDD)
         const {id} = req.params
         const data = await collection.deleted({
             id: id
