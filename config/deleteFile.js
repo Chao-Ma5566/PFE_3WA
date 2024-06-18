@@ -1,6 +1,7 @@
-import path from 'path';
 import fs from 'fs/promises';
+import path from 'path';
 
+/* eslint-disable no-undef */
 const deleteFile = async (fileName) => {
     const rootPath = process.cwd();
     const filePath = path.join(rootPath, 'public', 'img', fileName);
@@ -12,3 +13,4 @@ const deleteFile = async (fileName) => {
     }
 };
 export default deleteFile
+/* eslint-disable no-undef */

@@ -24,8 +24,10 @@ export const verifyToken = async (token) => {
         const jwtToken = await jwt.verify(token, privateKey)
         return jwtToken
     }
+    // eslint-disable-next-line no-unused-vars
     catch(err){
         // token invalide
-        return undefined
+        // eslint-disable-next-line no-unused-vars
+        return err
     }
 }

@@ -35,7 +35,6 @@ class PictureArticles {
         
         try{
             const result = await this.asyncQuery(sql,[article_id])
-            console.log(result)
             return {result}
         } catch(err){
             console.log(err)

@@ -151,9 +151,8 @@ export default async (req, res) => {
         }
         const response = await generateResponse(result.data[0])
         if(response){
-            console.log(response.response.id)
             const cartData = await cart.getByUserId({user_id: response.response.id})
-            const productList = await products.getAll()
+            const productList = await products.getAll("")
             const cartItems = await getCartArray(productList.result, cartData.result)
             res.json({response, cart: cartItems, products: productList.result}) 
         }else{

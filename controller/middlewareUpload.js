@@ -1,8 +1,7 @@
 import formidable from 'formidable';
-import path from 'path';
 import fs from 'fs';
- 
- 
+import path from 'path';
+
 const allowedExtensions = ['jpeg', 'jpg', 'png', 'gif']; 
 const imageDirectory = 'public/img';
 const MAX_FIELD_SIZE = 20 * 1024 * 1024; 
@@ -50,7 +49,10 @@ export default async (req, res, next) => {
          
         try { 
             await fs.promises.copyFile(file.filepath, newPath); 
-        } catch (e) { 
+            
+        } 
+        // eslint-disable-next-line no-unused-vars
+        catch (e) { 
             return res.status(500).json({ error: 'Le fichier ne peut pas être enregistré.' }); 
         } 
         req.body = fields; 

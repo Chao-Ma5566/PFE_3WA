@@ -46,7 +46,9 @@ const uploadFile = async (req, res) => {
         try {
             await fs.promises.copyFile(file.filepath, newPath);
             return res.json({ success: true });
-        } catch (e) {
+        } 
+        // eslint-disable-next-line no-unused-vars
+        catch (e) {
             return res.status(500).json({ error: 'Le fichier ne peut pas être enregistré.' });
         }
     });

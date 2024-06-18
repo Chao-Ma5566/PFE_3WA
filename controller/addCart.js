@@ -42,7 +42,6 @@ export default async (req, res) => {
         const cart = new Cart(myBDD)
         const {user_id, product_id, quantity, cart_id } = req.body
         const checkData = await cart.getByUserId({user_id: user_id})
-        console.log(checkData)
         //check if user already have same product in chat, use findIndex
         let foundProductIndex = checkData.result.findIndex(e=> e.product_id === product_id)
         //if index=-1, means there is no same product, so we creat a user_cart

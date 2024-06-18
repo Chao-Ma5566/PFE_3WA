@@ -7,7 +7,7 @@ import User from "../model/User.js"
  *   patch:
  *     summary: Update a user's role by ID
  *     tags: 
- *       - Users
+ *       - Role
  *     requestBody:
  *       required: true
  *       content:

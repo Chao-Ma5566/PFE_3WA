@@ -1,14 +1,18 @@
+import { config } from 'dotenv';
 import mysql from "mysql";
+
+config();
 
 class BDD {
     constructor(){
         this.pool = mysql.createPool({
+            host: process.env.DATABASE_HOST,
+            port: process.env.DATABASE_PORT,
+            user: process.env.DATABASE_USER, 
+            password: process.env.DATABASE_PASSWORD, 
+            database: process.env.DATABASE_NAME,
             connectionLimit : 10000,
-            host: "db.3wa.io",// on rentre l'hôte, l'adresse url où se trouve la bdd
-            user: "jianchaoma", // identifiant BDD
-            password: "769240a0983403547ccdb317054fc0e7", // le password
-            database: "jianchaoma_projetdefin", // nom de la base de donnée
-        });
+         });
     }
     
     async asyncQuery(sql, params = []){
