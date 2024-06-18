@@ -5,9 +5,39 @@ import Products from "../model/Products.js"
  * @swagger
  * /products:
  *   get:
- *     summary: Retrieve a list of all products
+ *     summary: Retrieve a list of all products with optional filters and pagination
  *     tags: 
  *       - Products
+ *     parameters:
+ *       - in: query
+ *         name: name
+ *         schema:
+ *           type: string
+ *         description: Filter products by name
+ *       - in: query
+ *         name: collection
+ *         schema:
+ *           type: string
+ *         description: Filter products by collection
+ *       - in: query
+ *         name: price
+ *         schema:
+ *           type: array
+ *           items:
+ *             type: string
+ *         description: Filter products by price range (e.g., "gt.1000", "lt.3000")
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           default: 8
+ *         description: Number of products to return
+ *       - in: query
+ *         name: offset
+ *         schema:
+ *           type: integer
+ *           default: 0
+ *         description: Number of products to skip before starting to collect the result set
  *     responses:
  *       200:
  *         description: A list of products

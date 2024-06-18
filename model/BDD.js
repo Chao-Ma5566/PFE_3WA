@@ -1,15 +1,18 @@
+import { config } from 'dotenv';
 import mysql from "mysql";
+
+config();
 
 class BDD {
     constructor(){
         this.pool = mysql.createPool({
+            host: process.env.DATABASE_HOST,
+            port: process.env.DATABASE_PORT,
+            user: process.env.DATABASE_USER, 
+            password: process.env.DATABASE_PASSWORD, 
+            database: process.env.DATABASE_NAME,
             connectionLimit : 10000,
-            host: 'localhost',
-            port: 3309, 
-            user: "admin", // identifiant BDD
-            password: "123456a", // le password
-            database: "projet_three_body", // nom de la base de donnée
-        });
+         });
     }
     
     async asyncQuery(sql, params = []){
