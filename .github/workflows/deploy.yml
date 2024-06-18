@@ -25,10 +25,24 @@ jobs:
       run: npm install
 
     - name: Deploy to Render
-      uses: bounceapp/render-action@0.6.0
-      with:
-        render-token: ${{ secrets.RENDER_TOKEN }}
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+      run: |
+        curl -X POST \
+          -H "Authorization: Bearer $RENDER_API_KEY" \
+          -H "Content-Type: application/json" \
+          --data '{"serviceId": "srv-cpoos62j1k6c73ac1420"}' \
+          https://api.render.com/v1/services/YOUR_RENDER_SERVICE_ID/deploys
+
+    - name: Create Deployment Status
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        curl -X POST \
+          -H "Authorization: token $GITHUB_TOKEN" \
+          -H "Content-Type: application/json" \
+          -d '{"state": "success", "target_url": "https://api.render.com/v1/services/YOUR_RENDER_SERVICE_ID/deploys", "description": "Deployment to Render successful", "context": "continuous-integration/render"}' \
+          https://api.github.com/repos/OWNER/REPO/statuses/COMMIT_SHA
 
     - name: Notify deployment status
       if: success()
