@@ -13,5 +13,8 @@
             "database": "projet_three_body",
             "username": "admin"
         }
-    ]
+    ],
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": "file:///c%3A/Users/33663/Desktop/PFE%203WA/PFE/PFE_3WA/.github/workflows/deploy.yml"
+    }
 }
